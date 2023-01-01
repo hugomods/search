@@ -1703,7 +1703,6 @@
     input;
     constructor(ele) {
       this.element = ele instanceof HTMLElement ? ele : document.querySelector(ele);
-      console.log(ele);
       this.input = this.element.querySelector(".search-input");
     }
     hide() {
