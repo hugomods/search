@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ .Site.Title }}</title>
+    {{/* Include the CSS. */}}
+    {{ partial "search/assets/css" . }}
+  </head>
+  <body>
+    {{/* Search modal toggle that has the "search-modal-toggle" class name. */}}
+    <button class="search-modal-toggle">Search</button>
+    {{ block "main" . }}{{ end }}
+    {{/* Include the Search modal. */}}
+    {{ partial "search/modal" . }}
+    {{/* Include the JS. */}}
+    {{ partial "search/assets/js" . }}
+  </body>
+</html>

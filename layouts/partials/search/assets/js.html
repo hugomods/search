@@ -1,0 +1,29 @@
+{{- $js := resources.Get "search/js/index.ts" }}
+{{/* The SVG icons. */}}
+{{- $icons := dict
+  "home" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "width" "1.5rem" "height" "1.5rem"))
+  "section" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "list" "width" "1.5rem" "height" "1.5rem"))
+  "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "width" "1.5rem" "height" "1.5rem"))
+  "term" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tag" "width" "1.5rem" "height" "1.5rem"))
+  "taxonomy" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "width" "1.5rem" "height" "1.5rem"))
+}}
+{{/* Index files URL. */}}
+{{- $indices := slice }}
+{{- range .Sites }}
+  {{- with .Home.OutputFormats.Get "SearchIndex" }}
+    {{- $indices = $indices | append .RelPermalink }}
+  {{- end }}
+{{- end }}
+{{- $params := dict
+  "icons" $icons
+  "indices" $indices
+}}
+{{- $options := dict
+  "targetPath" "js/search.js"
+  "params" $params
+}}
+{{- $js = $js | js.Build $options }}
+{{- if hugo.IsProduction }}
+  {{- $js = $js | fingerprint }}
+{{- end }}
+<script src="{{ $js.RelPermalink }}"></script>

@@ -1,0 +1,6 @@
+{{- $css := resources.Get "search/scss/index.scss" }}
+{{- $options := dict
+  "targetPath" "css/search.css"
+}}
+{{- $css = $css | toCSS $options }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />

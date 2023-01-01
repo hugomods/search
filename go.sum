@@ -1,0 +1,7 @@
+github.com/krisk/Fuse v6.6.2+incompatible h1:laigOpZFs/xUi9zGjVu5t19bcvzRVufoXCnPSgQZmYI=
+github.com/krisk/Fuse v6.6.2+incompatible/go.mod h1:3moWv8rDjwoKic9nwiPLgZjldkbdTAbtzJHCu/Vsj4A=
+github.com/razonyang/hugo-mod-fuse-js v0.1.0 h1:IPWcKaqhpwlP8ziPiSGCrde6oSCswLfJWhXSCvjcOlk=
+github.com/razonyang/hugo-mod-fuse-js v0.1.0/go.mod h1:+0fqwM+6kYuGsPYUO/r1aVcXzSpYW2vu3LDp6GT+zec=
+github.com/razonyang/hugo-mod-icons v0.2.0 h1:xEeFV2bZnimG5KH+l0yWWYtq9doJODBM/IpX6DVB8xY=
+github.com/razonyang/hugo-mod-icons/vendors/bootstrap v0.1.0 h1:DCMA8MUdo0eRQGTmlBGzCGFTThYv9hSLsRGBdKrWtJ8=
+github.com/razonyang/hugo-mod-icons/vendors/bootstrap v0.1.0/go.mod h1:qpjpOVApH3ioWClhE05ja646/w6Wy4lz2mUA16JofEI=

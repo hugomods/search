@@ -1,0 +1,11 @@
+baseURL = 'http://example.org/'
+languageCode = 'en'
+title = 'Hugo Search Module'
+theme = 'github.com/razonyang/hugo-mod-search'
+
+[outputs]
+home = ["HTML", "SearchIndex"]
+
+[languages.en]
+
+[languages.zh-hans]

@@ -1,0 +1,8 @@
+[search]
+other = "Search"
+
+[search_cancel]
+other = "Cancel"
+
+[search_to_close]
+other = "to close"

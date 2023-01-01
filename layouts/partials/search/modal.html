@@ -1,0 +1,21 @@
+<div class="search-modal">
+  <div class="search-modal-header">
+    <form class="search-form">
+      <div class="search-input-group">
+        <span class="search-input-icon">
+          {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "width" "1rem" "height" "1rem") }}
+        </span>
+        <input class="search-input" placeholder="{{ i18n `search` }}" />
+      </div>
+      <button class="search-modal-close" type="button">
+        {{- i18n "search_cancel" -}}
+      </button>
+    </form>
+  </div>
+  <div class="search-modal-body">
+    <div class="search-results"></div>
+  </div>
+  <div class="search-modal-footer">
+    <span><kbd>ESC</kbd> {{ i18n "search_to_close" }}</span>
+  </div>
+</div>

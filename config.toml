@@ -1,0 +1,20 @@
+[outputFormats]
+# RESERVED FOR SINGLE PAGE SEARCH.
+# [outputFormats.Search]
+# baseName = 'search'
+# isHTML = true
+# mediaType = 'text/html'
+[outputFormats.SearchIndex]
+baseName = 'search'
+isPlainText = true
+mediaType = 'application/json'
+
+[[module.imports]]
+path = "github.com/razonyang/hugo-mod-fuse-js"
+
+[[module.imports]]
+path = "github.com/razonyang/hugo-mod-icons/vendors/bootstrap"
+
+[params.hugopress.modules.search.hooks.head-end]
+
+[params.hugopress.modules.search.hooks.body-end]

@@ -1,0 +1,20 @@
+{{- $items := slice }}
+{{- $pages := .Site.Pages }}
+{{- range $pages }}
+  {{- $page := . }}
+  {{- $item := newScratch }}
+  {{- $item.Set "title" .Title }}
+  {{- $item.Set "summary" (.Summary | plainify) }}
+  {{- $item.Set "kind" .Kind }}
+  {{- $item.Set "lang" .Language.Lang }}
+  {{- $item.Set "url" .RelPermalink }}
+  {{- $item.Set "date" .Date.Unix }}
+  {{/* Taxonomies */}}
+  {{/*  {{- range $name, $taxonomy := $.Site.Taxonomies }}
+    {{- range $page.GetTerms $name }}
+      {{- $item.Add "taxonomies" (slice .Title) }}
+    {{- end }}
+  {{- end }}  */}}
+  {{- $items = $items | append $item.Values }}
+{{- end }}
+{{- $items | jsonify -}}
