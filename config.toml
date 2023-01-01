@@ -9,6 +9,10 @@ baseName = 'search'
 isPlainText = true
 mediaType = 'application/json'
 
+[module]
+[module.hugoVersion]
+extended = true
+
 [[module.imports]]
 path = "github.com/razonyang/hugo-mod-fuse-js"
 
