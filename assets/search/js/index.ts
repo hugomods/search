@@ -2,6 +2,7 @@ import Engine from "./engine"
 import Modal from "./modal"
 import Renderer from "./renderer"
 import { default as params } from '@params'
+import Spinner from "./spinner"
 
 (() => {
     'use strict'
@@ -16,7 +17,7 @@ import { default as params } from '@params'
             promises.push(promise)
         }
 
-        Promise.all(promises)
+        return Promise.all(promises)
             .then((resp) => {
                 let pages = resp[0]
                 for (let i = 1; i < resp.length; i++) {
@@ -26,8 +27,6 @@ import { default as params } from '@params'
                 engine = new Engine(pages)
             })
     }
-
-    initEngine()
 
     let timeoutId = 0
 
@@ -63,7 +62,25 @@ import { default as params } from '@params'
         return true
     }
 
+    const search = (query) => {
+        spinner.show()
+        const promise = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(engine.search(query))
+            }, 1)
+        })
+        promise.then((results) => {
+            renderer.render(results)
+        }).finally(() => {
+            spinner.hide()
+        })
+    }
+
+    let spinner
+
     document.addEventListener('DOMContentLoaded', () => {
+        spinner = new Spinner('.search-spinner')
+
         const form = document.querySelector('.search-form') as HTMLFormElement
         form?.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -75,9 +92,16 @@ import { default as params } from '@params'
             clearTimeout(timeoutId)
             // set up a new delayed search request.
             timeoutId = setTimeout(() => {
-                const results = engine.search(input.value)
-                renderer.render(results)
+                search(input.value)
             }, stallThreshold)
+        })
+
+        initEngine().then(() => {
+            input.removeAttribute('disabled')
+            spinner.hide()
+        }).catch((err) => {
+            input.value = 'failed to initial index.'
+            console.error(err)
         })
 
         document.querySelectorAll('.search-modal-toggle').forEach((toggle) => {
