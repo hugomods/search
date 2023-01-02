@@ -6,3 +6,6 @@ other = "Cancel"
 
 [search_to_close]
 other = "to close"
+
+[search_to_search]
+other = "to search"

@@ -6,3 +6,6 @@ other = "取消"
 
 [search_to_close]
 other = "關閉"
+
+[search_to_search]
+other = "搜索"
