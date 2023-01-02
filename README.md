@@ -10,18 +10,25 @@ The client search module built on top of Fuse.js for Hugo.
 - Pagination.
 - Lightweight.
 
+<div align="center">
+
 | | CSS | JS
 |---|:-:|:-:
-| Compressed | `~30kB` | `~10kB`
-| Gzip | `~3kB` | `~1kB`
+| Compressed | `~3kB` | `~30kB`
+| Gzip | `~1kB` | `~10kB`
+
+</div>
 
 - Configurable shortcuts.
+- 
+<div align="center">
 
 | Shortcuts | |
 |---|---|
 | <kbd>CTRL</kbd> + <kbd>K</kbd> | to search.
 | <kbd>ESC</kbd> | to close.
 
+</div>
 
 ## Usage
 
@@ -95,8 +102,8 @@ stall_threshold = 200
 | `search.case_sensitive` | Boolean | `false` | Indicates whether comparisons should be case sensitive.
 | `search.min_match_char_length` | Integer | `1` | Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to `2`).
 | `search.location` | Integer | `0` | Determines approximately where in the text is the pattern expected to be found.
-| `search.threshold` | Integer | `0.6` | At what point does the match algorithm give up. A threshold of 0.0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
-| `search.distance` | Integer | `100` | Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match be at the exact location specified. A distance of 1000 would require a perfect match to be within `800` characters of the location to be found using a threshold of `0.8`.
+| `search.threshold` | Integer | `0.6` | At what point does the match algorithm give up. A threshold of `0.0` requires a perfect match (of both letters and location), a threshold of `1.0` would match anything.
+| `search.distance` | Integer | `100` | Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match be at the exact location specified. A distance of `1000` would require a perfect match to be within `800` characters of the location to be found using a threshold of `0.8`.
 | `search.ignore_location` | Boolean | `false` | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
 | `search.shortcut_close` | Array | `["Escape"]` | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
 | `search.shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
