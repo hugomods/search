@@ -6,7 +6,7 @@ The client search module built on top of Fuse.js for Hugo.
 
 - [Flexible and configurable](#parameters)
 - Built-in UI and interactive logic, it's easy to integrate it with your theme.
-- Restyle the UI with CSS variables.
+- Restyle the UI with [CSS variables](#css-variables).
 - Pagination.
 - Lightweight.
 
@@ -103,3 +103,21 @@ stall_threshold = 200
 | `search.input_placeholder` | String | `i18n "search"` | The placeholder of search input.
 | `search.paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `search.max_results` | Integer | `100` | Denotes the max number of returned search results.
+
+## CSS Variables
+
+You can easily to adjust the search UI to fit your theme and dark mode via the following CSS variables.
+
+| Name | Description
+|---|---
+| `--search-primary` | Primary color.
+| `--search-bg` | Background color.
+| `--search-color` | Primary text color.
+| `--search-color-secondary` | Secondary text color.
+| `--search-result-bg` | Result background color.
+| `--search-result-bg-active` | Result background color on active.
+| `--search-result-color` | Primary result text color.
+| `--search-result-color-active` | Primary result text color on active.
+| `--search-result-color-secondary` | Secondary result text color.
+| `--search-result-color-secondary-active` | Secondary result text color on active.
+| `--search-border-color` | Border color.
