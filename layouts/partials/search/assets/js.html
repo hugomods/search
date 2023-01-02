@@ -14,9 +14,10 @@
     {{- $indices = $indices | append .RelPermalink }}
   {{- end }}
 {{- end }}
-{{- $params := dict
+{{- $params := merge .Site.Params.search (dict
   "icons" $icons
   "indices" $indices
+  )
 }}
 {{- $options := dict
   "targetPath" "js/search.js"
