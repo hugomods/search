@@ -31,7 +31,7 @@ import Spinner from "./spinner"
     let timeoutId = 0
 
     // How many milliseconds must elapse before considering the autocomplete experience stalled.
-    const stallThreshold = params.stall_threshold ?? 300
+    const stallThreshold = params.stall_threshold
 
     const renderer = new Renderer('.search-results')
 

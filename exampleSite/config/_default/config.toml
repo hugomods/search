@@ -7,6 +7,3 @@ path = 'github.com/razonyang/hugo-mod-search'
 
 [outputs]
 home = ["HTML", "SearchIndex"]
-
-[params.search]
-input_placeholder = 'Type to search'
