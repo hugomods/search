@@ -4,15 +4,24 @@ The client search module built on top of Fuse.js for Hugo.
 
 ## Features
 
-- Lightweight:
-  - JS: ~30kB (~10kB with Gzip)
-  - CSS: ~3kB (~1kB with Gzip)
 - [Flexible and configurable](#parameters)
 - Built-in UI and interactive logic, it's easy to integrate it with your theme.
 - Restyle the UI with CSS variables.
-- Configurable shortcuts:
-  - <kbd>CTRL</kbd> + <kbd>K</kbd> to search.
-  - <kbd>ESC</kbd> to close.
+- Pagination.
+- Lightweight.
+
+| | CSS | JS
+|---|:-:|:-:
+| Compressed | `~30kB` | `~10kB`
+| Gzip | `~3kB` | `~1kB`
+
+- Configurable shortcuts.
+
+| Shortcuts | |
+|---|---|
+| <kbd>CTRL</kbd> + <kbd>K</kbd> | to search.
+| <kbd>ESC</kbd> | to close.
+
 
 ## Usage
 
@@ -26,6 +35,14 @@ path = "github.com/razonyang/hugo-mod-search"
 ```
 
 ### Include the CSS
+
+Import the SCSS file (recommended, since the CSS file is too small as a single CSS file).
+
+```scss
+@import 'search/scss/index'
+```
+
+Or include the built-in CSS.
 
 ```go
 {{ partial "search/assets/css" . }}
