@@ -6,12 +6,12 @@ export default class Engine {
 
     constructor(pages) {
         this.index = new Fuse(pages, {
-            isCaseSensitive: params.case_sensitive ?? false,
-            minMatchCharLength: params.min_match_char_length ?? 1,
-            location: params.location ?? 0,
-            threshold: params.threshold ?? 0,
-            distance: params.distance ?? 100,
-            ignoreLocation: params.ignore_location ?? false,
+            isCaseSensitive: params.case_sensitive,
+            minMatchCharLength: params.min_match_char_length,
+            location: params.location,
+            threshold: params.threshold,
+            distance: params.distance,
+            ignoreLocation: params.ignore_location,
             keys: ['title', 'summary']
         })
     }
