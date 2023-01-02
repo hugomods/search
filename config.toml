@@ -31,3 +31,5 @@ location = 0
 threshold = 0.6
 distance = 100
 ignore_location = false
+shortcut_close = ["Escape"]
+shortcut_search = ["Control", "k"]

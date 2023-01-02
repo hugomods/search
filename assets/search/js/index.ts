@@ -9,7 +9,6 @@ import { default as params } from '@params'
     let engine
 
     const initEngine = () => {
-
         const promises = []
         for (const i in params.indices) {
             const promise = fetch(params.indices[i])
@@ -37,6 +36,33 @@ import { default as params } from '@params'
 
     const renderer = new Renderer('.search-results')
 
+    const pressedKeys = {}
+
+    const onKeyPress = (e: KeyboardEvent) => {
+        if (e.type === 'keydown') {
+            // record the pressed key.
+            pressedKeys[e.key] = true
+        } else {
+            // remove it when keyup, to simplify the check conditions of isKeysPressed.
+            delete pressedKeys[e.key]
+        }
+    }
+
+    // Check if the given keys were pressed at the same time.
+    const isKeysPressed = (keys: Array<string>): boolean => {
+        if (keys.length === 0) {
+            return false
+        }
+
+        for (let i in keys) {
+            if (!(keys[i] in pressedKeys)) {
+                return false
+            }
+        }
+
+        return true
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.querySelector('.search-form') as HTMLFormElement
         form?.addEventListener('submit', (e) => {
@@ -60,19 +86,30 @@ import { default as params } from '@params'
             })
         })
 
-
         document.querySelectorAll('.search-modal-close').forEach((toggle) => {
             toggle.addEventListener('click', () => {
                 Modal.getOrCreate(toggle.closest('.search-modal')).hide()
             })
         })
 
-        document.addEventListener('keyup', (e) => {
-            if (e.key === "Escape") {
+        document.addEventListener('keydown', (e) => {
+            onKeyPress(e)
+
+            if (isKeysPressed(params.shortcut_close)) {
                 document.querySelectorAll('.search-modal.active').forEach((modal) => {
                     Modal.getOrCreate(modal).hide()
                 })
             }
+            if (isKeysPressed(params.shortcut_search)) {
+                const modal = document.querySelector('.search-modal:not(.active)')
+                if (modal) {
+                    Modal.getOrCreate(document.querySelector('.search-modal:not(.active)')).show()
+                }
+                // In order to override the same shortcut of browsers.
+                e.preventDefault()
+            }
         })
+
+        document.addEventListener('keyup', onKeyPress)
     })
 })()
