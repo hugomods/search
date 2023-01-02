@@ -85,3 +85,4 @@ stall_threshold = 200
 | `search.shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
 | `search.input_placeholder` | String | `i18n "search"` | The placeholder of search input.
 | `search.paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
+| `search.max_results` | Integer | `100` | Denotes the max number of returned search results.
