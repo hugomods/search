@@ -8,6 +8,7 @@
     top: 0;
     z-index: 1100;
     background: var(--search-bg);
+    color: var(--search-color);
     overflow: hidden;
 
     &.active {
@@ -17,9 +18,11 @@
 
 .search-modal-header {
     background: inherit;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     position: sticky;
     top: 0;
+    border-bottom: 1px solid var(--search-border-color);
+    margin-bottom: 0.5rem;
 }
 
 .search-modal-active {
@@ -46,6 +49,7 @@
     position: sticky;
     bottom: 0;
     padding: 0.75rem 0.5rem;
+    border-top: 1px solid var(--search-border-color);
 }
 
 .search-shortcut {
@@ -61,7 +65,7 @@
 }
 
 .search-shortcut-kbd {
-    background: black;
+    background: var(--search-primary);
     border-radius: 0.25rem;
     padding: 0.25rem 0.5rem;
     color: white;
