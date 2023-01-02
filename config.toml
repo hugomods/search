@@ -34,3 +34,4 @@ path = "github.com/razonyang/hugo-mod-icons/vendors/bootstrap"
 # shortcut_close = ["Escape"]
 # shortcut_search = ["Control", "k"]
 # input_placeholder = "Type to search"
+# paginate = 20

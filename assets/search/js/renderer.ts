@@ -3,8 +3,19 @@ import { default as params } from '@params'
 export default class Renderer {
     private container
 
-    constructor(container) {
+    private stat
+
+    private page = 1
+
+    private paginate = 20
+
+    private results
+
+    constructor(container, stat) {
         this.container = document.querySelector(container)
+        this.stat = document.querySelector(stat)
+        // Make sure that the paginate is at least 20, so that load more event will be able to trigger.
+        this.paginate = Math.max(this.paginate, params.paginate)
     }
 
     clean() {
@@ -41,11 +52,26 @@ export default class Renderer {
 
     render(results) {
         this.clean()
+        this.page = 1
+        this.results = results
+        this.renderStat()
+        this.renderPage()
+    }
 
+    private renderStat() {
+        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results.`
+    }
+
+    loadMore() {
+        this.renderPage(++this.page)
+    }
+
+    private renderPage(page = 1) {
+        const max = page * this.paginate
+        const min = max - this.paginate
         let temp = ''
-
-        for (let i in results) {
-            const result = results[i]
+        for (let i = min; i < this.results.length && i < max; i++) {
+            const result = this.results[i]
             temp += `<a href="${result.item.url}" class="search-result">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
@@ -57,6 +83,6 @@ export default class Renderer {
   </div>
 </a>`
         }
-        this.container.innerHTML = temp;
+        this.container.insertAdjacentHTML('beforeend', temp)
     }
 }

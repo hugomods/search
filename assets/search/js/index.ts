@@ -33,7 +33,7 @@ import Spinner from "./spinner"
     // How many milliseconds must elapse before considering the autocomplete experience stalled.
     const stallThreshold = params.stall_threshold
 
-    const renderer = new Renderer('.search-results')
+    const renderer = new Renderer('.search-results', '.search-stat')
 
     const pressedKeys = {}
 
@@ -72,6 +72,18 @@ import Spinner from "./spinner"
         promise.then((results) => {
             renderer.render(results)
         }).finally(() => {
+            spinner.hide()
+        })
+    }
+
+    const loadMore = () => {
+        spinner.show()
+        const promise = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(renderer.loadMore())
+            }, 1)
+        })
+        promise.finally(() => {
             spinner.hide()
         })
     }
@@ -135,5 +147,13 @@ import Spinner from "./spinner"
         })
 
         document.addEventListener('keyup', onKeyPress)
+
+        document.querySelectorAll('.search-modal-body').forEach((body) => {
+            body.addEventListener('scroll', () => {
+                if (body.scrollHeight - body.scrollTop === body.clientHeight) {
+                    loadMore()
+                }
+            })
+        })
     })
 })()
