@@ -47,3 +47,22 @@
     bottom: 0;
     padding: 0.75rem 0.5rem;
 }
+
+.search-shortcut {
+    margin-right: 0.25rem;
+}
+
+.search-shortcut-kbd-wrapper {
+    &:not(:first-child) {
+        &::before {
+            content: "+";
+        }
+    }
+}
+
+.search-shortcut-kbd {
+    background: black;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    color: white;
+}

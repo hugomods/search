@@ -1,0 +1,18 @@
+{{- $params := partialCached "search/functions/params" . }}
+<div class="search-modal-footer">
+  {{- range slice "close" "search" }}
+    {{- $shortcut := . }}
+    {{- with index $params (printf "shortcut_%s" $shortcut) }}
+      <span class="search-shortcut">
+        {{- range . }}
+          <span class="search-shortcut-kbd-wrapper">
+            <kbd class="search-shortcut-kbd">{{ . }}</kbd>
+          </span>
+        {{- end }}
+        <span class="search-shortcut-action">
+          {{- printf "search_to_%s" $shortcut | i18n -}}
+        </span>
+      </span>
+    {{- end }}
+  {{- end }}
+</div>

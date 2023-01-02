@@ -1,0 +1,12 @@
+{{- $defaults := dict
+  "stall_threshold" 300
+  "case_sensitive" false
+  "min_match_char_length" 1
+  "location" 0
+  "threshold" 0.6
+  "distance" 100
+  "ignore_location" false
+  "shortcut_close" (slice "Escape")
+  "shortcut_search" (slice "Control" "k")
+}}
+{{- return (merge $defaults site.Params.search) -}}
