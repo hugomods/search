@@ -17,6 +17,8 @@ export default class Engine {
     }
 
     search(query: string) {
-        return this.index.search(query)
+        return this.index.search(query, {
+            limit: params.max_results
+        })
     }
 }
