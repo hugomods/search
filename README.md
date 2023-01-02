@@ -20,7 +20,7 @@ The client search module built on top of Fuse.js for Hugo.
 </div>
 
 - Configurable shortcuts.
-- 
+
 <div align="center">
 
 | Shortcuts | |
