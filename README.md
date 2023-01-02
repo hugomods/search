@@ -4,6 +4,7 @@ The client search module built on top of Fuse.js for Hugo.
 
 ## Features
 
+- Lightweight: JS: ~30kB (~10kB with Gzip), CSS: ~3kB (~1kB with Gzip).
 - [Flexible and configurable](parameters)
 - Built-in UI and interactive logic, it's easy to integrate it with your theme.
 - Restyle the UI with CSS variables.
