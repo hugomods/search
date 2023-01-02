@@ -6,6 +6,8 @@ theme = 'github.com/razonyang/hugo-mod-search'
 [outputs]
 home = ["HTML", "SearchIndex"]
 
-[languages.en]
+[languages.en.params.search]
+input_placeholder = "Type to search"
 
-[languages.zh-hans]
+[languages.zh-hans.params.search]
+input_placeholder = "请输入关键词"

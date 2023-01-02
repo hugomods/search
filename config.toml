@@ -33,3 +33,4 @@ distance = 100
 ignore_location = false
 shortcut_close = ["Escape"]
 shortcut_search = ["Control", "k"]
+# input_placeholder = "Type to search"
