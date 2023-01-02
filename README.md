@@ -41,7 +41,9 @@ path = "github.com/razonyang/hugo-mod-search"
 {{ partial "search/modal" . }}
 ```
 
-### Create a modal toggle
+### Create a modal toggle (optional)
+
+> This step is optional, you're still be able to open the search modal by shortcuts (default to <kbd>CTRL</kbd> + <kbd>K</kbd>), but I recommend adding such a toggle button for getting better user experience.
 
 Adjust the button to your theme UI, place it wherever you like, for example,
 
