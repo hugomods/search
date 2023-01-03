@@ -59,9 +59,11 @@ Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 ```go
 {{ $css := resources.Get "main.scss" | toCSS }}
 {{ $searchCSS := partial "search/assets/css-resource" . }}
-{{ $css = slice $css $searchCSS | resources.Concat "css/main.css" }}
+{{ $css = slice $searchCSS $css | resources.Concat "css/main.css" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 ```
+
+> Note that `slice $searchCSS $css` puts the `$css` after `$searchCSS`, so that `$css` style can override the search's.
 
 #### Include the CSS via partial
 
