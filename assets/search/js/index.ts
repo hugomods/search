@@ -119,13 +119,13 @@ import Spinner from "./spinner"
 
         document.querySelectorAll('.search-modal-toggle').forEach((toggle) => {
             toggle.addEventListener('click', () => {
-                Modal.getOrCreate(toggle.getAttribute('data-target') ?? '.search-modal').show()
+                Modal.getOrCreate(toggle.getAttribute('data-target') ?? '.search-modal-container').show()
             })
         })
 
         document.querySelectorAll('.search-modal-close').forEach((toggle) => {
             toggle.addEventListener('click', () => {
-                Modal.getOrCreate(toggle.closest('.search-modal')).hide()
+                Modal.getOrCreate(toggle.closest('.search-modal-container')).hide()
             })
         })
 
@@ -133,14 +133,14 @@ import Spinner from "./spinner"
             onKeyPress(e)
 
             if (isKeysPressed(params.shortcut_close)) {
-                document.querySelectorAll('.search-modal.active').forEach((modal) => {
+                document.querySelectorAll('.search-modal-container.active').forEach((modal) => {
                     Modal.getOrCreate(modal).hide()
                 })
             }
             if (isKeysPressed(params.shortcut_search)) {
-                const modal = document.querySelector('.search-modal:not(.active)')
+                const modal = document.querySelector('.search-modal-container:not(.active)')
                 if (modal) {
-                    Modal.getOrCreate(document.querySelector('.search-modal:not(.active)')).show()
+                    Modal.getOrCreate(document.querySelector('.search-modal-container:not(.active)')).show()
                 }
                 // In order to override the same shortcut of browsers.
                 e.preventDefault()
