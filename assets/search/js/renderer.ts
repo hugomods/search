@@ -3,6 +3,8 @@ import { default as params } from '@params'
 export default class Renderer {
     private container
 
+    private lang = ''
+
     private stat
 
     private page = 1
@@ -20,6 +22,7 @@ export default class Renderer {
         this.stat = document.querySelector(stat)
         // Make sure that the paginate is at least 20, so that load more event will be able to trigger.
         this.paginate = Math.max(this.paginate, params.paginate)
+        this.lang = document.documentElement.getAttribute('lang') ?? 'en-US'
     }
 
     clean() {
@@ -30,7 +33,6 @@ export default class Renderer {
         return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
     }
 
-    // TODO: display the taxonomies, UI design is need.
     taxonomies(page) {
         let v = ''
 
@@ -42,12 +44,11 @@ export default class Renderer {
     }
 
     date(page) {
-        // TODO: localized date.
         if (page.date <= 0) {
             return ''
         }
 
-        return (new Date(page.date * 1000)).toLocaleDateString('en-US')
+        return (new Date(page.date * 1000)).toLocaleDateString(this.lang, { dateStyle: 'long' })
     }
 
     title(result) {
@@ -131,8 +132,13 @@ export default class Renderer {
     <div class="search-result-title">${this.title(result)}</div>
     ${this.desc(result)}
   </div>
+  <div class="search-result-actions">
+    <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
+  </div>
   <div class="search-result-meta">
+    <span class="search-result-lang">${result.item.lang}</span>
     <span class="search-result-date">${this.date(result.item)}</span>
+    ${this.taxonomies(result.item)}
   </div>
 </a>`
             temp += this.renderHeadings(result)
