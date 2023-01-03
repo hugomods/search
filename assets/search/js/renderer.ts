@@ -92,7 +92,15 @@ export default class Renderer {
     }
 
     private renderStat() {
-        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results in ${this.time}ms.`
+        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results in ${this.prettifyTime()}.`
+    }
+
+    prettifyTime() {
+        if (this.time >= 100) {
+            return parseFloat((this.time / 1000).toFixed(2)) + 's'
+        }
+
+        return this.time + 'ms'
     }
 
     loadMore() {
