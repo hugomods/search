@@ -46,8 +46,36 @@ export default class Renderer {
         return (new Date(page.date * 1000)).toLocaleDateString('en-US')
     }
 
-    desc(page) {
-        return page.summary
+    title(result) {
+        return this.highlight(result.item.title, 'title', result.matches)
+    }
+
+    desc(result) {
+        return this.highlight(result.item.summary, 'summary', result.matches)
+    }
+
+    highlight(s: string, key: string, matches) {
+        matches = matches.filter((match) => match.key === key)
+        // return the original string if no matches found.
+        if (matches.length === 0) {
+            return s
+        }
+
+        let ret = ''
+        let start = 0
+        for (let i in matches) {
+            const match = matches[i]
+            for (let j in match.indices) {
+                const idxStart = match.indices[j][0]
+                const idxEnd = match.indices[j][1] + 1
+                ret += `${s.substring(start, idxStart)}<mark>${s.substring(idxStart, idxEnd)}</mark>`
+                start = idxEnd
+            }
+        }
+        // append the rest of characters of s.
+        ret += s.substring(start)
+
+        return ret
     }
 
     render(results) {
@@ -77,8 +105,8 @@ export default class Renderer {
             temp += `<a href="${result.item.url}" class="search-result">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
-    <div class="search-result-title">${result.item.title}</div>
-    <div class="search-result-desc">${this.desc(result.item)}</div>
+    <div class="search-result-title">${this.title(result)}</div>
+    <div class="search-result-desc">${this.desc(result)}</div>
   </div>
   <div class="search-result-meta">
     <span class="search-result-date">${this.date(result.item)}</span>

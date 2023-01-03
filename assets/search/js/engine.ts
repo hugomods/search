@@ -12,7 +12,8 @@ export default class Engine {
             threshold: params.threshold,
             distance: params.distance,
             ignoreLocation: params.ignore_location,
-            keys: ['title', 'summary']
+            keys: ['title', 'summary'],
+            includeMatches: true,
         })
     }
 
