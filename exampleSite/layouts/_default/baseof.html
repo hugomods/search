@@ -2,17 +2,28 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ .Site.Title }}</title>
-    {{/* Include the CSS. */}}
-    {{ partial "search/assets/css" . }}
+
+    {{/* CSS Begin. */}}
+    {{ $css := resources.Get "main.scss" | toCSS }}
+    {{ $searchCSS := partial "search/assets/css-resource" . }}
+    {{ $css = slice $css $searchCSS | resources.Concat "css/main.css" }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+    {{/* CSS end. */}}
   </head>
   <body>
     {{/* Search modal toggle that has the "search-modal-toggle" class name. */}}
     <input class="search-modal-toggle" placeholder="CTRL+K to search" />
     <button class="search-modal-toggle">Search</button>
     {{ block "main" . }}{{ end }}
+
     {{/* Include the Search modal. */}}
     {{ partial "search/modal" . }}
-    {{/* Include the JS. */}}
-    {{ partial "search/assets/js" . }}
+
+    {{/* JS begin. */}}
+    {{ $js := resources.Get "main.ts" | js.Build }}
+    {{ $searchJS := partial "search/assets/js-resource" . }}
+    {{ $js = slice $js $searchJS | resources.Concat "js/main.js" }}
+    <script src="{{ $js.RelPermalink }}"></script>
+    {{/* JS end. */}}
   </body>
 </html>

@@ -43,19 +43,48 @@ path = "github.com/razonyang/hugo-mod-search"
 
 ### Include the CSS
 
-Import the SCSS file (recommended, since the CSS file is too small as a single CSS file).
+There are three approaches to include the CSS. It's recommended to use the first two approaches, since the CSS file is too small as a single CSS file.
+Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
+
+#### Import the CSS via SCSS file (recommended)
 
 ```scss
 @import 'search/scss/index'
 ```
 
-Or include the built-in CSS.
+#### Include the CSS via Hugo Pipe (recommended)
+
+```go
+{{ $css := resources.Get "main.scss" | toCSS }}
+{{ $searchCSS := partial "search/assets/css-resource" . }}
+{{ $css = slice $css $searchCSS | resources.Concat "css/main.css" }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+```
+
+#### Include the CSS via partial
+
+This approach generates a `<link>` tag.
 
 ```go
 {{ partial "search/assets/css" . }}
 ```
 
 ### Include the JavaScript
+
+We can achieve this via two ways.
+
+#### Include the JavaScript via Hugo Pipe (recommended)
+
+```go
+{{ $js := resources.Get "main.ts" | js.Build }}
+{{ $searchJS := partial "search/assets/js-resource" . }}
+{{ $js = slice $js $searchJS | resources.Concat "js/main.js" }}
+<script src="{{ $js.RelPermalink }}"></script>
+```
+
+#### Include the JavaScript via partial
+
+This partial will generate a `<script>` tag.
 
 ```go
 {{ partial "search/assets/js" . }}
