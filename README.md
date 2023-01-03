@@ -4,9 +4,9 @@ The client search module built on top of Fuse.js for Hugo.
 
 ## Features
 
-- [Flexible and configurable](#parameters)
-- Built-in UI and interactive logic, it's easy to integrate it with your theme.
-- Restyle the UI with [CSS variables](#css-variables).
+- [Flexible and configurable](#parameters).
+- Built-in responsive, theme-less UI and interactive logic, which in most cases can be safely and effortlessly integrated with any theme.
+- Allow restyling the UI with [CSS variables](#css-variables).
 - Pagination: load more when scrolling to the bottom of results.
 - Highlighting matches.
 - Statistic: the number of search results, search time.
