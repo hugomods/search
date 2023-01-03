@@ -177,5 +177,18 @@ import Navigator from "./navigator"
                 }
             })
         })
+
+        document.addEventListener('click', (e) => {
+            const action = e.target.closest('.search-result-action')
+            if (action && action.classList.contains('search-result-action-meta')) {
+                e.preventDefault()
+                const meta = action.closest('.search-result').querySelector('.search-result-meta')
+                if (meta.classList.contains('show')) {
+                    meta.classList.remove('show')
+                } else {
+                    meta.classList.add('show')
+                }
+            }
+        })
     })
 })()

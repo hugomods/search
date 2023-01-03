@@ -11,11 +11,11 @@
   {{- $item.Set "date" .Date.Unix }}
   {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) }}
   {{/* Taxonomies */}}
-  {{/*  {{- range $name, $taxonomy := $.Site.Taxonomies }}
+  {{- range $name, $taxonomy := $.Site.Taxonomies }}
     {{- range $page.GetTerms $name }}
       {{- $item.Add "taxonomies" (slice .Title) }}
     {{- end }}
-  {{- end }}  */}}
+  {{- end }}
   {{- $items = $items | append $item.Values }}
 {{- end }}
 {{- $items | jsonify -}}
