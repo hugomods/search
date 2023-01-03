@@ -51,15 +51,14 @@ export default class Renderer {
     }
 
     title(result) {
-        return this.highlight(result.item.title, 'title', result.matches)
+        return this.highlight(result.item.title, result.matches.filter((match) => match.key === 'title'))
     }
 
     desc(result) {
-        return this.highlight(result.item.summary, 'summary', result.matches)
+        return this.highlight(result.item.summary, result.matches.filter((match) => match.key === 'summary'))
     }
 
-    highlight(s: string, key: string, matches) {
-        matches = matches.filter((match) => match.key === key)
+    highlight(s: string, matches) {
         // return the original string if no matches found.
         if (matches.length === 0) {
             return s
@@ -130,7 +129,39 @@ export default class Renderer {
     <span class="search-result-date">${this.date(result.item)}</span>
   </div>
 </a>`
+            temp += this.renderHeadings(result)
         }
         this.container.insertAdjacentHTML('beforeend', temp)
+    }
+
+    renderHeadings(result) {
+        if (!result.item.headings || result.item.headings.length == 0) {
+            return ''
+        }
+
+        const matches = result.matches.filter((match) => match.key === 'headings.title')
+        if (matches.length == 0) {
+            return ''
+        }
+
+        let temp = ''
+
+        for (let i in result.item.headings) {
+            const heading = result.item.headings[i]
+            for (let j in matches) {
+                if (matches[j].value !== heading.title) {
+                    continue
+                }
+
+                temp += `<a href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
+  <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
+  <div class="search-result-content">
+    <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>
+  </div>
+</a>`
+            }
+        }
+
+        return temp
     }
 }

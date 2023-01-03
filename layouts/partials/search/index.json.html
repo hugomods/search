@@ -9,6 +9,7 @@
   {{- $item.Set "lang" .Language.Lang }}
   {{- $item.Set "url" .RelPermalink }}
   {{- $item.Set "date" .Date.Unix }}
+  {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) }}
   {{/* Taxonomies */}}
   {{/*  {{- range $name, $taxonomy := $.Site.Taxonomies }}
     {{- range $page.GetTerms $name }}
