@@ -63,6 +63,12 @@ import Spinner from "./spinner"
     }
 
     const search = (query) => {
+        query = query.trim()
+        if (query === '') {
+            renderer.render(query, [], 0)
+            return
+        }
+
         spinner.show()
         const promise = new Promise((resolve) => {
             setTimeout(() => {
@@ -71,7 +77,7 @@ import Spinner from "./spinner"
         })
         const start = (new Date()).getTime()
         promise.then((results) => {
-            renderer.render(results, (new Date()).getTime() - start)
+            renderer.render(query, results, (new Date()).getTime() - start)
         }).finally(() => {
             spinner.hide()
         })
