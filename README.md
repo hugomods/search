@@ -155,6 +155,7 @@ You can easily to adjust the search UI to fit your theme and dark mode via the f
 | Name | Description
 |---|---
 | `--search-primary` | Primary color.
+| `--search-container-bg` | Container background color.
 | `--search-bg` | Background color.
 | `--search-color` | Primary text color.
 | `--search-color-secondary` | Secondary text color.

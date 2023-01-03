@@ -1,7 +1,7 @@
 $search-max-width: 560px;
 
 .search-modal-container {
-    background: rgba(101, 108, 133, 0.8);
+    background: var(--search-container-bg);
     position: fixed;
     top: 0;
     width: 100%;
