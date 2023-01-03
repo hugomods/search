@@ -11,6 +11,8 @@ export default class Renderer {
 
     private results
 
+    private time
+
     constructor(container, stat) {
         this.container = document.querySelector(container)
         this.stat = document.querySelector(stat)
@@ -78,18 +80,19 @@ export default class Renderer {
         return ret
     }
 
-    render(results) {
+    render(results, time) {
         this.clean()
         // Back to top when re-rendering results.
         this.container.closest('.search-modal-body').scrollTop = 0
         this.page = 1
         this.results = results
+        this.time = time
         this.renderStat()
         this.renderPage()
     }
 
     private renderStat() {
-        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results.`
+        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results in ${this.time}ms.`
     }
 
     loadMore() {
