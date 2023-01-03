@@ -1,3 +1,19 @@
 h1 {
     color: blue;
 }
+
+[data-theme="dark"] {
+    --search-primary: #9864ff;
+    --search-bg: #121212;
+    --search-color: white;
+    --search-color-secondary: rgba(255, 255, 255, 0.7);
+    --search-border-color: rgba(255, 255, 255, 0.5);
+    --search-result-bg: #1e1e1e;
+    --search-result-color: rgba(255, 255, 255, 0.7);
+    --search-result-color-secondary: rgba(255, 255, 255, 0.5);
+
+    body {
+        background: #121212;
+        color: white;
+    }
+}
