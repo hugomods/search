@@ -69,8 +69,9 @@ import Spinner from "./spinner"
                 resolve(engine.search(query))
             }, 1)
         })
+        const start = (new Date()).getTime()
         promise.then((results) => {
-            renderer.render(results)
+            renderer.render(results, (new Date()).getTime() - start)
         }).finally(() => {
             spinner.hide()
         })
