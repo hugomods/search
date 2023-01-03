@@ -50,6 +50,8 @@
 .search-input {
     border-radius: 0.25rem;
     border: 1px solid var(--search-primary);
+    background: var(--search-bg);
+    color: var(--search-color);
     padding: 0.5rem 2.25rem;
     width: 100%;
     outline: none;
