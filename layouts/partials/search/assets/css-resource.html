@@ -1,0 +1,8 @@
+{{- $css := resources.Get "search/scss/index.scss" }}
+{{- $options := dict
+  "targetPath" "css/search.css"
+  "enableSourceMap" (not hugo.IsProduction)
+  "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+}}
+{{- $css = $css | toCSS $options }}
+{{- return $css -}}
