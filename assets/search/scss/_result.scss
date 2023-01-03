@@ -24,6 +24,12 @@
         .search-result-desc {
             color: var(--search-result-color-secondary-active);
         }
+
+        .search-result-heading-icon {
+            &::before {
+                color: var(--search-result-color-secondary-active);
+            }
+        }
     }
 }
 
@@ -44,6 +50,10 @@
     overflow: hidden;
 }
 
+.search-result-desc {
+    margin-top: 0.125rem;
+}
+
 .search-result-desc,
 .search-result-meta {
     font-size: 0.75rem;
@@ -59,8 +69,6 @@
 
 .search-result-title,
 .search-result-desc {
-    margin-bottom: 0.125rem;
-
     mark {
         background: var(--search-result-highlight-bg);
         color: var(--search-result-highlight-color);
@@ -96,6 +104,8 @@
 }
 
 .search-result-heading-icon {
+    margin-right: 0;
+
     &::before {
         content: "∟";
         color: var(--search-result-color-secondary);

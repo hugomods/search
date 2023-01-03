@@ -55,7 +55,13 @@ export default class Renderer {
     }
 
     desc(result) {
-        return this.highlight(result.item.summary, result.matches.filter((match) => match.key === 'summary'))
+        if (!result.item.summary || result.item.summary === '') {
+            return ''
+        }
+
+        return '<div class="search-result-desc">'
+            + this.highlight(result.item.summary, result.matches.filter((match) => match.key === 'summary'))
+            + '</div>'
     }
 
     highlight(s: string, matches) {
@@ -123,7 +129,7 @@ export default class Renderer {
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>
-    <div class="search-result-desc">${this.desc(result)}</div>
+    ${this.desc(result)}
   </div>
   <div class="search-result-meta">
     <span class="search-result-date">${this.date(result.item)}</span>
