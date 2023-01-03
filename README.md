@@ -7,7 +7,7 @@ The client search module built on top of Fuse.js for Hugo.
 - [Flexible and configurable](#parameters)
 - Built-in UI and interactive logic, it's easy to integrate it with your theme.
 - Restyle the UI with [CSS variables](#css-variables).
-- Pagination.
+- Pagination: load more when scrolling to the bottom of results.
 - Highlighting matches.
 - Lightweight.
 
@@ -144,6 +144,12 @@ stall_threshold = 200
 ## CSS Variables
 
 You can easily to adjust the search UI to fit your theme and dark mode via the following CSS variables.
+
+```css
+:root {
+    --search-primary: skyblue;
+}
+```
 
 | Name | Description
 |---|---
