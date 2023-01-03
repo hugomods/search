@@ -4,6 +4,7 @@ The client search module built on top of Fuse.js for Hugo.
 
 ## Features
 
+- Fuzzy search by title, summary and headings.
 - [Flexible and configurable](#parameters).
 - Built-in responsive, theme-less UI and interactive logic, which in most cases can be safely and effortlessly integrated with any theme.
 - Allow restyling the UI with [CSS variables](#css-variables).
