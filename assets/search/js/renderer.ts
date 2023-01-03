@@ -125,7 +125,7 @@ export default class Renderer {
         let temp = ''
         for (let i = min; i < this.results.length && i < max; i++) {
             const result = this.results[i]
-            temp += `<a href="${result.item.url}" class="search-result">
+            temp += `<a title="${result.item.title}" href="${result.item.url}" class="search-result">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>
@@ -159,10 +159,11 @@ export default class Renderer {
                     continue
                 }
 
-                temp += `<a href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
+                temp += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>
+    <div class="search-result-desc">${result.item.title}</div>
   </div>
 </a>`
             }
