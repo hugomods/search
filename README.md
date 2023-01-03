@@ -8,6 +8,7 @@ The client search module built on top of Fuse.js for Hugo.
 - Built-in UI and interactive logic, it's easy to integrate it with your theme.
 - Restyle the UI with [CSS variables](#css-variables).
 - Pagination.
+- Highlighting matches.
 - Lightweight.
 
 <div align="center">
@@ -156,4 +157,6 @@ You can easily to adjust the search UI to fit your theme and dark mode via the f
 | `--search-result-color-active` | Primary result text color on active.
 | `--search-result-color-secondary` | Secondary result text color.
 | `--search-result-color-secondary-active` | Secondary result text color on active.
+| `--search-result-highlight-bg` | The highlight result background color, default to `inherit`.
+| `--search-result-highlight-color` | The highlight result color, default to `inherit`.
 | `--search-border-color` | Border color.

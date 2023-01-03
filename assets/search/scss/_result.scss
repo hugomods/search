@@ -54,6 +54,12 @@
 .search-result-title,
 .search-result-desc {
     margin-bottom: 0.125rem;
+
+    mark {
+        background: var(--search-result-highlight-bg);
+        color: var(--search-result-highlight-color);
+        text-decoration: underline;
+    }
 }
 
 .search-result-meta {
