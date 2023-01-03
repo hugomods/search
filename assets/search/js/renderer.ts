@@ -52,6 +52,8 @@ export default class Renderer {
 
     render(results) {
         this.clean()
+        // Back to top when re-rendering results.
+        this.container.closest('.search-modal-body').scrollTop = 0
         this.page = 1
         this.results = results
         this.renderStat()
