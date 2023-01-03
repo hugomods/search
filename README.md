@@ -10,6 +10,7 @@ The client search module built on top of Fuse.js for Hugo.
 - Pagination: load more when scrolling to the bottom of results.
 - Highlighting matches.
 - Statistic: the number of search results, search time.
+- Results navigation.
 - Lightweight.
 
 <div align="center">

@@ -6,7 +6,7 @@
       <span class="search-shortcut">
         {{- range . }}
           <span class="search-shortcut-kbd-wrapper">
-            <kbd class="search-shortcut-kbd">{{ . }}</kbd>
+            <kbd class="search-shortcut-kbd">{{ . | upper }}</kbd>
           </span>
         {{- end }}
         <span class="search-shortcut-action">
@@ -15,4 +15,21 @@
       </span>
     {{- end }}
   {{- end }}
+  <span class="search-shortcut">
+    <span class="search-shortcut-kbd-wrapper">
+      <kbd class="search-shortcut-kbd">↑</kbd>
+      <kbd class="search-shortcut-kbd">↓</kbd>
+    </span>
+    <span class="search-shortcut-action">
+      {{- "search_to_navigate"| i18n -}}
+    </span>
+  </span>
+  <span class="search-shortcut">
+    <span class="search-shortcut-kbd-wrapper">
+      <kbd class="search-shortcut-kbd">⏎</kbd>
+    </span>
+    <span class="search-shortcut-action">
+      {{- "search_to_select"| i18n -}}
+    </span>
+  </span>
 </div>

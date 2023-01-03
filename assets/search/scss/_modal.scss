@@ -74,10 +74,14 @@ $search-max-width: 560px;
 }
 
 .search-shortcut {
-    margin-right: 0.25rem;
+    display: inline-flex;
+    margin: 0 0.5rem 1rem 0;
+    font-size: 0.875rem;
+    align-items: center;
 }
 
 .search-shortcut-kbd-wrapper {
+    margin-right: 0.25rem;
     &:not(:first-child) {
         &::before {
             content: "+";
@@ -87,9 +91,8 @@ $search-max-width: 560px;
 }
 
 .search-shortcut-kbd {
-    background: var(--search-primary);
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.5rem;
+    background: #3e3e3e;
+    border-radius: 0.125rem;
+    padding: 0.125rem 0.25rem;
     color: white;
-    box-shadow: 0 0.125rem 0.25rem var(--search-color-secondary) !important;
 }

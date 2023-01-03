@@ -10,7 +10,8 @@
     color: var(--search-result-color);
     transition: 0.2s ease-out;
 
-    &:hover {
+    &:hover,
+    &.active {
         background: var(--search-result-bg-active);
         color: var(--search-result-color-active);
 
