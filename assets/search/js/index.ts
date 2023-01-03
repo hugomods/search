@@ -3,9 +3,12 @@ import Modal from "./modal"
 import Renderer from "./renderer"
 import { default as params } from '@params'
 import Spinner from "./spinner"
+import Navigator from "./navigator"
 
 (() => {
     'use strict'
+
+    const navigator = new Navigator()
 
     let engine
 
@@ -97,6 +100,10 @@ import Spinner from "./spinner"
 
     let spinner
 
+    const isModalOpened = () => {
+        return document.querySelector('.search-modal-container.active') !== null
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         spinner = new Spinner('.search-spinner')
 
@@ -150,6 +157,14 @@ import Spinner from "./spinner"
                 }
                 // In order to override the same shortcut of browsers.
                 e.preventDefault()
+            }
+            if (isModalOpened() && isKeysPressed(['ArrowUp'])) {
+                e.preventDefault()
+                navigator.prev()
+            }
+            if (isModalOpened() && isKeysPressed(['ArrowDown'])) {
+                e.preventDefault()
+                navigator.next()
             }
         })
 

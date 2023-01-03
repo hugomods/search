@@ -7,5 +7,11 @@ other = "取消"
 [search_to_close]
 other = "關閉"
 
+[search_to_navigate]
+other = "瀏覽"
+
 [search_to_search]
 other = "搜索"
+
+[search_to_select]
+other = "選擇"
