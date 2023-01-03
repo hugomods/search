@@ -1,0 +1,11 @@
+{{- $headings := slice }}
+{{- $pattern := `<a.+href=".+".*>.+</a>` }}
+{{- range findRE $pattern .TableOfContents }}
+  {{- $anchor := replaceRE `.+href="(.+)".+` "$1" . }}
+  {{- $title := replaceRE `<a.+>(.+)</a>` "$1" . }}
+  {{- $headings = $headings | append (dict
+    "anchor" $anchor
+    "title" $title)
+  }}
+{{- end }}
+{{- return $headings -}}
