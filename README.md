@@ -1,6 +1,6 @@
 # Hugo Search Module
 
-The client search module built on top of Fuse.js for Hugo.
+The [Hugo](https://gohugo.io/) client search module built on top of [Fuse.js](https://github.com/krisk/Fuse).
 
 ## Features
 
