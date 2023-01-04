@@ -1,10 +1,10 @@
 ---
-title: Fizz
+title: Fizz Title
 date: 2023-01-01 09:09:09
 tags:
-  - TagFizz
+  - Fizz Tag
 categories:
-  - CategoryFizz
+  - Fizz Category
 ---
 
 Fizz Summary.

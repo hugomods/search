@@ -1,10 +1,10 @@
 ---
-title: Buzz
+title: Buzz Title
 date: 2023-01-01 09:09:09
 tags:
-  - TagBuzz
+  - Buzz Tag
 categories:
-  - CategoryBuzz
+  - Buzz Category
 ---
 
 Buzz Summary.

@@ -1,5 +1,5 @@
 ---
-title: Foo 繁體中文
+title: Foo 標題
 date: 2022-12-31 08:08:08
 tags:
   - 標籤2
@@ -10,3 +10,9 @@ categories:
 Foo 摘要
 
 <!--more-->
+
+## Foo 標題 1
+
+## Foo 標題 2
+
+## Foo 標題 3

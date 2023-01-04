@@ -1,15 +1,43 @@
-[data-theme="dark"] {
-    --search-primary: #9864ff;
-    --search-bg: #121212;
-    --search-color: white;
-    --search-color-secondary: rgba(255, 255, 255, 0.7);
-    --search-border-color: rgba(255, 255, 255, 0.5);
-    --search-result-bg: #1e1e1e;
-    --search-result-color: rgba(255, 255, 255, 0.7);
-    --search-result-color-secondary: rgba(255, 255, 255, 0.5);
+:root {
+    --bs-primary: #712cf9;
+    --bs-primary-rgb: 113, 44, 249;
 
-    body {
-        background: #121212;
-        color: white;
+    --search-primary: var(--bs-primary);
+    --search-bg: var(--bs-body-bg);
+    --search-color: var(--bs-body-color);
+    --search-color-secondary: var(--bs-secondary-color);
+    --search-border-color: var(--bs-border-color);
+    --search-result-bg: var(--bs-secondary-bg);
+    --search-result-color: var(--bs-body-color);
+    --search-result-color-secondary: var(--bs-secondary-color);
+}
+
+html[data-bs-theme="dark"] {
+    --bs-primary: #945efd;
+    --bs-primary-rgb: 148, 94, 253;
+}
+
+html {
+    scroll-padding-top: 64px;
+}
+
+body {
+    word-break: break-all;
+}
+
+.mark,
+mark {
+    padding: 0;
+}
+
+.navbar-icon {
+    vertical-align: -0.25rem;
+}
+
+// For test whether the search result jump to the correct anchor.
+.main {
+    h1,
+    h2 {
+        margin-bottom: 32rem;
     }
 }

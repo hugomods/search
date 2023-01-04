@@ -1,3 +1,7 @@
 {{ define "main" }}
-  <h1>Term: {{ .Title }}</h1>
+  <ul class="list-unstyled">
+    {{ range .Pages }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
 {{ end }}

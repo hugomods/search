@@ -1,0 +1,33 @@
+<div class="mb-4">
+  <h3>Languages</h3>
+  <hr />
+  {{ range .Sites }}
+    <a class="btn btn-sm btn-primary" href="{{ absURL .LanguagePrefix }}">
+      {{ .Language.LanguageName }}
+    </a>
+  {{ end }}
+</div>
+
+{{ range $name, $taxonomy := .Site.Taxonomies }}
+  <div class="mb-4">
+    <h3>{{ $name | title }}</h3>
+    <hr />
+    {{ range $taxonomy }}
+      <a
+        class="badge bg-secondary text-decoration-none"
+        href="{{ .Page.RelPermalink }}"
+      >
+        {{ .Page.Title }}
+      </a>
+    {{ end }}
+  </div>
+{{ end }}
+
+
+<h3>Posts</h3>
+<hr />
+<ul class="list-unstyled">
+  {{ range .Site.RegularPages }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{ end }}
+</ul>
