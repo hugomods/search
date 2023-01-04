@@ -76,8 +76,13 @@ export default class Renderer {
         for (let i in matches) {
             const match = matches[i]
             for (let j in match.indices) {
-                const idxStart = match.indices[j][0]
+                // Ignore the matched characters that have been highlighted already.
+                // Since Fuse.js may return duplicate pieces of matches, such as [[0,4], [2,4]].
+                const idxStart = Math.max(start, match.indices[j][0])
                 const idxEnd = match.indices[j][1] + 1
+                if (idxStart >= idxEnd) {
+                    continue
+                }
                 ret += `${s.substring(start, idxStart)}<mark>${s.substring(idxStart, idxEnd)}</mark>`
                 start = idxEnd
             }
