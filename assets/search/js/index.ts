@@ -106,8 +106,12 @@ import Navigator from "./navigator"
 
     let spinner
 
+    const currentModal = () => {
+        return document.querySelector('.search-modal-container.active')
+    }
+
     const isModalOpened = () => {
-        return document.querySelector('.search-modal-container.active') !== null
+        return currentModal() !== null
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -137,7 +141,7 @@ import Navigator from "./navigator"
         })
 
         document.querySelectorAll('.search-modal-toggle').forEach((toggle) => {
-            toggle.addEventListener('click', () => {
+            toggle.addEventListener('click', (e) => {
                 Modal.getOrCreate(toggle.getAttribute('data-target') ?? '.search-modal-container').show()
             })
         })
@@ -194,6 +198,14 @@ import Navigator from "./navigator"
                 } else {
                     meta.classList.add('show')
                 }
+            }
+        })
+
+        document.querySelector('.search-modal-container')?.addEventListener('click', (e) => {
+            // close the modal when losing focus.
+            const modal = currentModal()
+            if (modal && !e.target.closest('.search-modal')) {
+                Modal.getOrCreate(modal).hide()
             }
         })
 
