@@ -121,6 +121,10 @@ export default class Renderer {
         return this.time + 'ms'
     }
 
+    score(score) {
+        return ((1 - score) * 100).toFixed(0) + '%';
+    }
+
     loadMore() {
         this.renderPage(++this.page)
     }
@@ -141,6 +145,7 @@ export default class Renderer {
     <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
   </div>
   <div class="search-result-meta">
+    <span class="search-result-score">${this.score(result.score)}</span>
     <span class="search-result-lang">${result.item.lang}</span>
     <span class="search-result-date">${this.date(result.item)}</span>
     ${this.taxonomies(result.item)}
