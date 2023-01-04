@@ -15,6 +15,7 @@ export default class Engine {
             keys: ['title', 'summary', 'headings.title', 'lang'],
             includeMatches: true,
             useExtendedSearch: true,
+            includeScore: true,
         })
     }
 
