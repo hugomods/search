@@ -1,5 +1,6 @@
 {{- $items := slice }}
 {{- $pages := .Site.Pages }}
+{{- $pages = where $pages "Params.noindex" "ne" true }}
 {{- range $pages }}
   {{- $page := . }}
   {{- $item := newScratch }}

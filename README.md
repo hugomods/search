@@ -34,6 +34,8 @@ The [Hugo](https://gohugo.io/) client search module built on top of [Fuse.js](ht
 
 </div>
 
+- Excluding pages by setting the `noindex` page parameter as `true`.
+
 ## Usage
 
 There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
@@ -172,3 +174,11 @@ You can easily to adjust the search UI to fit your theme and dark mode via the f
 | `--search-result-highlight-bg` | The highlight result background color, default to `inherit`.
 | `--search-result-highlight-color` | The highlight result color, default to `inherit`.
 | `--search-border-color` | Border color.
+
+## Page Parameters
+
+> AKA front matter.
+
+| Name | Type | Default | Description
+|---|:-:|:-:|---|
+| `noindex` | Boolean | `false` | When `true`, the page won't be indexed, that is, it won't appear on the search results.
