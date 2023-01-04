@@ -1,5 +1,6 @@
 {{- $items := slice }}
-{{- $pages := .Site.Pages }}
+{{- $indexAllPages := default true .Site.Params.search.index_all_pages }}
+{{- $pages := cond $indexAllPages .Site.Pages .Site.RegularPages }}
 {{- $pages = where $pages "Params.noindex" "ne" true }}
 {{- range $pages }}
   {{- $page := . }}
