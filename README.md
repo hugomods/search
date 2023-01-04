@@ -1,6 +1,6 @@
-# Hugo Search Module
+# Hugo Client Fuzzy Search (Auto Complete) Module
 
-The [Hugo](https://gohugo.io/) client search module built on top of [Fuse.js](https://github.com/krisk/Fuse).
+The [Hugo](https://gohugo.io/) client fuzzy search (auto complete) module built on top of [Fuse.js](https://github.com/krisk/Fuse).
 
 ## Features
 
