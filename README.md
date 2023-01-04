@@ -19,8 +19,8 @@ The [Hugo](https://gohugo.io/) client search module built on top of [Fuse.js](ht
 
 | | CSS | JS
 |---|:-:|:-:
-| Compressed | `~3kB` | `~30kB`
-| Gzip | `~1kB` | `~10kB`
+| Compressed | `~6kB` | `~40kB`
+| Gzip | `~2kB` | `~13kB`
 
 </div>
 
