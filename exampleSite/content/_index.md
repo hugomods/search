@@ -1,13 +1,7 @@
 ---
-title: Hello world
+title: Hugo Search Module
 ---
 
 Welcome to Hugo Search module.
 
 <!--more-->
-
-## Introduction
-
-## Features
-
-## Installation

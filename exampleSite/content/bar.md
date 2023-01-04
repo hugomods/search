@@ -1,14 +1,18 @@
 ---
-title: Bar
+title: Bar Title
 date: 2023-01-01 09:09:09
 tags:
-  - Tag1
-  - Tag3
+  - Bar Tag
 categories:
-  - Category1
-  - Category3
+  - CategoryBar
 ---
 
 Bar Summary.
 
 <!--more-->
+
+## Bar Heading 1
+
+## Bar Heading 2
+
+## Bar Heading 3

@@ -1,12 +1,18 @@
 ---
-title: Foo
+title: Foo Title
 date: 2022-12-31 08:08:08
 tags:
-  - Tag2
+  - Foo Tag
 categories:
-  - Category2
+  - Foo Category
 ---
 
 Foo Summary.
 
 <!--more-->
+
+## Foo Heading 1
+
+## Foo Heading 2
+
+## Foo Heading 3
