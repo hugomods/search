@@ -1,6 +1,7 @@
 .search-form {
     display: flex;
     margin-bottom: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .search-input-group {
@@ -50,9 +51,33 @@
 .search-input {
     border-radius: 0.25rem;
     border: 1px solid var(--search-primary);
-    background: var(--search-bg);
-    color: var(--search-color);
     padding: 0.75rem 2.25rem;
     width: 100%;
+}
+
+.search-form-control {
+    height: 100%;
+    margin-right: 0.25rem;
     outline: none;
+    background: var(--search-bg);
+    color: var(--search-color);
+}
+
+.search-form-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.search-filters {
+}
+
+.search-filter {
+    margin: 0.25rem 0 0;
+}
+
+.search-filter-lang {
+    border: none;
 }

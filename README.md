@@ -12,6 +12,7 @@ The [Hugo](https://gohugo.io/) client search module built on top of [Fuse.js](ht
 - Highlighting matches.
 - Statistic: the number of search results, search time.
 - Results navigation.
+- Filters: language.
 - Lightweight.
 
 <div align="center">

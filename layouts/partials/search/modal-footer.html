@@ -1,37 +1,3 @@
-{{- $params := partialCached "search/functions/params" . }}
 <div class="search-modal-footer">
-  <div class="search-shortcuts">
-    {{- range slice "close" "search" }}
-      {{- $shortcut := . }}
-      {{- with index $params (printf "shortcut_%s" $shortcut) }}
-        <span class="search-shortcut">
-          {{- range . }}
-            <span class="search-shortcut-kbd-wrapper">
-              <kbd class="search-shortcut-kbd">{{ . | upper }}</kbd>
-            </span>
-          {{- end }}
-          <span class="search-shortcut-action">
-            {{- printf "search_to_%s" $shortcut | i18n -}}
-          </span>
-        </span>
-      {{- end }}
-    {{- end }}
-    <span class="search-shortcut">
-      <span class="search-shortcut-kbd-wrapper">
-        <kbd class="search-shortcut-kbd">↑</kbd>
-        <kbd class="search-shortcut-kbd">↓</kbd>
-      </span>
-      <span class="search-shortcut-action">
-        {{- "search_to_navigate"| i18n -}}
-      </span>
-    </span>
-    <span class="search-shortcut">
-      <span class="search-shortcut-kbd-wrapper">
-        <kbd class="search-shortcut-kbd">⏎</kbd>
-      </span>
-      <span class="search-shortcut-action">
-        {{- "search_to_select"| i18n -}}
-      </span>
-    </span>
-  </div>
+  {{ partial "search/shortcuts" . }}
 </div>

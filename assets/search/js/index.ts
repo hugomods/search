@@ -65,6 +65,12 @@ import Navigator from "./navigator"
         return true
     }
 
+    let langFilter
+
+    const lang = () => {
+        return langFilter ? langFilter.value : ''
+    }
+
     const search = (query) => {
         query = query.trim()
         if (query === '') {
@@ -75,7 +81,7 @@ import Navigator from "./navigator"
         spinner.show()
         const promise = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(engine.search(query))
+                resolve(engine.search(query, lang()))
             }, 1)
         })
         const start = (new Date()).getTime()
@@ -190,5 +196,13 @@ import Navigator from "./navigator"
                 }
             }
         })
+
+        // Language filter
+        langFilter = document.querySelector('select.search-filter-lang')
+        if (langFilter) {
+            langFilter.addEventListener('change', () => {
+                search(input.value)
+            })
+        }
     })
 })()

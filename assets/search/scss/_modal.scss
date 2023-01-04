@@ -38,7 +38,7 @@ $search-max-width: 560px;
 
 .search-modal-header {
     background: inherit;
-    padding: 0.75rem 0.5rem 0.25rem;
+    padding: 0.75rem 0.5rem 0;
     position: sticky;
     top: 0;
     border-bottom: 1px solid var(--search-border-color);
@@ -75,6 +75,9 @@ $search-max-width: 560px;
     @media (max-width: 576px) {
         display: none;
     }
+}
+
+.search-shortcuts {
 }
 
 .search-shortcut {

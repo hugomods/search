@@ -1,0 +1,10 @@
+{{- if gt (len .Sites) 1 }}
+  <select class="search-filter search-filter-lang search-form-control">
+    <option value="">{{ i18n "languages" }}</option>
+    {{ range .Sites }}
+      <option value="{{ .Language.Lang }}">
+        {{ .Language.LanguageName }}
+      </option>
+    {{- end }}
+  </select>
+{{- end }}
