@@ -198,6 +198,10 @@ import Navigator from "./navigator"
                 } else {
                     meta.classList.add('show')
                 }
+            } else if (e.target.closest('.search-result')) {
+                // hide current modal after selecting the search result, since the browser won't
+                // redirect if the selected search result is the same as the current page.
+                Modal.getOrCreate(currentModal()).hide()
             }
         })
 
