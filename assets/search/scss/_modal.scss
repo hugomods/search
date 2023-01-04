@@ -71,6 +71,10 @@ $search-max-width: 560px;
     bottom: 0;
     padding: 0.75rem 0.5rem;
     border-top: 1px solid var(--search-border-color);
+
+    @media (max-width: 576px) {
+        display: none;
+    }
 }
 
 .search-shortcut {
