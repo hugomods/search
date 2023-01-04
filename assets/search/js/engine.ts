@@ -12,13 +12,32 @@ export default class Engine {
             threshold: params.threshold,
             distance: params.distance,
             ignoreLocation: params.ignore_location,
-            keys: ['title', 'summary', 'headings.title'],
+            keys: ['title', 'summary', 'headings.title', 'lang'],
             includeMatches: true,
+            useExtendedSearch: true,
         })
     }
 
-    search(query: string) {
-        return this.index.search(query, {
+    search(query: string, lang = '') {
+        let s = {}
+        if (lang) {
+            s["$and"] = [
+                {
+                    lang: '=' + lang
+                },
+                {
+                    "$or": [
+                        { title: query },
+                        { summary: query },
+                        {
+                            "$path": "headings.title",
+                            "$val": query
+                        },
+                    ]
+                },
+            ]
+        }
+        return this.index.search(Object.keys(s).length ? s : query, {
             limit: params.max_results
         })
     }
