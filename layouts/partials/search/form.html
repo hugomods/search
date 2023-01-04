@@ -1,0 +1,18 @@
+<form class="search-form">
+  <div class="search-input-group">
+    <span class="search-input-icon">
+      {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "width" "1rem" "height" "1rem") }}
+    </span>
+    <input
+      class="search-input"
+      placeholder="{{ default (i18n `search`) .Site.Params.search.input_placeholder }}"
+      disabled
+    />
+    <span class="search-spinner">
+      {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "width" "1rem" "height" "1rem") }}
+    </span>
+  </div>
+  <button class="search-modal-close" type="button">
+    {{- i18n "search_cancel" -}}
+  </button>
+</form>
