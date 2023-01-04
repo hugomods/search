@@ -20,3 +20,4 @@ languageName = "繁体中文"
 [params.search]
 input_placeholder = 'Type to search'
 # index_all_pages = false
+# expand_results_meta = true

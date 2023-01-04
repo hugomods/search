@@ -17,12 +17,17 @@ export default class Renderer {
 
     private time = 0
 
+    private metaClasses = 'search-result-meta'
+
     constructor(container, stat) {
         this.container = document.querySelector(container)
         this.stat = document.querySelector(stat)
         // Make sure that the paginate is at least 20, so that load more event will be able to trigger.
         this.paginate = Math.max(this.paginate, params.paginate)
         this.lang = document.documentElement.getAttribute('lang') ?? 'en-US'
+        if (params.expand_results_meta) {
+            this.metaClasses += ' show'
+        }
     }
 
     clean() {
@@ -141,14 +146,14 @@ export default class Renderer {
     <div class="search-result-title">${this.title(result)}</div>
     ${this.desc(result)}
   </div>
-  <div class="search-result-actions">
-    <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
-  </div>
-  <div class="search-result-meta">
+  <div class="${this.metaClasses}">
     <span class="search-result-score">${this.score(result.score)}</span>
     <span class="search-result-lang">${result.item.lang}</span>
     <span class="search-result-date">${this.date(result.item)}</span>
     ${this.taxonomies(result.item)}
+  </div>
+  <div class="search-result-actions">
+    <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
   </div>
 </a>`
             temp += this.renderHeadings(result)
