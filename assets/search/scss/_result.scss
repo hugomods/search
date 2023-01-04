@@ -10,6 +10,7 @@
     align-items: center;
     margin: 0.5rem 0 0;
     padding: 0.5rem;
+    position: relative;
     border-radius: 0.25rem;
     background: var(--search-result-bg);
     color: var(--search-result-color);
@@ -56,7 +57,7 @@
 }
 
 .search-result-desc {
-    margin-top: 0.125rem;
+    margin-top: 0.25rem;
 }
 
 .search-result-desc,
@@ -135,6 +136,11 @@
         content: "∟";
         color: var(--search-result-color-secondary);
     }
+}
+
+.search-result-actions {
+    position: absolute;
+    right: 0.5rem;
 }
 
 .search-result-action {

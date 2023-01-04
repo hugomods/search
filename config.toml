@@ -36,3 +36,4 @@ path = "github.com/razonyang/hugo-mod-icons/vendors/bootstrap"
 # input_placeholder = "Type to search"
 # paginate = 20
 # index_all_pages = true
+# expand_results_meta = false

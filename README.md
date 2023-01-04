@@ -148,6 +148,7 @@ stall_threshold = 200
 | `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
+| `expand_results_meta` | Boolean | `false` | When `true`, expand the results meta by default.
 
 ## CSS Variables
 
