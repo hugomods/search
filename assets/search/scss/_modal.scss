@@ -8,6 +8,7 @@ $search-max-width: 560px;
     width: 100%;
     height: 100%;
     display: none;
+    z-index: 1100;
 
     &.active {
         display: flex;
@@ -20,7 +21,6 @@ $search-max-width: 560px;
     flex-direction: column;
     position: fixed;
     display: flex;
-    z-index: 1100;
     background: var(--search-bg);
     color: var(--search-color);
     overflow: hidden;
