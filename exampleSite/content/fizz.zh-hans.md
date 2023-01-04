@@ -7,6 +7,6 @@ categories:
   - Fizz 分类
 ---
 
-Fizz 摘要
+Fizz 摘要。
 
 <!--more-->

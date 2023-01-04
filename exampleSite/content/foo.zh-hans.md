@@ -2,12 +2,12 @@
 title: Foo 标题
 date: 2022-12-31 08:08:08
 tags:
-  - 标签2
+  - Foo 标签
 categories:
-  - 分类2
+  - Foo 分类
 ---
 
-Foo 摘要
+Foo 摘要。
 
 <!--more-->
 

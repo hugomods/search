@@ -7,7 +7,7 @@ categories:
   - Bar 分類
 ---
 
-Bar 摘要
+Bar 摘要。
 
 <!--more-->
 
