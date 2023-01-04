@@ -7,6 +7,6 @@ categories:
   - Buzz 分类
 ---
 
-Buzz 摘要
+Buzz 摘要。
 
 <!--more-->
