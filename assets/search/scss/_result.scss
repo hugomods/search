@@ -50,7 +50,7 @@
 .search-result-content {
     display: flex;
     flex: 1;
-    margin: 0 0.125rem;
+    margin: 0 2rem 0.125rem 0;
     flex-wrap: nowrap;
     flex-direction: column;
     overflow: hidden;
@@ -130,7 +130,7 @@
 }
 
 .search-result-heading-icon {
-    margin-right: 0;
+    margin-right: 0.25rem;
 
     &::before {
         content: "∟";
