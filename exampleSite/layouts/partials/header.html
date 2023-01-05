@@ -1,41 +1,33 @@
-<header class="sticky-top">
-  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand me-2" href="{{ absURL .Site.BaseURL }}">Search</a>
-
-      <div class="d-flex ms-lg-auto align-items-center order-lg-5">
-        <button class="theme-toggle navbar-toggler border-0 px-2 d-block">
+<header>
+  <nav class="navbar">
+    <ul>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ .Sites.First.Home.RelPermalink }}">
+          {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "width" "1.25rem" "height" "1.25rem" "className" "navbar-icon me-1") }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          target="_blank"
+          href="https://github.com/razonyang/hugo-mod-search"
+        >
+          {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "github" "width" "1.25rem" "height" "1.25rem" "className" "navbar-icon me-1") }}
+        </a>
+      </li>
+    </ul>
+    <ul class="ms-auto">
+      <li class="nav-item">
+        <button class="nav-link theme-toggle">
           {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "circle-half" "width" "1.25rem" "height" "1.25rem") }}
         </button>
-        {{ partial "search-form" . }}
-        <button
-          class="navbar-toggler border-0 p-0 ms-1"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menus"
-          aria-controls="menus"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+      </li>
+      <li class="nav-item">
+        {{/* Search modal toggle that has the "search-modal-toggle" class name. */}}
+        <button class="nav-link search-modal-toggle">
+          {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "width" "1.25rem" "height" "1.25rem") }}
         </button>
-      </div>
-
-      <div class="collapse navbar-collapse" id="menus">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              target="_blank"
-              href="https://github.com/razonyang/hugo-mod-search"
-            >
-              {{ partial "icons/icon" (dict "vendor" "bootstrap" "name" "github" "width" "1.25rem" "height" "1.25rem" "className" "navbar-icon me-1") }}
-              Repository
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+      </li>
+    </ul>
   </nav>
 </header>

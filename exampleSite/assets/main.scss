@@ -1,43 +1,93 @@
-:root {
-    --bs-primary: #712cf9;
-    --bs-primary-rgb: 113, 44, 249;
-
-    --search-primary: var(--bs-primary);
-    --search-bg: var(--bs-body-bg);
-    --search-color: var(--bs-body-color);
-    --search-color-secondary: var(--bs-secondary-color);
-    --search-border-color: var(--bs-border-color);
-    --search-result-bg: var(--bs-secondary-bg);
-    --search-result-color: var(--bs-body-color);
-    --search-result-color-secondary: var(--bs-secondary-color);
-}
-
-html[data-bs-theme="dark"] {
-    --bs-primary: #945efd;
-    --bs-primary-rgb: 148, 94, 253;
-}
-
 html {
     scroll-padding-top: 64px;
 }
 
+[data-theme="dark"] {
+    --search-primary: #9864ff;
+    --search-bg: #121212;
+    --search-color: white;
+    --search-color-secondary: rgba(255, 255, 255, 0.7);
+    --search-border-color: rgba(255, 255, 255, 0.5);
+    --search-result-bg: #1e1e1e;
+    --search-result-color: rgba(255, 255, 255, 0.7);
+    --search-result-color-secondary: rgba(255, 255, 255, 0.5);
+
+    body {
+        background: #121212;
+        color: white;
+    }
+}
+
 body {
-    word-break: break-all;
+    margin: 0;
 }
 
-.mark,
-mark {
+header {
+    position: sticky;
+    top: 0;
+    background: #9864ff;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar {
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    ul {
+        display: flex;
+
+        li {
+            margin: 0 0.5rem;
+        }
+    }
+}
+
+.nav-link {
+    padding: 0.25rem;
+    cursor: pointer;
     padding: 0;
+    background: inherit;
+    border: 0;
+    color: inherit;
 }
 
-.navbar-icon {
-    vertical-align: -0.25rem;
+.content {
+    padding: 1rem;
+    overflow: auto;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: row;
 }
 
 // For test whether the search result jump to the correct anchor.
 .main {
-    h1,
+    flex: 1;
     h2 {
         margin-bottom: 32rem;
     }
+}
+
+.sidebar {
+    max-width: 360px;
+
+    @media (max-width: 576px) {
+        display: none;
+    }
+}
+
+.main,
+.sidebar {
+    padding: 0 1rem;
 }
