@@ -75,11 +75,11 @@ export default class Modal {
         return `
 <form class="search-form">
   <div class="search-input-group">
-    <span class="search-input-icon">${params.icons['search']}</span>
-    <input class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" disabled/>
+    <span class="search-input-icon disabled">${params.icons['search']}</span>
     <span class="search-spinner">${params.icons['spinner']}</span>
+    <input class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" disabled/>
+    <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
   </div>
-  <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
   <div class="search-form-meta">
     ${this.renderFilters()}
     <div class="search-stat"></div>
