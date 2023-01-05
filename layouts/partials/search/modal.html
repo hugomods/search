@@ -1,11 +1,4 @@
-<div class="search-modal-container">
-  <div class="search-modal">
-    <div class="search-modal-header">
-      {{ partial "search/form" . }}
-    </div>
-    <div class="search-modal-body">
-      <div class="search-results"></div>
-    </div>
-    {{ partial "search/modal-footer" . }}
-  </div>
-</div>
+{{- warnf
+  "[search] the %q partial was deprecated, you can remove it safely."
+  "search/modal"
+}}

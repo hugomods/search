@@ -14,6 +14,9 @@ mediaType = 'application/json'
 extended = true
 
 [[module.imports]]
+path = "github.com/razonyang/hugo-mod-i18n-js"
+
+[[module.imports]]
 path = "github.com/razonyang/hugo-mod-fuse-js"
 
 [[module.imports]]
@@ -24,16 +27,15 @@ path = "github.com/razonyang/hugo-mod-icons/vendors/bootstrap"
 [params.hugopress.modules.search.hooks.body-end]
 
 [params.search]
-# stall_threshold = 300
-# case_sensitive = false
-# min_match_char_length = 1
-# location = 0
-# threshold = 0.6
-# distance = 100
-# ignore_location = false
-# shortcut_close = ["Escape"]
-# shortcut_search = ["Control", "k"]
-# input_placeholder = "Type to search"
-# paginate = 20
-# index_all_pages = true
-# expand_results_meta = false
+stall_threshold = 300
+case_sensitive = false
+min_match_char_length = 1
+location = 0
+threshold = 0.6
+distance = 100
+ignore_location = false
+shortcut_close = ["Escape"]
+shortcut_search = ["Control", "k"]
+paginate = 20
+index_all_pages = true
+expand_results_meta = false

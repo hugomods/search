@@ -1,0 +1,30 @@
+[cancel]
+other = "Cancel"
+
+[index_fails]
+other = "Failed to initial index."
+
+[input_placeholder]
+other = "Type to search"
+
+[languages]
+other = "Languages"
+
+[search]
+other = "Search"
+
+[search_stat]
+one = "Found {total} result in {time}."
+other = "Found {total} results in {time}."
+
+[to_close]
+other = "to close"
+
+[to_navigate]
+other = "to navigate"
+
+[to_search]
+other = "to search"
+
+[to_select]
+other = "to select"

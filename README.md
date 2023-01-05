@@ -13,6 +13,7 @@ The [Hugo](https://gohugo.io/) client fuzzy search (auto complete) module built 
 - Statistic: the number of search results, search time.
 - Results navigation.
 - Filters: language.
+- Internationalization (i18n).
 - Lightweight.
 
 <div align="center">
@@ -41,14 +42,14 @@ The [Hugo](https://gohugo.io/) client fuzzy search (auto complete) module built 
 
 There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
 
-### Import the module
+### 1. Import the module
 
 ```toml
 [[modules.imports]]
 path = "github.com/razonyang/hugo-mod-search"
 ```
 
-### Include the CSS
+### 2. Include the CSS
 
 There are three approaches to include the CSS. It's recommended to use the first two approaches, since the CSS file is too small as a single CSS file.
 Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
@@ -78,7 +79,7 @@ This approach generates a `<link>` tag.
 {{ partial "search/assets/css" . }}
 ```
 
-### Include the JavaScript
+### 3. Include the JavaScript
 
 We can achieve this via two ways.
 
@@ -99,13 +100,7 @@ This partial will generate a `<script>` tag.
 {{ partial "search/assets/js" . }}
 ```
 
-### Include the Modal
-
-```go
-{{ partial "search/modal" . }}
-```
-
-### Create a modal toggle (optional)
+### 4. Create a modal toggle (optional)
 
 > This step is optional, you're still be able to open the search modal by shortcuts (default to <kbd>CTRL</kbd> + <kbd>K</kbd>), but I recommend adding such a toggle button for getting better user experience.
 
@@ -115,7 +110,7 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 <button class="search-modal-toggle">Search</button>
 ```
 
-### Set up the search index
+### 5. Set up the search index
 
 Append the `SearchIndex` format into `outputs.home`.
 
@@ -144,7 +139,7 @@ stall_threshold = 200
 | `ignore_location` | Boolean | `false` | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
 | `shortcut_close` | Array | `["Escape"]` | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
 | `shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
-| `input_placeholder` | String | `i18n "search"` | The placeholder of search input.
+| ~`input_placeholder`~ | String | `i18n "search"` | **Deprecated**. The placeholder of search input.
 | `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
