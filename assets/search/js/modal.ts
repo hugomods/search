@@ -42,7 +42,7 @@ export default class Modal {
 
         this.initModal()
 
-        this.spinner = new Spinner('.search-spinner')
+        this.spinner = new Spinner('.search-spinner', '.search-input-icon')
 
         this.initForm()
 
