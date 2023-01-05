@@ -1,10 +1,26 @@
+{{- $defaultLang := .Sites.First.Language.Lang }}
+{{- $langs := newScratch }}
+{{- range .Site.Languages }}
+  {{- $langs.Set .Lang (dict "lang" .Lang "name" .LanguageName) }}
+{{- end }}
+{{/* i18n messages. */}}
+{{- $i18n := newScratch }}
+{{- range $lang, $messages := .Site.Data.search.i18n }}
+  {{/* Exclude the unused messages. */}}
+  {{- if isset $langs.Values $lang }}
+    {{- $i18n.Set $lang $messages }}
+  {{- end }}
+{{- end }}
 {{- $js := resources.Get "search/js/index.ts" }}
 {{/* The SVG icons. */}}
 {{- $icons := dict
   "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "width" "1.5rem" "height" "1.5rem"))
   "heading" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "hash" "width" "1.5rem" "height" "1.5rem"))
   "meta" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "info-circle" "width" "1.5rem" "height" "1.5rem"))
+  "search" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "width" "1.5rem" "height" "1.5rem"))
+  "spinner" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "width" "1.5rem" "height" "1.5rem"))
 }}
+{{/* Include the following icons when necessary. */}}
 {{- if default true .Site.Params.search.index_all_pages }}
   {{- $icons = merge $icons (dict
     "home" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "width" "1.5rem" "height" "1.5rem"))
@@ -24,6 +40,9 @@
 {{- $params := merge $defaultParams (dict
   "icons" $icons
   "indices" $indices
+  "i18n" $i18n.Values
+  "defaultLang" $defaultLang
+  "langs" $langs.Values
   )
 }}
 {{- $options := dict

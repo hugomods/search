@@ -1,4 +1,4 @@
-languageCode = 'en'
+defaultContentLanguage = 'en'
 title = 'Hugo Search Module'
 
 [[module.imports]]

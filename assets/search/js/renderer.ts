@@ -1,4 +1,5 @@
 import { default as params } from '@params'
+import i18n from './i18n'
 
 export default class Renderer {
     private container
@@ -115,7 +116,11 @@ export default class Renderer {
             this.stat.innerHTML = ''
             return
         }
-        this.stat.innerHTML = `Found <span class="search-stat-results">${this.results.length}</span> results in ${this.prettifyTime()}.`
+        this.stat.innerHTML = i18n.translate('search_stat', {
+            count: this.results.length,
+            total: `<span class="search-stat-results">${this.results.length}</span>`,
+            time: this.prettifyTime(),
+        })
     }
 
     prettifyTime() {
