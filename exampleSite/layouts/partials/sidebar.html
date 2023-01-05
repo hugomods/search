@@ -2,7 +2,7 @@
   <h3>Languages</h3>
   <hr />
   {{ range .Sites }}
-    <a class="btn btn-sm btn-primary" href="{{ absURL .LanguagePrefix }}">
+    <a class="btn btn-sm btn-primary" href="{{ .Home.RelPermalink }}">
       {{ .Language.LanguageName }}
     </a>
   {{ end }}

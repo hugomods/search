@@ -1,4 +1,3 @@
-baseURL = 'https://projects.razonyang.com/hugo-mod-search/'
 languageCode = 'en'
 title = 'Hugo Search Module'
 
