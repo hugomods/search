@@ -21,16 +21,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm install postcss-cli rtlcss
-
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -38,7 +28,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: cd exampleSite && hugo --minify --gc -b https://projects.razonyang.com/hugo-mod-search/
+        run: cd exampleSite && npm i && hugo --minify --gc -b https://projects.razonyang.com/hugo-mod-search/
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3

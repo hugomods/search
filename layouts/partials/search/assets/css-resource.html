@@ -1,6 +1,6 @@
 {{- $rtl := eq .Language.LanguageDirection "rtl" }}
 {{- $postCSSOpts := dict
-  "use" (cond $rtl "rtlcss" "")
+  "use" (cond $rtl "autoprefixer rtlcss" "autoprefixer")
 }}
 {{- $css := resources.Get "search/scss/index.scss" }}
 {{- $options := dict

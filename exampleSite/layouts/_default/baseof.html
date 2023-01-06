@@ -12,7 +12,10 @@
     {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
     {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
     {{ $cssTarget := cond $rtl "css/main.rtl.css" "css/main.css" }}
-    {{ $css := resources.Get "main.scss" | toCSS }}
+    {{ $css := resources.Get "main.scss" | toCSS (dict
+      "enableSourceMap" (not hugo.IsProduction)
+      "outputStyle" (cond hugo.IsProduction "compressed" "expanded") )
+    }}
     {{ $searchCSS := partial "search/assets/css-resource" . }}
     {{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
