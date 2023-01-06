@@ -1,6 +1,6 @@
-# Hugo Client Fuzzy Search (Auto Complete) Module
+# Hugo Client Side Fuzzy Search (Auto Complete) Module
 
-The [Hugo](https://gohugo.io/) client fuzzy search (auto complete) module built on top of [Fuse.js](https://github.com/krisk/Fuse).
+The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module built on top of [Fuse.js](https://github.com/krisk/Fuse).
 
 ## Features
 
@@ -13,6 +13,7 @@ The [Hugo](https://gohugo.io/) client fuzzy search (auto complete) module built 
 - Statistic: the number of search results, search time.
 - Results navigation.
 - Filters: language.
+- Sorting: sortable by score and date.
 - Internationalization (i18n).
 - Lightweight.
 
