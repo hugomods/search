@@ -1,0 +1,27 @@
+{
+  "author": "Razon Yang <razonyang@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/razonyang/hugo-mod-search/issues"
+  },
+  "comments": {
+    "dependencies": {
+      "autoprefixer": "github.com/razonyang/hugo-mod-search",
+      "postcss-cli": "github.com/razonyang/hugo-mod-search",
+      "rtlcss": "github.com/razonyang/hugo-mod-search"
+    },
+    "devDependencies": {}
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss-cli": "^10.1.0",
+    "rtlcss": "^4.0.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/razonyang/hugo-mod-search",
+  "license": "MIT",
+  "name": "Hugo Search Module Example Site",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razonyang/hugo-mod-search.git"
+  }
+}

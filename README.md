@@ -40,6 +40,12 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 - Excluding pages by setting the `noindex` page parameter as `true`.
 - Support RTL languages: experimental, please feel free to [file an issue](https://github.com/razonyang/hugo-mod-search/issues/new) if you found one.
 
+## Requirements
+
+- Hugo **extended** version.
+- [Hugo Module](https://gohugo.io/hugo-modules/use-modules/#prerequisite).
+- PostCSS, Autoprefixer and RTLCSS, you can install those dependencies via one command `npm i postcss-cli autoprefixer rtlcss`.
+
 ## Usage
 
 There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
