@@ -98,14 +98,17 @@ export default class Modal {
             return ''
         }
 
-        let s = `<div class="search-dropdown search-panel-tool search-filter-lang">
+        const lang = document.documentElement.getAttribute('lang')
+
+        let s = `<div class="search-dropdown search-panel-tool search-filter-lang${lang ? ' active' : ''}" data-value="${lang ?? ''}">
   <button class="search-dropdown-toggle" type="button" aria-expanded="false">
     ${params.icons['lang']}
   </button>
   <ul class="search-dropdown-menu">
-    <li class="search-dropdown-item active" data-value="">${i18n.translate('all')}</li>`
+    <li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${i18n.translate('all')}</li>`
         for (let i in params.langs) {
-            s += `<li class="search-dropdown-item" data-value="${params.langs[i].lang}">${params.langs[i].name}</li>`
+            const active = params.langs[i].lang === lang ? ' active' : ''
+            s += `<li class="search-dropdown-item${active}" data-value="${params.langs[i].lang}">${params.langs[i].name}</li>`
         }
         return s + '</ul></div>'
     }
