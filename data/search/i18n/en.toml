@@ -1,3 +1,6 @@
+[all]
+other = "All"
+
 [cancel]
 other = "Cancel"
 
@@ -6,9 +9,6 @@ other = "Failed to initial index."
 
 [input_placeholder]
 other = "Type to search"
-
-[languages]
-other = "Languages"
 
 [search]
 other = "Search"

@@ -1,4 +1,5 @@
 import Modal from "./modal"
+import "./drpodown"
 
 (() => {
     'use strict'
