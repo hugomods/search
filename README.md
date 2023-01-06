@@ -19,10 +19,10 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 
 <div align="center">
 
-| | CSS | JS
-|---|:-:|:-:
-| Compressed | `~6kB` | `~40kB`
-| Gzip | `~2kB` | `~13kB`
+| | CSS | JS | Total
+|---|:-:|:-:|:-:
+| Compressed | `~20kB` | `~47kB` | `~67kB`
+| Gzip | `~6kB` | `~15kB` | `~21kB`
 
 </div>
 
@@ -62,16 +62,6 @@ path = "github.com/razonyang/hugo-mod-search"
 There are three approaches to include the CSS. It's recommended to use the first two approaches, since the CSS file is too small as a single CSS file.
 Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 
-#### Import the CSS via SCSS file (recommended)
-
-```scss
-@import 'search/scss/index'
-```
-
-The RTL feature requires [PostCSS](https://gohugo.io/hugo-pipes/postcss/) and [RTLCSS](https://rtlcss.com/).
-
-See how [CSS resource partial](layouts/partials/search/assets/css-resource.html) does.
-
 #### Include the CSS via Hugo Pipe (recommended)
 
 ```go
@@ -86,6 +76,15 @@ See how [CSS resource partial](layouts/partials/search/assets/css-resource.html)
 ```
 
 > Note that `slice $searchCSS $css` puts the `$css` after `$searchCSS`, so that `$css` style can override the search's.
+
+#### Import the CSS via SCSS file (recommended)
+
+```scss
+@import 'search/scss/index'
+```
+
+This way is more complex than the former, you'll need to take care of the [PostCSS](https://gohugo.io/hugo-pipes/postcss/), Autoprefixer and [RTLCSS](https://rtlcss.com/).
+See how [CSS resource partial](layouts/partials/search/assets/css-resource.html) does.
 
 #### Include the CSS via partial
 
