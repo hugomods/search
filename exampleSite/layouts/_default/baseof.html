@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ .Lang }}">
+{{- $rtl := eq .Language.LanguageDirection "rtl" }}
+<html
+  lang="{{ .Lang }}"
+  {{ with $rtl }}dir="rtl"{{ end }}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ .Site.Title }}</title>
     {{/* CSS Begin. */}}
+    {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
+    {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
+    {{ $cssTarget := cond $rtl "css/main.rtl.css" "css/main.css" }}
     {{ $css := resources.Get "main.scss" | toCSS }}
     {{ $searchCSS := partial "search/assets/css-resource" . }}
-    {{ $css = slice $searchCSS $css | resources.Concat "css/main.css" }}
+    {{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{/* CSS end. */}}
     <script>

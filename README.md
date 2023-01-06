@@ -38,6 +38,7 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 </div>
 
 - Excluding pages by setting the `noindex` page parameter as `true`.
+- Support RTL languages: experimental, please feel free to [file an issue](https://github.com/razonyang/hugo-mod-search/issues/new) if you found one.
 
 ## Usage
 
@@ -61,12 +62,20 @@ Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 @import 'search/scss/index'
 ```
 
+The RTL feature requires [PostCSS](https://gohugo.io/hugo-pipes/postcss/) and [RTLCSS](https://rtlcss.com/).
+
+See how [CSS resource partial](layouts/partials/search/assets/css-resource.html) does.
+
 #### Include the CSS via Hugo Pipe (recommended)
 
 ```go
+{{- $rtl := eq .Language.LanguageDirection "rtl" }}
+{{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
+{{/* Otherwise, Hugo may treats it as the same style (cached). */}}
+{{ $cssTarget := cond $rtl "css/main.rtl.css" "css/main.css" }}
 {{ $css := resources.Get "main.scss" | toCSS }}
 {{ $searchCSS := partial "search/assets/css-resource" . }}
-{{ $css = slice $searchCSS $css | resources.Concat "css/main.css" }}
+{{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 ```
 
