@@ -8,13 +8,21 @@ path = 'github.com/razonyang/hugo-mod-search'
 home = ["HTML", "SearchIndex"]
 
 [languages.en]
+weight = 1
 languageName = "English"
 
 [languages.zh-hans]
+weight = 2
 languageName = "简体中文"
 
 [languages.zh-hant]
+weight = 3
 languageName = "繁体中文"
+
+[languages.ar]
+weight = 4
+languageName = "العربية"
+LanguageDirection = 'rtl'
 
 [params.search]
 input_placeholder = 'Type to search'
