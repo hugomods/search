@@ -69,7 +69,8 @@ ul {
   flex-direction: row; }
 
 .main {
-  flex: 1; }
+  flex: 1;
+  word-break: break-word; }
   .main h2 {
     margin-bottom: 32rem; }
 
