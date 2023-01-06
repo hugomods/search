@@ -17,7 +17,7 @@ export default class Modal {
 
     private input: HTMLInputElement
 
-    private filterLang: HTMLSelectElement
+    private filterLang: HTMLElement
 
     // How many milliseconds must elapse before considering the autocomplete experience stalled.
     private stallThreshold = 300
@@ -94,12 +94,16 @@ export default class Modal {
         }
 
         let s = `<div class="search-filters">
-<select class="search-filter search-filter-lang search-form-control">
-  <option value="">${i18n.translate('languages')}</option>`
+<div class="search-dropdown search-filter search-filter-lang">
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+    ${params.icons['lang']}
+  </button>
+  <ul class="search-dropdown-menu">
+    <li class="search-dropdown-item active" data-value="">${i18n.translate('all')}</li>`
         for (let i in params.langs) {
-            s += `<option value="${params.langs[i].lang}">${params.langs[i].name}</option>`
+            s += `<li class="search-dropdown-item" data-value="${params.langs[i].lang}">${params.langs[i].name}</li>`
         }
-        return s + '</select></div>'
+        return s + '</ul></div></div>'
     }
 
     renderFooter(): string {
@@ -211,10 +215,26 @@ export default class Modal {
             this.search()
         })
 
-        this.filterLang = this.container.querySelector('select.search-filter-lang') as HTMLSelectElement
+        this.filterLang = this.container.querySelector('.search-filter-lang') as HTMLElement
         if (this.filterLang) {
-            this.filterLang.addEventListener('change', () => {
-                this.search()
+            const langItems = this.filterLang.querySelectorAll('.search-dropdown-item')
+            langItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    const value = item.getAttribute('data-value')
+                    if (value) {
+                        this.filterLang.setAttribute('data-value', value)
+                        this.filterLang.classList.add('active')
+                    } else {
+                        this.filterLang.removeAttribute('data-value')
+                        this.filterLang.classList.remove('active')
+                    }
+
+                    langItems.forEach((lang) => {
+                        lang.classList.remove('active')
+                    })
+                    item.classList.add('active')
+                    this.search()
+                })
             })
         }
     }
@@ -256,7 +276,7 @@ export default class Modal {
         this.spinner.show()
         const promise = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(this.engine.search(query, this.filterLang ? this.filterLang.value : ''))
+                resolve(this.engine.search(query, this.filterLang ? this.filterLang.getAttribute('data-value') : ''))
             }, 1)
         })
         const start = (new Date()).getTime()

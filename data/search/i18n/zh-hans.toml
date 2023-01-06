@@ -1,3 +1,6 @@
+[all]
+other = "全部"
+
 [cancel]
 other = "取消"
 
@@ -6,9 +9,6 @@ other = "初始化索引失败。"
 
 [input_placeholder]
 other = "请输入关键词"
-
-[languages]
-other = "语言"
 
 [search]
 other = "搜索"
