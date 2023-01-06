@@ -14,7 +14,7 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 - Results navigation.
 - Filters: language.
 - Sorting: sortable by score and date.
-- Internationalization (i18n).
+- [Internationalization (i18n)](#internationalization).
 - Lightweight.
 
 <div align="center">
@@ -140,7 +140,7 @@ stall_threshold = 200
 | `ignore_location` | Boolean | `false` | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
 | `shortcut_close` | Array | `["Escape"]` | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
 | `shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
-| ~`input_placeholder`~ | String | `i18n "search"` | **Deprecated**. The placeholder of search input.
+| ~`input_placeholder`~ | String | `i18n "search"` | **Deprecated**, please use [i18n](#internationalization) instead.
 | `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
@@ -180,3 +180,27 @@ You can easily to adjust the search UI to fit your theme and dark mode via the f
 | Name | Type | Default | Description
 |---|:-:|:-:|---|
 | `noindex` | Boolean | `false` | When `true`, the page won't be indexed, that is, it won't appear on the search results.
+
+## Internationalization
+
+Currently, this module supports the following languages, please feel free to open a PR to add more languages.
+
+> The translations are stored in the [`data/search/i18n`](data/search/i18n) folder, it's different from Hugo i18n, since the module using JS instead of templates to render the HTML markup.
+
+- English (`en`)
+- Simplified Chinese (`zh-hans`)
+- Traditional Chinese `zh-hant`)
+
+### Custom i18n Translations
+
+Let's take the `input_placeholder` as an example, just create the corresponding translations file under your project's root.
+
+```toml
+# data/search/i18n/en.toml
+[input_placeholder]
+other = "SEARCH INPUT PLACEHOLDER"
+```
+
+Now, the `input_placeholder` will be `SEARCH INPUT PLACEHOLDER` in `en` sites.
+
+All the available translations' keys can be found at [`data/search/i18n`](data/search/i18n) folder.
