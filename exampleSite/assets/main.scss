@@ -89,6 +89,7 @@ ul {
 // For test whether the search result jump to the correct anchor.
 .main {
     flex: 1;
+    word-break: break-word;
     h2 {
         margin-bottom: 32rem;
     }
