@@ -13,6 +13,23 @@
                 return
             }
 
+            const item = e.target.closest('.search-dropdown-item')
+            if (item) {
+                const dropdown = item.closest('.search-dropdown')
+                const value = item.getAttribute('data-value')
+                if (value) {
+                    dropdown.setAttribute('data-value', value)
+                    dropdown.classList.add('active')
+                } else {
+                    dropdown.removeAttribute('data-value')
+                    dropdown.classList.remove('active')
+                }
+                dropdown.querySelectorAll('.search-dropdown-item').forEach((lang) => {
+                    lang.classList.remove('active')
+                })
+                item.classList.add('active')
+            }
+
             // close opened dropdown when losing focus.
             document.querySelectorAll('.search-dropdown.show').forEach((dropdown) => {
                 dropdown.classList.remove('show')

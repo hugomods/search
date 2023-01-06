@@ -72,7 +72,11 @@
     margin-top: 0.25rem;
 }
 
-.search-filter {
+.search-panel {
+    display: flex;
+}
+
+.search-panel-tool {
     margin: 0.25rem 0 0;
 }
 

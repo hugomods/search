@@ -19,6 +19,8 @@ export default class Modal {
 
     private filterLang: HTMLElement
 
+    private sorting: HTMLElement
+
     // How many milliseconds must elapse before considering the autocomplete experience stalled.
     private stallThreshold = 300
 
@@ -81,20 +83,22 @@ export default class Modal {
     <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
   </div>
   <div class="search-form-meta">
-    ${this.renderFilters()}
+    <div class="search-panel">
+      ${this.renderLangFilter()}
+      ${this.renderSorting()}
+    </div>
     <div class="search-stat"></div>
   </div>
 </form>
 `.trim()
     }
 
-    renderFilters(): string {
+    renderLangFilter(): string {
         if (params.langs.length < 2) {
             return ''
         }
 
-        let s = `<div class="search-filters">
-<div class="search-dropdown search-filter search-filter-lang">
+        let s = `<div class="search-dropdown search-panel-tool search-filter-lang">
   <button class="search-dropdown-toggle" type="button" aria-expanded="false">
     ${params.icons['lang']}
   </button>
@@ -103,7 +107,24 @@ export default class Modal {
         for (let i in params.langs) {
             s += `<li class="search-dropdown-item" data-value="${params.langs[i].lang}">${params.langs[i].name}</li>`
         }
-        return s + '</ul></div></div>'
+        return s + '</ul></div>'
+    }
+
+    renderSorting(): string {
+        if (params.langs.length < 2) {
+            return ''
+        }
+
+        return `<div class="search-dropdown search-panel-tool search-sorting">
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+    ${params.icons['sort']}
+  </button>
+  <ul class="search-dropdown-menu">
+    <li class="search-dropdown-item active" data-value="">${i18n.translate('sort_by_default')}</li>
+    <li class="search-dropdown-item" data-value="date_asc">${i18n.translate('sort_by_date_asc')}</li>
+    <li class="search-dropdown-item" data-value="date_desc">${i18n.translate('sort_by_date_desc')}</li>
+  </ul>
+</div>`
     }
 
     renderFooter(): string {
@@ -220,23 +241,18 @@ export default class Modal {
             const langItems = this.filterLang.querySelectorAll('.search-dropdown-item')
             langItems.forEach((item) => {
                 item.addEventListener('click', () => {
-                    const value = item.getAttribute('data-value')
-                    if (value) {
-                        this.filterLang.setAttribute('data-value', value)
-                        this.filterLang.classList.add('active')
-                    } else {
-                        this.filterLang.removeAttribute('data-value')
-                        this.filterLang.classList.remove('active')
-                    }
-
-                    langItems.forEach((lang) => {
-                        lang.classList.remove('active')
-                    })
-                    item.classList.add('active')
                     this.search()
                 })
             })
         }
+
+        this.sorting = this.container.querySelector('.search-sorting') as HTMLElement
+        const sortingItems = this.sorting.querySelectorAll('.search-dropdown-item')
+        sortingItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                this.search()
+            })
+        })
     }
 
     initEngine = () => {
@@ -276,12 +292,14 @@ export default class Modal {
         this.spinner.show()
         const promise = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(this.engine.search(query, this.filterLang ? this.filterLang.getAttribute('data-value') : ''))
+                const lang = this.filterLang.getAttribute('data-value') ?? ''
+                resolve(this.engine.search(query, lang))
             }, 1)
         })
         const start = (new Date()).getTime()
         promise.then((results) => {
-            this.renderer.render(query, results, (new Date()).getTime() - start)
+            const sorting = this.sorting.getAttribute('data-value')
+            this.renderer.render(query, results, (new Date()).getTime() - start, sorting)
         }).finally(() => {
             this.spinner.hide()
         })

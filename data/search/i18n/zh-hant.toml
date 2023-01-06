@@ -17,6 +17,15 @@ other = "搜索"
 one = "在 {time} 內找到 {total} 個結果。"
 other = "在 {time} 內找到 {total} 個結果。"
 
+[sort_by_default]
+other = "最佳匹配"
+
+[sort_by_date_asc]
+other = "最舊的"
+
+[sort_by_date_desc]
+other = "最新的"
+
 [to_close]
 other = "關閉"
 

@@ -99,16 +99,30 @@ export default class Renderer {
         return ret
     }
 
-    render(query, results, time) {
+    render(query, results, time, sorting = '') {
         this.clean()
         // Back to top when re-rendering results.
         this.container.closest('.search-modal-body').scrollTop = 0
         this.page = 1
-        this.results = results
+        this.results = this.sort(results, sorting)
         this.time = time
         this.query = query
         this.renderStat()
         this.renderPage()
+    }
+
+    private sort(results, sorting) {
+        switch (sorting) {
+            case 'date_asc':
+                results = results.sort((a, b) => a.item.date - b.item.date);
+                break;
+            case 'date_desc':
+                results = results.sort((a, b) => b.item.date - a.item.date);
+                break;
+        }
+
+
+        return results;
     }
 
     private renderStat() {
