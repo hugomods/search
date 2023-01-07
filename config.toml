@@ -1,9 +1,11 @@
 [outputFormats]
-# RESERVED FOR SINGLE PAGE SEARCH.
-# [outputFormats.Search]
-# baseName = 'search'
-# isHTML = true
-# mediaType = 'text/html'
+
+[outputFormats.Search]
+baseName = 'search'
+isHTML = true
+mediaType = 'text/html'
+notAlternative = true
+
 [outputFormats.SearchIndex]
 baseName = 'search'
 isPlainText = true

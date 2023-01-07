@@ -1,27 +1,24 @@
-import { default as params } from '@params'
-
 export default class Spinner {
-    private element: HTMLElement
+    constructor(private ele: string | HTMLElement) {
+    }
 
-    private search: HTMLDivElement
+    getElement(): HTMLElement {
+        if (!(this.ele instanceof HTMLElement)) {
+            this.ele = document.querySelector(this.ele) as HTMLElement
+        }
 
-    constructor(ele, search) {
-        this.element = document.querySelector(ele)
-
-        this.search = document.querySelector(search)
+        return this.ele
     }
 
     hide() {
         // delay the action to make the spinner more obvious.
         setTimeout(() => {
-            this.element.classList.add('disabled')
-            this.search.classList.remove('disabled')
-        }, 300)
+            this.getElement().classList.add('disabled')
+        }, 200)
 
     }
 
     show() {
-        this.search.classList.add('disabled')
-        this.element.classList.remove('disabled')
+        this.getElement().classList.remove('disabled')
     }
 }

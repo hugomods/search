@@ -4,5 +4,13 @@
     2. The built-in UI doesn't contain the dark theme, what you saw is defined
     by the demo site via CSS variables.
   </p>
-  <p>3. <kbd>CTRL</kbd>+<kbd>K</kbd> to search.</p>
+  <p>
+    3. <kbd>CTRL</kbd>+<kbd>K</kbd> or click the search button to search on
+    modal.
+  </p>
+  <p>4. Search on single page via form below.</p>
+  {{- $formAction := partialCached "search/functions/form-action" . }}
+  <form action="{{ $formAction }}">
+    <input type="search" name="q" placeholder="Search on Single Page" />
+  </form>
 </div>

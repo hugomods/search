@@ -1,9 +1,11 @@
-export default class Navigator {
+import keyboard from "./keyborard"
+
+class Navigator {
     current() {
         return document.querySelector('.search-result.active')
     }
 
-    active(result: Element | null, dir) {
+    active(result: HTMLElement | null, dir) {
         if (!result) {
             return
         }
@@ -27,3 +29,19 @@ export default class Navigator {
         this.active(current ? current.nextElementSibling : this.first(), 'next')
     }
 }
+
+(() => {
+    'use strict'
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const navigator = new Navigator()
+
+        keyboard.attach(['ArrowUp'], () => {
+            navigator.prev()
+        })
+
+        keyboard.attach(['ArrowDown'], () => {
+            navigator.next()
+        })
+    })
+})()

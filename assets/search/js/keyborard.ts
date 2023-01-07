@@ -1,4 +1,4 @@
-export default class Keyboard {
+class Keyboard {
     private keys = {}
 
     private events: {
@@ -6,19 +6,11 @@ export default class Keyboard {
         callback: CallableFunction
     }[] = []
 
-    constructor() {
-        const press = (e) => {
-            this.press(e)
-        }
-        document.addEventListener('keydown', press)
-        document.addEventListener('keyup', press)
-    }
-
     attach(keys: Array<string>, callback: CallableFunction) {
         this.events.push({ keys, callback })
     }
 
-    private press(e: KeyboardEvent) {
+    press(e: KeyboardEvent) {
         if (e.type === 'keydown') {
             // record the pressed key.
             this.keys[e.key] = true
@@ -53,3 +45,18 @@ export default class Keyboard {
         return true
     }
 }
+
+const keyboard = new Keyboard()
+export default keyboard;
+
+(() => {
+    'use strict'
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const press = (e) => {
+            keyboard.press(e)
+        }
+        document.addEventListener('keydown', press)
+        document.addEventListener('keyup', press)
+    })
+})()

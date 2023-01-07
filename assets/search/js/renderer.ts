@@ -1,12 +1,11 @@
 import { default as params } from '@params'
 import i18n from './i18n'
+import Spinner from './spinner'
 
 export default class Renderer {
-    private container
+    private scroll = false
 
-    private lang = ''
-
-    private stat
+    private lang
 
     private page = 1
 
@@ -20,19 +19,44 @@ export default class Renderer {
 
     private metaClasses = 'search-result-meta'
 
-    constructor(container, stat) {
-        this.container = document.querySelector(container)
-        this.stat = document.querySelector(stat)
+    constructor(
+        private container: string | HTMLElement,
+        private statistics: string | HTMLElement,
+        private spinner: Spinner
+    ) {
         // Make sure that the paginate is at least 20, so that load more event will be able to trigger.
         this.paginate = Math.max(this.paginate, params.paginate)
-        this.lang = document.documentElement.getAttribute('lang') ?? 'en-US'
         if (params.expand_results_meta) {
             this.metaClasses += ' show'
         }
     }
 
+    private getContainer(): HTMLElement {
+        if (!(this.container instanceof HTMLElement)) {
+            this.container = document.querySelector(this.container) as HTMLElement
+        }
+
+        return this.container
+    }
+
+    private getStatistics(): HTMLElement {
+        if (!(this.statistics instanceof HTMLElement)) {
+            this.statistics = document.querySelector(this.statistics) as HTMLElement
+        }
+
+        return this.statistics
+    }
+
+    private getLang(): string {
+        if (!this.lang) {
+            this.lang = document.documentElement.getAttribute('lang') ?? params.defaultLang
+        }
+
+        return this.lang
+    }
+
     clean() {
-        this.container.innerHTML = ''
+        this.getContainer().innerHTML = ''
     }
 
     icon(page) {
@@ -54,7 +78,7 @@ export default class Renderer {
             return ''
         }
 
-        return (new Date(page.date * 1000)).toLocaleDateString(this.lang, { dateStyle: 'long' })
+        return (new Date(page.date * 1000)).toLocaleDateString(this.getLang(), { dateStyle: 'long' })
     }
 
     title(result) {
@@ -99,38 +123,40 @@ export default class Renderer {
         return ret
     }
 
-    render(query, results, time, sorting = '') {
+    render(query, results, time) {
+        this.onScroll()
         this.clean()
-        // Back to top when re-rendering results.
-        this.container.closest('.search-modal-body').scrollTop = 0
+        // TODO: Back to top when re-rendering results.
+        // this.getContainer().closest('.search-modal-body').scrollTop = 0
         this.page = 1
-        this.results = this.sort(results, sorting)
+        this.results = results
         this.time = time
         this.query = query
         this.renderStat()
         this.renderPage()
     }
 
-    private sort(results, sorting) {
-        switch (sorting) {
-            case 'date_asc':
-                results = results.sort((a, b) => a.item.date - b.item.date);
-                break;
-            case 'date_desc':
-                results = results.sort((a, b) => b.item.date - a.item.date);
-                break;
+    private onScroll() {
+        if (this.scroll) {
+            return
         }
 
-
-        return results;
+        this.scroll = true
+        const wrapper = this.getContainer().parentElement
+        wrapper?.addEventListener('scroll', () => {
+            if (wrapper.scrollHeight - wrapper.scrollTop === wrapper.clientHeight) {
+                this.loadMore()
+            }
+        })
     }
 
     private renderStat() {
+        const stat = this.getStatistics()
         if (this.query === '') {
-            this.stat.innerHTML = ''
+            stat.innerHTML = ''
             return
         }
-        this.stat.innerHTML = i18n.translate('search_stat', {
+        stat.innerHTML = i18n.translate('search_stat', {
             count: this.results.length,
             total: `<span class="search-stat-results">${this.results.length}</span>`,
             time: this.prettifyTime(),
@@ -150,16 +176,28 @@ export default class Renderer {
     }
 
     loadMore() {
-        this.renderPage(++this.page)
+        if (this.page * this.paginate > this.results.length) {
+            return
+        }
+
+        this.spinner.show()
+        new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(this.renderPage(++this.page))
+            }, 1)
+        }).finally(() => {
+            this.spinner.hide()
+        })
+
     }
 
     private renderPage(page = 1) {
         const max = page * this.paginate
         const min = max - this.paginate
-        let temp = ''
+        let results = ''
         for (let i = min; i < this.results.length && i < max; i++) {
             const result = this.results[i]
-            temp += `<a title="${result.item.title}" href="${result.item.url}" class="search-result">
+            results += `<a title="${result.item.title}" href="${result.item.url}" class="search-result">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>
@@ -175,9 +213,9 @@ export default class Renderer {
     <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
   </div>
 </a>`
-            temp += this.renderHeadings(result)
+            results += this.renderHeadings(result)
         }
-        this.container.insertAdjacentHTML('beforeend', temp)
+        this.getContainer().insertAdjacentHTML('beforeend', results)
     }
 
     renderHeadings(result) {
@@ -190,7 +228,7 @@ export default class Renderer {
             return ''
         }
 
-        let temp = ''
+        let headings = ''
 
         for (let i in result.item.headings) {
             const heading = result.item.headings[i]
@@ -199,7 +237,7 @@ export default class Renderer {
                     continue
                 }
 
-                temp += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
+                headings += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>
@@ -209,6 +247,6 @@ export default class Renderer {
             }
         }
 
-        return temp
+        return headings
     }
 }
