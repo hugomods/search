@@ -1,13 +1,21 @@
 .search-container {
-    overflow: hidden;
+    background: var(--search-bg);
+    color: var(--search-color);
+    padding: 0.5rem;
 
     .search-modal-close {
         display: none;
     }
 }
 
+.search-header {
+    position: relative;
+    z-index: 1;
+}
+
 .search-body {
     width: 100%;
     max-height: 600px;
+    min-height: 240px;
     overflow-y: auto;
 }

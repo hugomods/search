@@ -1,6 +1,6 @@
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', (e: Event) => {
             const toggle = e.target.closest('.search-dropdown-toggle')
             if (toggle) {
                 const dropdown = toggle.closest('.search-dropdown')

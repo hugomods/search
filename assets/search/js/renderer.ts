@@ -3,7 +3,7 @@ import i18n from './i18n'
 import Spinner from './spinner'
 
 export default class Renderer {
-    private scroll = false
+    private initialized = false
 
     private lang
 
@@ -124,10 +124,10 @@ export default class Renderer {
     }
 
     render(query, results, time) {
-        this.onScroll()
+        this.init()
         this.clean()
-        // TODO: Back to top when re-rendering results.
-        // this.getContainer().closest('.search-modal-body').scrollTop = 0
+        // back to top when re-rendering results.
+        this.getContainer().parentElement.scrollTop = 0
         this.page = 1
         this.results = results
         this.time = time
@@ -136,18 +136,45 @@ export default class Renderer {
         this.renderPage()
     }
 
-    private onScroll() {
-        if (this.scroll) {
+    private init() {
+        if (this.initialized) {
             return
         }
 
-        this.scroll = true
-        const wrapper = this.getContainer().parentElement
+        this.initialized = true
+        const container = this.getContainer()
+        const wrapper = container.parentElement
         wrapper?.addEventListener('scroll', () => {
             if (wrapper.scrollHeight - wrapper.scrollTop === wrapper.clientHeight) {
                 this.loadMore()
             }
         })
+
+        const observe = (mutations, observer) => {
+            for (let mutation of mutations) {
+                if (mutation.type === 'childList') {
+                    for (let node of mutation.addedNodes) {
+                        const action = node.querySelector('.search-result-action-meta')
+                        action?.addEventListener('click', (e) => {
+                            this.toggleMeta(node.querySelector('.search-result-meta'))
+                            e.preventDefault()
+                        })
+                    }
+                }
+            }
+        };
+
+        const observer = new MutationObserver(observe);
+        observer.observe(container, { childList: true });
+    }
+
+    private toggleMeta(meta: HTMLElement) {
+        if (meta.classList.contains('show')) {
+            meta.classList.remove('show')
+            return
+        }
+
+        meta.classList.add('show')
     }
 
     private renderStat() {

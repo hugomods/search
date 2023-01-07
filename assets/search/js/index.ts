@@ -1,4 +1,4 @@
 import "./drpodown"
-import "./result-meta"
+import "./navigator"
 import "./modal"
 import "./search"

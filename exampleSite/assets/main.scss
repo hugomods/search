@@ -41,6 +41,7 @@ header {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    z-index: 1000;
 }
 
 ul {
@@ -89,6 +90,7 @@ ul {
 // For test whether the search result jump to the correct anchor.
 .main {
     flex: 1;
+    overflow: hidden;
     word-break: break-word;
     h2 {
         margin-bottom: 32rem;

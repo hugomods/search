@@ -1,32 +1,41 @@
 import keyboard from "./keyborard"
 
 class Navigator {
-    current() {
-        return document.querySelector('.search-result.active')
+    private modal() {
+        return document.querySelector('.search-modal-container.active')
     }
 
-    active(result: HTMLElement | null, dir) {
-        if (!result) {
-            return
+    private current(): null | HTMLElement {
+        const modal = this.modal()
+        return modal ? modal.querySelector('.search-result.active') : document.querySelector('.search-container .search-result.active')
+    }
+
+    private go(dir) {
+        const current = this.current()
+        let target
+        if (!current) {
+            target = current
+        } else {
+            target = dir === 'prev' ? current.previousElementSibling : current.nextElementSibling
         }
-        dir === 'prev' && result?.nextElementSibling?.classList.remove('active')
-        dir === 'next' && result?.previousElementSibling?.classList.remove('active')
-        result.focus()
-        result.classList.add('active')
+        target = target ?? this.first()
+
+        current?.classList.remove('active')
+        target.focus()
+        target.classList.add('active')
     }
 
-    first() {
-        return document.querySelector('.search-result')
+    private first() {
+        const modal = this.modal()
+        return modal ? modal.querySelector('.search-result') : document.querySelector('.search-container .search-result')
     }
 
     prev() {
-        const current = this.current()
-        this.active(current ? current.previousElementSibling : this.first(), 'prev')
+        this.go('prev')
     }
 
     next() {
-        const current = this.current()
-        this.active(current ? current.nextElementSibling : this.first(), 'next')
+        this.go('next')
     }
 }
 

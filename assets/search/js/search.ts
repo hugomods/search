@@ -25,12 +25,8 @@ export default class Search {
     }
 
     render() {
-        const html = `<div class="search-header">
-  ${this.form.render()}
-  <div class="search-body">
-    <div class="search-results"></div>
-  </div>
-</div>`
+        const html = `<div class="search-header">${this.form.render()}</div>
+<div class="search-body"><div class="search-results"></div></div>`
         this.container.insertAdjacentHTML('beforeend', html)
         this.form.init()
     }
