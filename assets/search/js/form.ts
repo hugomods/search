@@ -5,6 +5,11 @@ import engine from './engine'
 import Spinner from './spinner'
 
 export default class Form {
+    // Original page title.
+    private pageTitle
+
+    private popstate = false
+
     private ele: HTMLFormElement
 
     private input: HTMLInputElement
@@ -81,6 +86,8 @@ export default class Form {
 
     // Initialize the form after rendering.
     init() {
+        this.pageTitle = document.title
+
         this.ele = document.querySelector('.search-form') as HTMLFormElement
         this.ele.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -117,21 +124,34 @@ export default class Form {
             this.input.value = i18n.translate('index_fails')
         }).then(() => {
             if (!this.modal) {
-                const url = new URL(location.href)
-                const q = url.searchParams.get('q')
-                if (q) {
-                    this.input.value = q.trim()
-                }
+                this.fillInputByURL()
                 this.input.focus()
                 this.submit()
             }
         }).finally(() => {
             this.spinner.hide()
         })
+
+        if (!this.modal) {
+            window.addEventListener('popstate', (e) => {
+                this.popstate = true
+                this.fillInputByURL()
+                this.submit()
+            })
+        }
+    }
+
+    private fillInputByURL() {
+        const params = new URLSearchParams(location.search)
+        const q = params.get('q')
+        if (q) {
+            this.input.value = q.trim()
+        }
     }
 
     private submit() {
         const query = this.getQuery()
+        this.updatePage(query)
         if (query === '') {
             this.renderer.render(query, [], 0)
             return
@@ -145,6 +165,18 @@ export default class Form {
         }).finally(() => {
             this.spinner.hide()
         })
+    }
+
+    // Update the page's URL and title when performing a search on single page.
+    private updatePage(query) {
+        if (this.modal || this.popstate) {
+            return
+        }
+
+        const title = (query ? `${query} - ` : '') + this.pageTitle
+        const url = `${window.location.pathname}?q=${encodeURIComponent(query)}`
+        window.history.pushState(null, title, url)
+        document.title = title // history.pushState's title was ignored.
     }
 
     focus() {
