@@ -6,6 +6,8 @@ import Spinner from './spinner'
 import Renderer from './renderer'
 
 export default class Modal {
+    private wrapper: HTMLElement
+
     private container: HTMLElement
 
     private form: Form
@@ -16,6 +18,8 @@ export default class Modal {
     }
 
     init() {
+        this.wrapper = document.querySelector(params.modal_container) as HTMLElement
+
         this.render()
 
         this.form.init()
@@ -73,7 +77,7 @@ export default class Modal {
   <div class="search-modal-body"><div class="search-results"></div></div>
   ${this.renderFooter()}
 </div>`
-        document.body.appendChild(this.container)
+        this.wrapper.appendChild(this.container)
     }
 
     renderFooter(): string {
@@ -126,6 +130,8 @@ export default class Modal {
     'use strict'
 
     document.addEventListener('DOMContentLoaded', () => {
-        (new Modal()).init()
+        if (params.modal_container !== '') {
+            (new Modal()).init()
+        }
     })
 })()
