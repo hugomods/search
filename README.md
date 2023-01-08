@@ -72,7 +72,7 @@ When using single search page, we probably want to include the search's CSS and 
 {{ end }}
 ```
 
-But we couldn't do that, since there isn't a way to recognize whether the current page is a search page. See #76 and gohugoio/hugo#9368.
+But we couldn't do that, since there isn't a way to recognize whether the current page is a search page. See razonyang/hugo-mod-search#76 and gohugoio/hugo#9368.
 
 So we need a workaround, according to the Hugo look up order, we can achieve this by creating the `baseof.search.html` template for single search page, see the demo site's [baseof.search.html](exampleSite/layouts/_default/baseof.search.html).
 
@@ -130,6 +130,8 @@ We can achieve this via two ways.
 
 > Please note that you should not set the `async` attribute on the `script`.
 
+- The `search/assets/js-resource` is a partial that returns a search JS resource.
+
 #### Include the JavaScript via Partial (Recommended for Single Search Page)
 
 This partial will generate a `<script>` tag.
@@ -156,7 +158,7 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 
 > Skip this step if you're not using the single search page mode.
 
-When using single search page mode, we'll create a entry for users, such as a link to the search page, or a search form.
+When using single search page mode, we'll create a entrance for users, such as a link to the search page, or a search form.
 
 ```go
 {{ $searchURL := partial "search/functions/search-url" . }}
