@@ -52,8 +52,6 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 > There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
 
-
-
 ### 1. Import the module
 
 ```toml
@@ -61,7 +59,24 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 path = "github.com/razonyang/hugo-mod-search"
 ```
 
-### 2. Include the CSS
+### 2. Single Search Page Base Template
+
+> Skip this step if you're not using single search page.
+
+When using single search page, we probably want to include the search's CSS and JS on that page only.
+
+```go
+// baseof.html
+{{ if $isSearchPage }}
+  ...
+{{ end }}
+```
+
+But we couldn't do that, since there isn't a way to recognize whether the current page is a search page. See #76 and gohugoio/hugo#9368.
+
+So we need a workaround, according to the Hugo look up order, we can achieve this by creating the `baseof.search.html` template for single search page, see the demo site's [baseof.search.html](exampleSite/layouts/_default/baseof.search.html).
+
+### 3. Include the CSS
 
 There are three approaches to include the CSS. The first two approaches are recommended for modal mode, since the CSS file is too small as a single CSS file, embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 The last approach is recommended in the case of using only the single search page mode.
@@ -100,7 +115,7 @@ This approach generates a `<link>` tag.
 {{ partial "search/assets/css" . }}
 ```
 
-### 3. Include the JavaScript
+### 4. Include the JavaScript
 
 We can achieve this via two ways.
 
@@ -123,7 +138,7 @@ This partial will generate a `<script>` tag.
 {{ partial "search/assets/js" . }}
 ```
 
-### 4. Create a Modal Toggle Button (Optional)
+### 5. Create a Modal Toggle Button (Optional)
 
 > Skip this step if you're not using the modal (auto complete) mode.
 
@@ -137,7 +152,7 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 
 - The toggle *button* can be any HTML tag, not just the `button`, since the module will listen the `click` event on the tags have the `search-modal-toggle` class name, this also means that the page can contain multiple toggle *buttons*.
 
-### 5. Create a Form or Link for Single Search Page (Optional)
+### 6. Create a Form or Link for Single Search Page (Optional)
 
 > Skip this step if you're not using the single search page mode.
 
@@ -159,7 +174,7 @@ The single search page accepts the following parameters from URL.
 
 - `q`: query, the search input value.
 
-### 6. Set up the search index
+### 7. Set up the search index
 
 Append the `Search` and `SearchIndex` formats into `outputs.home`.
 

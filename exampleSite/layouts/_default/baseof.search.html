@@ -1,13 +1,9 @@
 {{/* The baseof template for single search page. */}}
-{{/* There some issue we couldn't reuse the same baseof template. */}}
-{{/* since we can't recognize whether the current page is a search page so far. */}}
-{{/* See https://github.com/gohugoio/hugo/issues/9368. */}}
 <!DOCTYPE html>
 <html
   lang="{{ .Lang }}"
   {{ with .Language.LanguageDirection }}dir="{{ . }}"{{ end }}
 >
-  {{- warnf "%v" (.Store.Get "is_page_search") }}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
