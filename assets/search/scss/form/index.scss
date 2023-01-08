@@ -57,6 +57,11 @@
     border: 1px solid var(--search-primary);
     padding: 0.75rem 0.5rem 0.75rem 2.25rem;
     flex: 1;
+
+    &::-webkit-search-cancel-button {
+        cursor: pointer;
+        padding: 0.125rem;
+    }
 }
 
 .search-form-control {
