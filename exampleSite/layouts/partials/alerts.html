@@ -9,7 +9,7 @@
     modal.
   </p>
   <p>4. Search on single page via form below.</p>
-  {{- $formAction := partialCached "search/functions/form-action" . }}
+  {{- $formAction := partialCached "search/functions/search-url" . }}
   <form action="{{ $formAction }}">
     <input type="search" name="q" placeholder="Search on Single Page" />
   </form>

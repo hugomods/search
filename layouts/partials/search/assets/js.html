@@ -2,4 +2,4 @@
 {{- if hugo.IsProduction }}
   {{- $js = $js | fingerprint }}
 {{- end }}
-<script src="{{ $js.RelPermalink }}" async></script>
+<script src="{{ $js.RelPermalink }}" defer></script>

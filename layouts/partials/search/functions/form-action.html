@@ -1,8 +1,0 @@
-{{- $home := .Site.Home }}
-{{- $url := "" }}
-{{- range  $home.OutputFormats }}
-  {{- if eq .Format.Name "search" }}
-    {{- $url = .RelPermalink }}
-  {{- end }}
-{{- end }}
-{{- return $url -}}

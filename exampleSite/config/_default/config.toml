@@ -25,7 +25,5 @@ languageName = "العربية"
 LanguageDirection = 'rtl'
 
 [params.search]
-mode = 'page'
-input_placeholder = 'Type to search'
 # index_all_pages = false
 # expand_results_meta = true

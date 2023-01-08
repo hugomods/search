@@ -1,3 +1,8 @@
+{{/* Override the title of baseof template via the "block" syntax. */}}
+{{- define "title" }}
+  {{- printf "%s - %s" (i18n "search") .Site.Title -}}
+{{- end }}
+
 {{- define "main" }}
   <div class="search-container"></div>
 {{- end -}}

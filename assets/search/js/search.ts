@@ -10,6 +10,7 @@ export default class Search {
 
     constructor() {
         const container = document.querySelector('.search-container') as HTMLElement
+        console.log(container)
         if (!container) {
             return
         }

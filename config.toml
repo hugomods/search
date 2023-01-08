@@ -1,7 +1,8 @@
 [outputFormats]
 
 [outputFormats.Search]
-baseName = 'search'
+baseName = 'index'
+path = 'search'
 isHTML = true
 mediaType = 'text/html'
 notAlternative = true
@@ -10,6 +11,7 @@ notAlternative = true
 baseName = 'search'
 isPlainText = true
 mediaType = 'application/json'
+notAlternative = true
 
 [module]
 [module.hugoVersion]

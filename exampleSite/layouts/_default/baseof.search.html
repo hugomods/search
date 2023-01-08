@@ -1,23 +1,25 @@
+{{/* The baseof template for single search page. */}}
+{{/* There some issue we couldn't reuse the same baseof template. */}}
+{{/* since we can't recognize whether the current page is a search page so far. */}}
+{{/* See https://github.com/gohugoio/hugo/issues/9368. */}}
 <!DOCTYPE html>
-{{- $rtl := eq .Language.LanguageDirection "rtl" }}
 <html
   lang="{{ .Lang }}"
-  {{ with $rtl }}dir="rtl"{{ end }}
+  {{ with .Language.LanguageDirection }}dir="{{ . }}"{{ end }}
 >
+  {{- warnf "%v" (.Store.Get "is_page_search") }}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       {{- block "title" . -}}{{ default .Site.Title .Title }}{{- end -}}
     </title>
-    {{/* Merge demo site CSS and search CSS. */}}
-    {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
-    {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
-    {{ $cssTarget := cond $rtl "css/bundle.rtl.css" "css/bundle.css" }}
+    {{/* Demo site CSS. */}}
     {{ $css := partial "assets/css-resource" . }}
-    {{ $searchCSS := partial "search/assets/css-resource" . }}
-    {{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+
+    {{/* Search CSS. */}}
+    {{ partial "search/assets/css" . }}
 
     {{ partial "init-script" . }}
   </head>
@@ -25,19 +27,22 @@
     {{ partial "header" . }}
     <div class="content">
       <div class="main">
-        {{ partial "alerts" . }}
-        <h1>{{ .Title }}</h1>
+        <h1>{{ i18n "search" }}</h1>
+        <p>SINGLE SEARCH PAGE BUILT-IN UI BEGIN.</p>
         <hr />
         {{ block "main" . }}{{ end }}
+        <hr />
+        <p>SINGLE SEARCH PAGE BUILT-IN UI END.</p>
       </div>
       <div class="sidebar">
         {{ partial "sidebar" . }}
       </div>
     </div>
-    {{/* Merge demo site JS and search JS. */}}
+    {{/* Demo site JS. */}}
     {{- $js := partial "assets/js-resource" . }}
-    {{ $searchJS := partial "search/assets/js-resource" . }}
-    {{ $js = slice $js $searchJS | resources.Concat "js/bundle.js" }}
     <script src="{{ $js.RelPermalink }}" defer></script>
+
+    {{/* Search JS. */}}
+    {{ partial "search/assets/js" . }}
   </body>
 </html>

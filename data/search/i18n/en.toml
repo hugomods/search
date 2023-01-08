@@ -10,9 +10,6 @@ other = "Failed to initial index."
 [input_placeholder]
 other = "Type to search"
 
-[search]
-other = "Search"
-
 [search_stat]
 one = "Found {total} result in {time}."
 other = "Found {total} results in {time}."
