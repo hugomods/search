@@ -173,6 +173,7 @@ export default class Form {
             return
         }
 
+        this.popstate = false
         const title = (query ? `${query} - ` : '') + this.pageTitle
         const url = `${window.location.pathname}?q=${encodeURIComponent(query)}`
         window.history.pushState(null, title, url)
