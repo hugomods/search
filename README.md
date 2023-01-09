@@ -1,20 +1,22 @@
-# Hugo Client Side Fuzzy Search (Auto Complete) Module
+# Hugo Client Side Fuzzy Search Module
 
-The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module built on top of [Fuse.js](https://github.com/krisk/Fuse).
+A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy search module built on top of [Fuse.js](https://github.com/krisk/Fuse).
 
 ## Features
 
+- Modes: single search page and modal (auto complete).
 - Fuzzy search by title, summary and headings.
 - [Flexible and configurable](#parameters).
-- Built-in responsive, theme-less UI and interactive logic, which in most cases can be safely and effortlessly integrated with any theme.
+- Built-in responsive, theme-less UI and interactive logic.
 - Allow restyling the UI with [CSS variables](#css-variables).
 - Pagination: load more when scrolling to the bottom of results.
 - Highlighting matches.
 - Statistic: the number of search results, search time.
-- Results navigation.
-- Filters: language.
+- Results navigation: `↑` and `↓` to navigate, `⏎` to select.
+- Filters: filterable by language.
 - Sorting: sortable by score and date.
 - [Internationalization (i18n)](#internationalization).
+- Multilingual search: searchable from single language or all languages.
 - Lightweight.
 
 <div align="center">
@@ -30,7 +32,7 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 
 <div align="center">
 
-| Shortcuts | |
+| Default Shortcuts | Description |
 |---|---|
 | <kbd>CTRL</kbd> + <kbd>K</kbd> | to search.
 | <kbd>ESC</kbd> | to close.
@@ -38,7 +40,7 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 </div>
 
 - Excluding pages by setting the `noindex` page parameter as `true`.
-- Support RTL languages: experimental, please feel free to [file an issue](https://github.com/razonyang/hugo-mod-search/issues/new) if you found one.
+- RTL languages support: experimental.
 
 ## Requirements
 
@@ -46,9 +48,9 @@ The [Hugo](https://gohugo.io/) client side fuzzy search (auto complete) module b
 - [Hugo Module](https://gohugo.io/hugo-modules/use-modules/#prerequisite).
 - PostCSS, Autoprefixer and RTLCSS, you can install those dependencies via one command `npm i postcss-cli autoprefixer rtlcss`.
 
-## Usage
+## Guide
 
-There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
+> There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and it's [source code](exampleSite) to help you get started.
 
 ### 1. Import the module
 
@@ -57,17 +59,35 @@ There is an [example site](https://projects.razonyang.com/hugo-mod-search/) and 
 path = "github.com/razonyang/hugo-mod-search"
 ```
 
-### 2. Include the CSS
+### 2. Single Search Page Base Template
 
-There are three approaches to include the CSS. It's recommended to use the first two approaches, since the CSS file is too small as a single CSS file.
-Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
+> Skip this step if you're not using single search page.
 
-#### Include the CSS via Hugo Pipe (recommended)
+When using single search page, we probably want to include the search's CSS and JS on that page only.
 
 ```go
-{{- $rtl := eq .Language.LanguageDirection "rtl" }}
+// baseof.html
+{{ if $isSearchPage }}
+  ...
+{{ end }}
+```
+
+But we couldn't do that, since there isn't a way to recognize whether the current page is a search page. See razonyang/hugo-mod-search#76 and gohugoio/hugo#9368.
+
+So we need a workaround, according to the Hugo look up order, we can achieve this by creating the `baseof.search.html` template for single search page, see the demo site's [baseof.search.html](exampleSite/layouts/_default/baseof.search.html).
+
+### 3. Include the CSS
+
+There are three approaches to include the CSS. The first two approaches are recommended for modal mode, since the CSS file is too small as a single CSS file, embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
+The last approach is recommended in the case of using only the single search page mode.
+
+#### Include the CSS via Hugo Pipe (Recommended)
+
+```go
 {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
 {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
+{{/* Ignore it if your themes and sites aren't going to support RTL. */}}
+{{ $rtl := eq .Language.LanguageDirection "rtl" }}
 {{ $cssTarget := cond $rtl "css/main.rtl.css" "css/main.css" }}
 {{ $css := resources.Get "main.scss" | toCSS }}
 {{ $searchCSS := partial "search/assets/css-resource" . }}
@@ -75,9 +95,10 @@ Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 ```
 
-> Note that `slice $searchCSS $css` puts the `$css` after `$searchCSS`, so that `$css` style can override the search's.
+- Note that `slice $searchCSS $css` puts the `$css` after `$searchCSS`, so that `$css` style can override the search's.
+- The `search/assets/css-resource` is a partial that returns a search CSS resource.
 
-#### Import the CSS via SCSS file (recommended)
+#### Import the CSS via SCSS File (Recommended)
 
 ```scss
 @import 'search/scss/index'
@@ -86,7 +107,7 @@ Embed the CSS into your own bundle is helpful to reduce extra HTTP requests.
 This way is more complex than the former, you'll need to take care of the [PostCSS](https://gohugo.io/hugo-pipes/postcss/), Autoprefixer and [RTLCSS](https://rtlcss.com/).
 See how [CSS resource partial](layouts/partials/search/assets/css-resource.html) does.
 
-#### Include the CSS via partial
+#### Include the CSS via Partial (Recommended for Single Search Page)
 
 This approach generates a `<link>` tag.
 
@@ -94,20 +115,24 @@ This approach generates a `<link>` tag.
 {{ partial "search/assets/css" . }}
 ```
 
-### 3. Include the JavaScript
+### 4. Include the JavaScript
 
 We can achieve this via two ways.
 
-#### Include the JavaScript via Hugo Pipe (recommended)
+#### Include the JavaScript via Hugo Pipe (Recommended)
 
 ```go
 {{ $js := resources.Get "main.ts" | js.Build }}
 {{ $searchJS := partial "search/assets/js-resource" . }}
 {{ $js = slice $js $searchJS | resources.Concat "js/main.js" }}
-<script src="{{ $js.RelPermalink }}"></script>
+<script src="{{ $js.RelPermalink }}" defer></script>
 ```
 
-#### Include the JavaScript via partial
+> Please note that you should not set the `async` attribute on the `script`.
+
+- The `search/assets/js-resource` is a partial that returns a search JS resource.
+
+#### Include the JavaScript via Partial (Recommended for Single Search Page)
 
 This partial will generate a `<script>` tag.
 
@@ -115,9 +140,11 @@ This partial will generate a `<script>` tag.
 {{ partial "search/assets/js" . }}
 ```
 
-### 4. Create a modal toggle (optional)
+### 5. Create a Modal Toggle Button (Optional)
 
-> This step is optional, you're still be able to open the search modal by shortcuts (default to <kbd>CTRL</kbd> + <kbd>K</kbd>), but I recommend adding such a toggle button for getting better user experience.
+> Skip this step if you're not using the modal (auto complete) mode.
+
+This step is optional, you're still be able to open the search modal by shortcuts (default to <kbd>CTRL</kbd> + <kbd>K</kbd>), but I recommend adding such a toggle button for getting better user experience, because users are not aware of these shortcuts.
 
 Adjust the button to your theme UI, place it wherever you like, for example,
 
@@ -125,13 +152,40 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 <button class="search-modal-toggle">Search</button>
 ```
 
-### 5. Set up the search index
+- The toggle *button* can be any HTML tag, not just the `button`, since the module will listen the `click` event on the tags have the `search-modal-toggle` class name, this also means that the page can contain multiple toggle *buttons*.
 
-Append the `SearchIndex` format into `outputs.home`.
+### 6. Create a Form or Link for Single Search Page (Optional)
+
+> Skip this step if you're not using the single search page mode.
+
+When using single search page mode, we'll create a entrance for users, such as a link to the search page, or a search form.
+
+```go
+{{ $searchURL := partial "search/functions/search-url" . }}
+
+{{/* Link to search page. */}}
+<a href="{{ $searchURL }}">Search</a>
+
+{{/* Search form. */}}
+<form action="{{ $searchURL }}">
+  <input type="search" name="q">
+</form>
+```
+
+The single search page accepts the following parameters from URL.
+
+- `q`: query, the search input value.
+
+### 7. Set up the search index
+
+Append the `Search` and `SearchIndex` formats into `outputs.home`.
+
+> The `Search` format is required by the single search page, remove it if you're using the modal mode only.
 
 ```toml
+# config.toml
 [outputs]
-home = ["HTML", "SearchIndex"]
+home = ["HTML", "Search", "SearchIndex"]
 ```
 
 ## Parameters
@@ -159,6 +213,7 @@ stall_threshold = 200
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
 | `expand_results_meta` | Boolean | `false` | When `true`, expand the results meta by default.
+| `modal_container` | String | `body` | The container for the search modal. It should be a valid CSS selector. Leave it empty if you're using single search page mode only.
 
 ## CSS Variables
 
@@ -218,3 +273,9 @@ other = "SEARCH INPUT PLACEHOLDER"
 Now, the `input_placeholder` will be `SEARCH INPUT PLACEHOLDER` in `en` sites.
 
 All the available translations' keys can be found at [`data/search/i18n`](data/search/i18n) folder.
+
+## Partial's Functions
+
+| Function | Description
+|---|---|
+| `search/functions/search-url` | Returns the search URL of current language site, which can be used to generate a link to the search page or the `action` for a search form.

@@ -5,7 +5,7 @@ title = 'Hugo Search Module'
 path = 'github.com/razonyang/hugo-mod-search'
 
 [outputs]
-home = ["HTML", "SearchIndex"]
+home = ["HTML", "Search", "SearchIndex"]
 
 [languages.en]
 weight = 1
@@ -25,6 +25,5 @@ languageName = "العربية"
 LanguageDirection = 'rtl'
 
 [params.search]
-input_placeholder = 'Type to search'
 # index_all_pages = false
 # expand_results_meta = true

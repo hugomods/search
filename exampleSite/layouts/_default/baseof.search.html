@@ -1,0 +1,43 @@
+{{/* The baseof template for single search page. */}}
+<!DOCTYPE html>
+<html
+  lang="{{ .Lang }}"
+  {{ with .Language.LanguageDirection }}dir="{{ . }}"{{ end }}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {{- block "title" . -}}{{ default .Site.Title .Title }}{{- end -}}
+    </title>
+
+    {{/* Search CSS. */}}
+    {{ partial "search/assets/css" . }}
+
+    {{/* Demo site CSS, after the search CSS to override the search's CSS variables. */}}
+    {{ $css := partial "assets/css-resource" . }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+
+    {{ partial "init-script" . }}
+  </head>
+  <body>
+    {{ partial "header" . }}
+    <div class="content">
+      <div class="main">
+        <h1>{{ i18n "search" }}</h1>
+        <p>SINGLE SEARCH PAGE BUILT-IN UI BEGIN.</p>
+        {{ block "main" . }}{{ end }}
+        <p>SINGLE SEARCH PAGE BUILT-IN UI END.</p>
+      </div>
+      <div class="sidebar">
+        {{ partial "sidebar" . }}
+      </div>
+    </div>
+    {{/* Demo site JS. */}}
+    {{- $js := partial "assets/js-resource" . }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+
+    {{/* Search JS. */}}
+    {{ partial "search/assets/js" . }}
+  </body>
+</html>

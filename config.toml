@@ -1,13 +1,17 @@
 [outputFormats]
-# RESERVED FOR SINGLE PAGE SEARCH.
-# [outputFormats.Search]
-# baseName = 'search'
-# isHTML = true
-# mediaType = 'text/html'
+
+[outputFormats.Search]
+baseName = 'index'
+path = 'search'
+isHTML = true
+mediaType = 'text/html'
+notAlternative = true
+
 [outputFormats.SearchIndex]
 baseName = 'search'
 isPlainText = true
 mediaType = 'application/json'
+notAlternative = true
 
 [module]
 [module.hugoVersion]
@@ -27,6 +31,7 @@ path = "github.com/razonyang/hugo-mod-icons/vendors/bootstrap"
 [params.hugopress.modules.search.hooks.body-end]
 
 [params.search]
+modal_container = "body"
 stall_threshold = 300
 case_sensitive = false
 min_match_char_length = 1

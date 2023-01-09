@@ -41,6 +41,7 @@ header {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    z-index: 1000;
 }
 
 ul {
@@ -79,7 +80,7 @@ ul {
 }
 
 .content {
-    padding: 1rem;
+    padding: 0.25rem;
     overflow: auto;
     word-wrap: break-word;
     display: flex;
@@ -89,6 +90,7 @@ ul {
 // For test whether the search result jump to the correct anchor.
 .main {
     flex: 1;
+    overflow: hidden;
     word-break: break-word;
     h2 {
         margin-bottom: 32rem;
@@ -96,9 +98,9 @@ ul {
 }
 
 .sidebar {
-    width: 240px;
+    width: 320px;
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
         display: none;
     }
 }

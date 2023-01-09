@@ -1,195 +1,61 @@
 import { default as params } from '@params'
 import i18n from './i18n'
+import keyboard from './keyborard'
+import Form from './form'
 import Spinner from './spinner'
 import Renderer from './renderer'
-import Engine from './engine'
-import Keyboard from './keyborard'
-import Navigator from './navigator'
+import { Navigate, Select, Shortcut, Shortcuts } from './shortcuts'
+
+const searchShortcut: Shortcut = {
+    kbds: [params.shortcut_search],
+    action: i18n.translate('to_search'),
+}
+
+const closeShortcut: Shortcut = {
+    kbds: [params.shortcut_close],
+    action: i18n.translate('to_close'),
+}
 
 export default class Modal {
+    private wrapper: HTMLElement
+
     private container: HTMLElement
 
-    private spinner: Spinner
+    private form: Form
 
-    private engine: Engine
-
-    private form: HTMLFormElement
-
-    private input: HTMLInputElement
-
-    private filterLang: HTMLElement
-
-    private sorting: HTMLElement
-
-    // How many milliseconds must elapse before considering the autocomplete experience stalled.
-    private stallThreshold = 300
-
-    private renderer: Renderer
-
-    private keyboard: Keyboard
-
-    private navigator: Navigator
-
-    // Search request timeout ID.
-    private timeoutId = 0
+    private shortcuts: Shortcuts
 
     constructor() {
-        this.stallThreshold = params.stall_threshold
-
-        this.init()
+        const spinner = new Spinner('.search-modal .search-spinner')
+        const renderer = new Renderer('.search-modal .search-results', '.search-modal .search-stat', spinner)
+        this.form = new Form(spinner, renderer)
+        this.shortcuts = new Shortcuts([
+            closeShortcut,
+            searchShortcut,
+            Navigate,
+            Select,
+        ])
     }
 
     init() {
+        this.wrapper = document.querySelector(params.modal_container) as HTMLElement
+
         this.render()
 
-        this.initModal()
+        this.form.init()
 
-        this.spinner = new Spinner('.search-spinner', '.search-input-icon')
-
-        this.initForm()
-
-        this.initEngine()
-
-        this.initKeyboard()
-
-        this.renderer = new Renderer('.search-results', '.search-stat')
-
-        this.initNavigator()
-    }
-
-    render() {
-        this.container = document.createElement('div')
-        this.container.className = 'search-modal-container'
-        this.container.innerHTML = `
-<div class="search-modal">
-  <div class="search-modal-header">
-    ${this.renderForm()}
-  </div>
-  <div class="search-modal-body">
-    <div class="search-results"></div>
-  </div>
-  ${this.renderFooter()}
-</div>`
-        document.body.appendChild(this.container)
-    }
-
-    renderForm(): string {
-        return `
-<form class="search-form">
-  <div class="search-input-group">
-    <span class="search-input-icon disabled">${params.icons['search']}</span>
-    <span class="search-spinner">${params.icons['spinner']}</span>
-    <input type="search" class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" disabled/>
-    <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
-  </div>
-  <div class="search-form-meta">
-    <div class="search-panel">
-      ${this.renderLangFilter()}
-      ${this.renderSorting()}
-    </div>
-    <div class="search-stat"></div>
-  </div>
-</form>
-`.trim()
-    }
-
-    renderLangFilter(): string {
-        if (params.langs.length < 2) {
-            return ''
-        }
-
-        const lang = document.documentElement.getAttribute('lang')
-
-        let s = `<div class="search-dropdown search-panel-tool search-filter-lang${lang ? ' active' : ''}" data-value="${lang ?? ''}">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
-    ${params.icons['lang']}
-  </button>
-  <ul class="search-dropdown-menu">
-    <li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${i18n.translate('all')}</li>`
-        for (let i in params.langs) {
-            const active = params.langs[i].lang === lang ? ' active' : ''
-            s += `<li class="search-dropdown-item${active}" data-value="${params.langs[i].lang}">${params.langs[i].name}</li>`
-        }
-        return s + '</ul></div>'
-    }
-
-    renderSorting(): string {
-        if (params.langs.length < 2) {
-            return ''
-        }
-
-        return `<div class="search-dropdown search-panel-tool search-sorting">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
-    ${params.icons['sort']}
-  </button>
-  <ul class="search-dropdown-menu">
-    <li class="search-dropdown-item active" data-value="">${i18n.translate('sort_by_default')}</li>
-    <li class="search-dropdown-item" data-value="date_asc">${i18n.translate('sort_by_date_asc')}</li>
-    <li class="search-dropdown-item" data-value="date_desc">${i18n.translate('sort_by_date_desc')}</li>
-  </ul>
-</div>`
-    }
-
-    renderFooter(): string {
-        let s = '<div class="search-modal-footer"><div class="search-shortcuts">'
-
-        const names = ['close', 'search']
-        for (let i in names) {
-            const shortcut = params['shortcut_' + names[i]]
-            if (shortcut.length > 0) {
-                s += '<span class="search-shortcut">'
-                for (let j in shortcut) {
-                    s += `<span class="search-shortcut-kbd-wrapper"><kbd class="search-shortcut-kbd">${shortcut[j]}</kbd></span>`
-                }
-                s += `<span class="search-shortcut-action">${i18n.translate('to_' + names[i])}</span></span>`
-            }
-        }
-
-        return s + `
-  <span class="search-shortcut">
-    <span class="search-shortcut-kbd-wrapper">
-      <kbd class="search-shortcut-kbd">↑</kbd>
-      <kbd class="search-shortcut-kbd">↓</kbd>
-    </span>
-    <span class="search-shortcut-action">${i18n.translate('to_navigate')}</span>
-  </span>
-  <span class="search-shortcut">
-    <span class="search-shortcut-kbd-wrapper">
-      <kbd class="search-shortcut-kbd">⏎</kbd>
-    </span>
-    <span class="search-shortcut-action">${i18n.translate('to_select')}</span>
-  </span></div></div>`.trim()
-    }
-
-    hide() {
-        document.body.classList.remove('search-modal-active')
-        this.container.classList.remove('active')
-    }
-
-    show() {
-        document.body.classList.add('search-modal-active')
-        this.container.classList.add('active')
-        this.input.focus()
-    }
-
-    initModal() {
         // close the modal when losing focus.
         this.container.addEventListener('click', (e) => {
+            if (!e.target || !(e.target instanceof HTMLElement)) {
+                return
+            }
+
             if (!e.target.closest('.search-modal')) {
                 this.hide()
                 e.preventDefault()
             }
 
-            const action = e.target.closest('.search-result-action')
-            if (action && action.classList.contains('search-result-action-meta')) {
-                e.preventDefault()
-                const meta = action.closest('.search-result').querySelector('.search-result-meta')
-                if (meta.classList.contains('show')) {
-                    meta.classList.remove('show')
-                } else {
-                    meta.classList.add('show')
-                }
-            } else if (e.target.closest('.search-result')) {
+            if (e.target.closest('.search-result')) {
                 // hide current modal after selecting the search result, since the browser won't
                 // redirect if the selected search result is the same as the current page.
                 this.hide()
@@ -210,141 +76,52 @@ export default class Modal {
             })
         })
 
-        this.container.querySelectorAll('.search-modal-body').forEach((body) => {
-            body.addEventListener('scroll', () => {
-                if (body.scrollHeight - body.scrollTop === body.clientHeight) {
-                    this.loadMore()
-                }
-            })
-        })
-    }
-
-    initForm() {
-        this.form = this.container.querySelector('.search-form') as HTMLFormElement
-        this.form.addEventListener('submit', (e) => {
-            this.search()
-            e.preventDefault()
-        })
-
-        this.input = this.container.querySelector('.search-input') as HTMLInputElement
-        this.input.addEventListener('keyup', () => {
-            // clear previous delayed search request if users still typing.
-            clearTimeout(this.timeoutId)
-            // set up a new delayed search request.
-            this.timeoutId = setTimeout(() => {
-                this.search()
-            }, this.stallThreshold)
-        })
-        this.input.addEventListener('search', () => {
-            this.search()
-        })
-
-        this.filterLang = this.container.querySelector('.search-filter-lang') as HTMLElement
-        if (this.filterLang) {
-            const langItems = this.filterLang.querySelectorAll('.search-dropdown-item')
-            langItems.forEach((item) => {
-                item.addEventListener('click', () => {
-                    this.search()
-                })
-            })
-        }
-
-        this.sorting = this.container.querySelector('.search-sorting') as HTMLElement
-        const sortingItems = this.sorting.querySelectorAll('.search-dropdown-item')
-        sortingItems.forEach((item) => {
-            item.addEventListener('click', () => {
-                this.search()
-            })
-        })
-    }
-
-    initEngine = () => {
-        const promises = new Array<Promise<any>>
-        for (const i in params.indices) {
-            const promise = fetch(params.indices[i])
-                .then((resp) => resp.json())
-            promises.push(promise)
-        }
-
-        Promise.all(promises)
-            .then((resp) => {
-                let pages = resp[0]
-                for (let i = 1; i < resp.length; i++) {
-                    pages = pages.concat(resp[i])
-                }
-
-                this.engine = new Engine(pages)
-            })
-            .then(() => {
-                this.input.removeAttribute('disabled')
-            }).catch((err) => {
-                this.input.value = i18n.translate('index_fails')
-                console.error(err)
-            }).finally(() => {
-                this.spinner.hide()
-            })
-    }
-
-    search() {
-        const query = this.input.value.trim()
-        if (query === '') {
-            this.renderer.render(query, [], 0)
-            return
-        }
-
-        this.spinner.show()
-        const promise = new Promise((resolve) => {
-            setTimeout(() => {
-                const lang = this.filterLang.getAttribute('data-value') ?? ''
-                resolve(this.engine.search(query, lang))
-            }, 1)
-        })
-        const start = (new Date()).getTime()
-        promise.then((results) => {
-            const sorting = this.sorting.getAttribute('data-value')
-            this.renderer.render(query, results, (new Date()).getTime() - start, sorting)
-        }).finally(() => {
-            this.spinner.hide()
-        })
-    }
-
-    loadMore() {
-        this.spinner.show()
-        const promise = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(this.renderer.loadMore())
-            }, 1)
-        })
-        promise.finally(() => {
-            this.spinner.hide()
-        })
-    }
-
-    initKeyboard() {
-        this.keyboard = new Keyboard()
-
         if (params.shortcut_close.length > 0) {
-            this.keyboard.attach(params.shortcut_close, () => {
+            keyboard.attach(params.shortcut_close, () => {
                 this.hide()
             })
         }
 
         if (params.shortcut_search.length > 0) {
-            this.keyboard.attach(params.shortcut_search, () => {
+            keyboard.attach(params.shortcut_search, () => {
                 this.show()
             })
         }
     }
 
-    initNavigator() {
-        this.navigator = new Navigator()
+    render() {
+        this.container = document.createElement('div')
+        this.container.className = 'search-modal-container'
+        this.container.innerHTML = `<div class="search-modal">
+  <div class="search-modal-header">${this.form.render()}</div>
+  <div class="search-modal-body"><div class="search-results"></div></div>
+  ${this.renderFooter()}
+</div>`
+        this.wrapper.appendChild(this.container)
+    }
 
-        this.keyboard.attach(['ArrowUp'], () => {
-            this.navigator.prev()
-        })
+    renderFooter(): string {
+        return `<div class="search-modal-footer">${this.shortcuts.render()}</div>`
+    }
 
-        this.keyboard.attach(['ArrowDown'], () => {
-            this.navigator.next()
-        })
+    hide() {
+        document.body.classList.remove('search-modal-active')
+        this.container.classList.remove('active')
+    }
+
+    show() {
+        document.body.classList.add('search-modal-active')
+        this.container.classList.add('active')
+        this.form.focus()
     }
 }
+
+(() => {
+    'use strict'
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (params.modal_container !== '') {
+            (new Modal()).init()
+        }
+    })
+})()

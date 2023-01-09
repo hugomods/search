@@ -1,6 +1,6 @@
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', (e: Event) => {
             const toggle = e.target.closest('.search-dropdown-toggle')
             if (toggle) {
                 const dropdown = toggle.closest('.search-dropdown')
@@ -17,6 +17,7 @@
             if (item) {
                 const dropdown = item.closest('.search-dropdown')
                 const value = item.getAttribute('data-value')
+
                 if (value) {
                     dropdown.setAttribute('data-value', value)
                     dropdown.classList.add('active')
@@ -24,10 +25,19 @@
                     dropdown.removeAttribute('data-value')
                     dropdown.classList.remove('active')
                 }
+
                 dropdown.querySelectorAll('.search-dropdown-item').forEach((lang) => {
                     lang.classList.remove('active')
                 })
                 item.classList.add('active')
+
+                // fire a change event.
+                const e = new CustomEvent('change', {
+                    detail: {
+                        value: value,
+                    }
+                })
+                dropdown.dispatchEvent(e)
             }
 
             // close opened dropdown when losing focus.

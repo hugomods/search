@@ -7,26 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ .Site.Title }}</title>
-    {{/* CSS Begin. */}}
+    <title>
+      {{- block "title" . -}}{{ default .Site.Title .Title }}{{- end -}}
+    </title>
+    {{/* Merge demo site CSS and search CSS. */}}
     {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
     {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
-    {{ $cssTarget := cond $rtl "css/main.rtl.css" "css/main.css" }}
-    {{ $css := resources.Get "main.scss" | toCSS (dict
-      "enableSourceMap" (not hugo.IsProduction)
-      "outputStyle" (cond hugo.IsProduction "compressed" "expanded") )
-    }}
+    {{ $cssTarget := cond $rtl "css/bundle.rtl.css" "css/bundle.css" }}
+    {{ $css := partial "assets/css-resource" . }}
     {{ $searchCSS := partial "search/assets/css-resource" . }}
     {{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-    {{/* CSS end. */}}
-    <script>
-      // Avoid flickering.
-      const theme = localStorage.getItem("theme");
-      if (theme === "dark") {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
-    </script>
+
+    {{ partial "init-script" . }}
   </head>
   <body>
     {{ partial "header" . }}
@@ -41,11 +34,10 @@
         {{ partial "sidebar" . }}
       </div>
     </div>
-    {{/* JS begin. */}}
-    {{ $js := resources.Get "main.ts" | js.Build }}
+    {{/* Merge demo site JS and search JS. */}}
+    {{- $js := partial "assets/js-resource" . }}
     {{ $searchJS := partial "search/assets/js-resource" . }}
-    {{ $js = slice $js $searchJS | resources.Concat "js/main.js" }}
-    <script src="{{ $js.RelPermalink }}"></script>
-    {{/* JS end. */}}
+    {{ $js = slice $js $searchJS | resources.Concat "js/bundle.js" }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
   </body>
 </html>
