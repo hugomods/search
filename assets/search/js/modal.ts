@@ -4,6 +4,17 @@ import keyboard from './keyborard'
 import Form from './form'
 import Spinner from './spinner'
 import Renderer from './renderer'
+import { Navigate, Select, Shortcut, Shortcuts } from './shortcuts'
+
+const searchShortcut: Shortcut = {
+    kbds: [params.shortcut_search],
+    action: i18n.translate('to_search'),
+}
+
+const closeShortcut: Shortcut = {
+    kbds: [params.shortcut_close],
+    action: i18n.translate('to_close'),
+}
 
 export default class Modal {
     private wrapper: HTMLElement
@@ -11,10 +22,19 @@ export default class Modal {
     private container: HTMLElement
 
     private form: Form
+
+    private shortcuts: Shortcuts
+
     constructor() {
         const spinner = new Spinner('.search-modal .search-spinner')
         const renderer = new Renderer('.search-modal .search-results', '.search-modal .search-stat', spinner)
         this.form = new Form(spinner, renderer)
+        this.shortcuts = new Shortcuts([
+            closeShortcut,
+            searchShortcut,
+            Navigate,
+            Select,
+        ])
     }
 
     init() {
@@ -81,37 +101,7 @@ export default class Modal {
     }
 
     renderFooter(): string {
-        let shortcuts = ''
-        const names = ['close', 'search']
-        for (let i in names) {
-            const shortcut = params['shortcut_' + names[i]]
-            if (shortcut.length > 0) {
-                let kbds = ''
-                for (let j in shortcut) {
-                    kbds += `<span class="search-shortcut-kbd-wrapper"><kbd class="search-shortcut-kbd">${shortcut[j]}</kbd></span>`
-                }
-                shortcuts += `<span class="search-shortcut">${kbds}<span class="search-shortcut-action">${i18n.translate('to_' + names[i])}</span></span>`
-            }
-        }
-
-        return `<div class="search-modal-footer">
-  <div class="search-shortcuts">
-    ${shortcuts}
-    <span class="search-shortcut">
-      <span class="search-shortcut-kbd-wrapper">
-        <kbd class="search-shortcut-kbd">↑</kbd>
-        <kbd class="search-shortcut-kbd">↓</kbd>
-      </span>
-      <span class="search-shortcut-action">${i18n.translate('to_navigate')}</span>
-    </span>
-    <span class="search-shortcut">
-      <span class="search-shortcut-kbd-wrapper">
-        <kbd class="search-shortcut-kbd">⏎</kbd>
-      </span>
-      <span class="search-shortcut-action">${i18n.translate('to_select')}</span>
-    </span>
-  </div>
-</div>`
+        return `<div class="search-modal-footer">${this.shortcuts.render()}</div>`
     }
 
     hide() {
