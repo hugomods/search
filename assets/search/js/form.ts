@@ -55,16 +55,24 @@ export default class Form {
 
         const lang = document.documentElement.getAttribute('lang') ?? ''
 
-        let options = `<li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${i18n.translate('all')}</li>`
+        let label = i18n.translate('all')
+        let options = `<li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${label}</li>`
 
         for (let i in params.langs) {
             const item = params.langs[i]
-            const className = item.lang === lang ? ' active' : ''
+            let className = ''
+            if (item.lang === lang) {
+                className = ' active'
+                label = item.name
+            }
             options += `<li class="search-dropdown-item${className}" data-value="${item.lang}">${item.name}</li>`
         }
 
         return `<div class="search-dropdown search-panel-tool search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">${params.icons['lang']}</button>
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+    ${params.icons['lang']}
+    <span class="search-dropdown-label">${label}</span>
+  </button>
   <ul class="search-dropdown-menu">${options}</ul>
 </div>`
     }
@@ -74,10 +82,14 @@ export default class Form {
             return ''
         }
 
+        const defaultSort = i18n.translate('sort_by_default')
+
         return `<div class="search-dropdown search-panel-tool search-sorting">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">${params.icons['sort']}</button>
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+    ${params.icons['sort']} <span class="search-dropdown-label">${defaultSort}</span>
+  </button>
   <ul class="search-dropdown-menu">
-    <li class="search-dropdown-item active" data-value="">${i18n.translate('sort_by_default')}</li>
+    <li class="search-dropdown-item active" data-value="">${defaultSort}</li>
     <li class="search-dropdown-item" data-value="date_asc">${i18n.translate('sort_by_date_asc')}</li>
     <li class="search-dropdown-item" data-value="date_desc">${i18n.translate('sort_by_date_desc')}</li>
   </ul>

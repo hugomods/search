@@ -25,6 +25,7 @@
                     dropdown.removeAttribute('data-value')
                     dropdown.classList.remove('active')
                 }
+                dropdown.querySelector('.search-dropdown-label').innerText = item.innerText
 
                 dropdown.querySelectorAll('.search-dropdown-item').forEach((lang) => {
                     lang.classList.remove('active')
