@@ -17,12 +17,17 @@
     <h3>{{ $name | title }}</h3>
     <hr />
     <ul>
+      {{ $count := 0 }}
       {{ range $taxonomy }}
+        {{ if gt $count 9 }}
+          {{ break }}
+        {{ end }}
         <li>
           <a href="{{ .Page.RelPermalink }}">
             {{ .Page.Title }}
           </a>
         </li>
+        {{ $count = add $count 1 }}
       {{ end }}
     </ul>
   </div>
@@ -32,7 +37,7 @@
 <h3>Posts</h3>
 <hr />
 <ul>
-  {{ range .Site.RegularPages }}
+  {{ range first 10 .Site.RegularPages }}
     <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
   {{ end }}
 </ul>
