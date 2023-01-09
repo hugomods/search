@@ -4,6 +4,7 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 ## Features
 
+- Fast: the [demo site](https://projects.razonyang.com/hugo-mod-search) built with 10k posts (~30k pages), see also the [GitHub Pages workflow](https://github.com/razonyang/hugo-mod-search/actions/workflows/gh-pages.yml).
 - Modes: single search page and modal (auto complete).
 - Fuzzy search by title, summary and headings.
 - [Flexible and configurable](#parameters).
