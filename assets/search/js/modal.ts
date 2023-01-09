@@ -1,6 +1,6 @@
 import { default as params } from '@params'
 import i18n from './i18n'
-import keyboard from './keyborard'
+import keyboard from './keyboard'
 import Form from './form'
 import Spinner from './spinner'
 import Renderer from './renderer'
