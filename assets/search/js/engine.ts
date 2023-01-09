@@ -16,8 +16,20 @@ class Engine {
      */
     init(): Promise<any> {
         if (this.initialized) {
-            return (new Promise((resolve) => { resolve(true) }))
+            return (new Promise((resolve) => {
+                // create a checker that check whether the index is ready,
+                // since we don't know how long the engine take to initialize the index on the first call.
+                const checker = setInterval(() => {
+                    if (this.index) {
+                        clearInterval(checker)
+                        resolve(true)
+                    }
+                }, 50)
+            }))
         }
+
+        // change it as true immediately, avoid indexing multiple times.
+        this.initialized = true
 
         const promises = new Array<Promise<any>>
         for (const i in params.indices) {
@@ -44,8 +56,6 @@ class Engine {
                 useExtendedSearch: true,
                 includeScore: true,
             })
-        }).then(() => {
-            this.initialized = true
         })
     }
 
