@@ -1,4 +1,5 @@
 .search-dropdown {
+    display: flex;
     position: relative;
 
     &.show {
@@ -18,6 +19,16 @@
     background: transparent;
     border: 0;
     color: inherit;
+    display: flex;
+}
+
+.search-dropdown-label {
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+
+    @media (max-width: 576px) {
+        display: none;
+    }
 }
 
 .search-dropdown-menu {
@@ -27,7 +38,7 @@
     min-width: 160px;
     border: 1px solid var(--search-border-color);
     border-radius: 0.25rem;
-    margin: 0;
+    margin: 1.5rem 0 0;
     padding: 0.5rem 0;
 }
 
