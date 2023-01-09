@@ -7,6 +7,8 @@ import Fuse from 'js/fuse/fuse'
 class Engine {
     private index
 
+    private indexFailed = false
+
     private initialized = false
 
     /**
@@ -16,13 +18,16 @@ class Engine {
      */
     init(): Promise<any> {
         if (this.initialized) {
-            return (new Promise((resolve) => {
+            return (new Promise((resolve, reject) => {
                 // create a checker that check whether the index is ready,
                 // since we don't know how long the engine take to initialize the index on the first call.
                 const checker = setInterval(() => {
                     if (this.index) {
                         clearInterval(checker)
                         resolve(true)
+                    } else if (this.indexFailed) {
+                        clearInterval(checker)
+                        reject('Index fails')
                     }
                 }, 50)
             }))
@@ -33,8 +38,7 @@ class Engine {
 
         const promises = new Array<Promise<any>>
         for (const i in params.indices) {
-            const promise = fetch(params.indices[i])
-                .then((resp) => resp.json())
+            const promise = fetch(params.indices[i]).then((resp) => resp.json())
             promises.push(promise)
         }
 
@@ -56,6 +60,9 @@ class Engine {
                 useExtendedSearch: true,
                 includeScore: true,
             })
+        }).catch((err) => {
+            this.indexFailed = true
+            throw new Error(err)
         })
     }
 

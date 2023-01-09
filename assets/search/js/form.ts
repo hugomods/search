@@ -132,8 +132,8 @@ export default class Form {
         engine.init().then(() => {
             this.input.removeAttribute('disabled')
         }).catch((err) => {
-            console.error(err)
             this.input.value = i18n.translate('index_fails')
+            throw new Error(err)
         }).then(() => {
             if (!this.modal) {
                 this.fillInputByURL()
