@@ -1,4 +1,4 @@
-import keyboard from "./keyborard"
+import keyboard from "./keyboard"
 
 class Navigator {
     private modal() {
