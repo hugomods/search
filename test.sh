@@ -16,7 +16,7 @@ for i in $( seq 1 $count ); do
 title: '[$j] Test Post #$i'
 date: $date
 tags:
-  - 'Tag #$i'
+  - 'Tag$i'
 Categories:
   - Test
 ---
