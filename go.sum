@@ -4,6 +4,7 @@ github.com/razonyang/hugo-mod-fuse-js v0.1.0 h1:IPWcKaqhpwlP8ziPiSGCrde6oSCswLfJ
 github.com/razonyang/hugo-mod-fuse-js v0.1.0/go.mod h1:+0fqwM+6kYuGsPYUO/r1aVcXzSpYW2vu3LDp6GT+zec=
 github.com/razonyang/hugo-mod-i18n-js v0.2.1 h1:QBRQ76p5PX0j7GZTeEmnkqF17uw4Z5OyRQ7bU8oU1mQ=
 github.com/razonyang/hugo-mod-i18n-js v0.2.1/go.mod h1:tYWfHF0qtvmsMHHgGN1Yw/cDVgGe7hUK1sCsegW5e8g=
-github.com/razonyang/hugo-mod-icons v0.2.0 h1:xEeFV2bZnimG5KH+l0yWWYtq9doJODBM/IpX6DVB8xY=
+github.com/razonyang/hugo-mod-icons v0.3.0 h1:z9kgC00LDV4QPlK6QgIW8E/iALvuoUW/tIEhlgg+D3w=
+github.com/razonyang/hugo-mod-icons v0.3.0/go.mod h1:4atUyrOOKz1CnywT6qdUy3KoK4hcsM/JnS/EvqDWgnY=
 github.com/razonyang/hugo-mod-icons/vendors/bootstrap v0.1.0 h1:DCMA8MUdo0eRQGTmlBGzCGFTThYv9hSLsRGBdKrWtJ8=
 github.com/razonyang/hugo-mod-icons/vendors/bootstrap v0.1.0/go.mod h1:qpjpOVApH3ioWClhE05ja646/w6Wy4lz2mUA16JofEI=

@@ -1,6 +1,6 @@
 {{ define "main" }}
   <div class="list-unstyled">
-    {{ range .Pages }}
+    {{ range first 10 .Pages }}
       {{ .Title }}
     {{ end }}
   </div>

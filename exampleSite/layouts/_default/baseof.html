@@ -14,29 +14,29 @@
     {{/* NOTE: we must change the CSS target to separate the style between LTR and RTL sites. */}}
     {{/* Otherwise, Hugo may treats it as the same style (cached). */}}
     {{ $cssTarget := cond $rtl "css/bundle.rtl.css" "css/bundle.css" }}
-    {{ $css := partial "assets/css-resource" . }}
-    {{ $searchCSS := partial "search/assets/css-resource" . }}
+    {{ $css := partialCached "assets/css-resource" . }}
+    {{ $searchCSS := partialCached "search/assets/css-resource" . }}
     {{ $css = slice $searchCSS $css | resources.Concat $cssTarget }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
-    {{ partial "init-script" . }}
+    {{ partialCached "init-script" . }}
   </head>
   <body>
-    {{ partial "header" . }}
+    {{ partialCached "header" . }}
     <div class="content">
       <div class="main">
-        {{ partial "alerts" . }}
+        {{ partialCached "alerts" . }}
         <h1>{{ .Title }}</h1>
         <hr />
         {{ block "main" . }}{{ end }}
       </div>
       <div class="sidebar">
-        {{ partial "sidebar" . }}
+        {{ partialCached "sidebar" . }}
       </div>
     </div>
     {{/* Merge demo site JS and search JS. */}}
-    {{- $js := partial "assets/js-resource" . }}
-    {{ $searchJS := partial "search/assets/js-resource" . }}
+    {{- $js := partialCached "assets/js-resource" . }}
+    {{ $searchJS := partialCached "search/assets/js-resource" . }}
     {{ $js = slice $js $searchJS | resources.Concat "js/bundle.js" }}
     <script src="{{ $js.RelPermalink }}" defer></script>
   </body>
