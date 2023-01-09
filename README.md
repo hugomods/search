@@ -159,7 +159,7 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 
 > Skip this step if you're not using the single search page mode.
 
-When using single search page mode, we'll create a entrance for users, such as a link to the search page, or a search form.
+When using single search page mode, we'll need to create a entrance for users, such as a link to the search page, or a search form.
 
 ```go
 {{ $searchURL := partial "search/functions/search-url" . }}
