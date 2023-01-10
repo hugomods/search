@@ -4,6 +4,9 @@ other = "All"
 [cancel]
 other = "Cancel"
 
+[expand]
+other = "Expand"
+
 [index_fails]
 other = "Failed to initial index."
 

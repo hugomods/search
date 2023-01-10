@@ -1,5 +1,6 @@
 .search-dropdown {
     display: flex;
+    flex-direction: column;
     position: relative;
 
     &.show {
@@ -34,6 +35,7 @@
 
 .search-dropdown-menu {
     display: none;
+    left: 0;
     list-style: none;
     position: absolute;
     background-color: var(--search-bg);
@@ -45,6 +47,7 @@
 }
 
 .search-dropdown-item {
+    color: var(--search-color);
     padding: 0.25rem 0.5rem;
     white-space: nowrap;
 
