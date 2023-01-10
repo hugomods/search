@@ -10,15 +10,27 @@ export default class Spinner {
         return this.ele
     }
 
+    private searchIcon: HTMLElement
+
+    getSearchIcon(): HTMLElement {
+        if (!this.searchIcon) {
+            this.searchIcon = this.getElement().previousElementSibling as HTMLElement
+        }
+
+        return this.searchIcon
+    }
+
     hide() {
         // delay the action to make the spinner more obvious.
         setTimeout(() => {
+            this.getSearchIcon().classList.remove('disabled')
             this.getElement().classList.add('disabled')
         }, 200)
 
     }
 
     show() {
+        this.getSearchIcon().classList.add('disabled')
         this.getElement().classList.remove('disabled')
     }
 }
