@@ -84,11 +84,42 @@
     display: flex;
 }
 
-.search-panel-tool {
+.search-panel-action {
+    align-items: center;
+    border: 0;
+    background: transparent;
+    color: var(--search-color);
+    display: flex;
+    font-size: 0.875rem;
     margin: 0.25rem 0 0;
+
+    &.active {
+        color: var(--search-primary);
+    }
+}
+
+.search-panel-action-icon {
+    display: flex;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.search-panel-action-label {
+    margin-left: 0.25rem;
+
+    @media (max-width: 576px) {
+        display: none;
+    }
 }
 
 .search-filter-lang {
     border: none;
     appearance: none;
+}
+
+.search-expand-toggle {
+    padding: 0 0.25rem;
 }

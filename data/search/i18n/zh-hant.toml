@@ -4,6 +4,9 @@ other = "全部"
 [cancel]
 other = "取消"
 
+[expand]
+other = "展開"
+
 [index_fails]
 other = "初始化索引失敗。"
 

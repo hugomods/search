@@ -42,6 +42,10 @@ export default class Form {
     <div class="search-panel">
       ${this.renderLanguage()}
       ${this.renderSorting()}
+      <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}">
+        <span class="search-panel-action-icon">${params.icons['expand']}</span>
+        <span class="search-panel-action-label">${i18n.translate('expand')}</span>
+      </button>
     </div>
     <div class="search-stat"></div>
   </div>
@@ -68,7 +72,7 @@ export default class Form {
             options += `<li class="search-dropdown-item${className}" data-value="${item.lang}">${item.name}</li>`
         }
 
-        return `<div class="search-dropdown search-panel-tool search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
+        return `<div class="search-dropdown search-panel-action search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
   <button class="search-dropdown-toggle" type="button" aria-expanded="false">
     ${params.icons['lang']}
     <span class="search-dropdown-label">${label}</span>
@@ -84,7 +88,7 @@ export default class Form {
 
         const defaultSort = i18n.translate('sort_by_default')
 
-        return `<div class="search-dropdown search-panel-tool search-sorting">
+        return `<div class="search-dropdown search-panel-action search-sorting">
   <button class="search-dropdown-toggle" type="button" aria-expanded="false">
     ${params.icons['sort']} <span class="search-dropdown-label">${defaultSort}</span>
   </button>
@@ -151,6 +155,17 @@ export default class Form {
                 this.submit()
             })
         }
+
+        const expand = this.ele.querySelector('.search-expand-toggle')
+        expand?.addEventListener('click', (e) => {
+            if (expand.classList.contains('active')) {
+                expand.classList.remove('active')
+            } else {
+                expand.classList.add('active')
+            }
+            this.renderer.expand()
+            e.preventDefault()
+        })
     }
 
     private fillInputByURL() {

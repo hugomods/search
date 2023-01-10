@@ -17,8 +17,6 @@ export default class Renderer {
 
     private time = 0
 
-    private metaClasses = 'search-result-meta'
-
     constructor(
         private container: string | HTMLElement,
         private statistics: string | HTMLElement,
@@ -26,14 +24,14 @@ export default class Renderer {
     ) {
         // Make sure that the paginate is at least 20, so that load more event will be able to trigger.
         this.paginate = Math.max(this.paginate, params.paginate)
-        if (params.expand_results_meta) {
-            this.metaClasses += ' show'
-        }
     }
 
     private getContainer(): HTMLElement {
         if (!(this.container instanceof HTMLElement)) {
             this.container = document.querySelector(this.container) as HTMLElement
+            if (params.expand_results_meta) {
+                this.container.classList.add('expanded')
+            }
         }
 
         return this.container
@@ -136,6 +134,15 @@ export default class Renderer {
         this.renderPage()
     }
 
+    expand() {
+        const container = this.getContainer()
+        if (container.classList.contains('expanded')) {
+            container.classList.remove('expanded')
+        } else {
+            container.classList.add('expanded')
+        }
+    }
+
     private init() {
         if (this.initialized) {
             return
@@ -230,7 +237,7 @@ export default class Renderer {
     <div class="search-result-title">${this.title(result)}</div>
     ${this.desc(result)}
   </div>
-  <div class="${this.metaClasses}">
+  <div class="search-result-meta">
     <span class="search-result-score">${this.score(result.score)}</span>
     <span class="search-result-lang">${result.item.lang}</span>
     <span class="search-result-date">${this.date(result.item)}</span>

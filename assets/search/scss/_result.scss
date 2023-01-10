@@ -1,5 +1,17 @@
 .search-results {
     margin-bottom: 0.5rem;
+
+    &.expanded {
+        .search-result-meta {
+            opacity: 1;
+            height: auto;
+            margin-top: 0.25rem;
+        }
+
+        .search-result-action-meta {
+            display: none;
+        }
+    }
 }
 
 .search-result {
