@@ -209,7 +209,7 @@ stall_threshold = 200
 | `ignore_location` | Boolean | `false` | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
 | `shortcut_close` | Array | `["Escape"]` | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
 | `shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
-| ~`input_placeholder`~ | String | `i18n "search"` | **Deprecated**, please use [i18n](#internationalization) instead.
+| ~~`input_placeholder`~~ | String | `i18n "search"` | **Deprecated**, please use [i18n](#internationalization) instead.
 | `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
