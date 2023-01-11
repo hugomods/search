@@ -1,4 +1,5 @@
 {{- $items := slice -}}
+{{- $indexContent := default false .Site.Params.search.index_content -}}
 {{- $indexAllPages := default true .Site.Params.search.index_all_pages -}}
 {{- $pages := cond $indexAllPages .Site.Pages .Site.RegularPages -}}
 {{- $pages = where $pages "Params.noindex" "ne" true -}}
@@ -7,6 +8,9 @@
   {{- $item := newScratch -}}
   {{- $item.Set "title" .Title -}}
   {{- $item.Set "summary" (.Summary | plainify) -}}
+  {{- if $indexContent }}
+    {{- $item.Set "content" .Plain }}
+  {{- end }}
   {{- $item.Set "kind" .Kind -}}
   {{- $item.Set "lang" .Language.Lang -}}
   {{- $item.Set "url" .RelPermalink -}}

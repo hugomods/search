@@ -25,5 +25,8 @@ languageName = "العربية"
 LanguageDirection = 'rtl'
 
 [params.search]
+# index_content = true
 # index_all_pages = false
 # expand_results_meta = true
+# distance = 10000
+# min_match_char_length = 3

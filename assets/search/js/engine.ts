@@ -55,7 +55,7 @@ class Engine {
                 threshold: params.threshold,
                 distance: params.distance,
                 ignoreLocation: params.ignore_location,
-                keys: ['title', 'summary', 'headings.title', 'lang'],
+                keys: this.keys(),
                 includeMatches: true,
                 useExtendedSearch: true,
                 includeScore: true,
@@ -64,6 +64,16 @@ class Engine {
             this.indexFailed = true
             throw new Error(err)
         })
+    }
+
+    private keys() {
+        let keys = ['title', 'summary', 'headings.title', 'lang']
+
+        if (params.index_content) {
+            keys.push('content')
+        }
+
+        return keys
     }
 
     /**
@@ -106,6 +116,7 @@ class Engine {
                 "$or": [
                     { title: query },
                     { summary: query },
+                    { content: query },
                     {
                         "$path": "headings.title",
                         "$val": query

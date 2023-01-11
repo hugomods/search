@@ -94,13 +94,17 @@
     }
 }
 
+.search-result-meta,
+.search-result-content-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .search-result-meta {
     margin-top: 0.5rem;
     padding: 0 0.25rem;
-    overflow: hidden;
     white-space: nowrap;
     width: 100%;
-    text-overflow: ellipsis;
     transition: opacity 0.35s linear;
     opacity: 1;
 
@@ -113,7 +117,7 @@
     span {
         margin-right: 0.125rem;
 
-        &:not(:last-child) {
+        &span:not(:last-child) {
             &::after {
                 content: "·";
                 padding-left: 0.25rem;
@@ -157,4 +161,12 @@
 
 .search-result-action {
     padding: 0.25rem;
+}
+
+.search-result-content-content {
+    margin-top: 0.5rem;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }

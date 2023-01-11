@@ -6,7 +6,7 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 - Fast: the [demo site](https://projects.razonyang.com/hugo-mod-search) built with 10k posts (~30k pages), see also the [GitHub Pages workflow](https://github.com/razonyang/hugo-mod-search/actions/workflows/gh-pages.yml).
 - Modes: single search page and modal (auto complete).
-- Fuzzy search by title, summary and headings.
+- Fuzzy search by title, summary, headings and content, the content was disabled by default.
 - [Flexible and configurable](#parameters).
 - Built-in responsive, theme-less UI and interactive logic.
 - Allow restyling the UI with [CSS variables](#css-variables).
@@ -212,6 +212,7 @@ stall_threshold = 200
 | ~~`input_placeholder`~~ | String | `i18n "search"` | **Deprecated**, please use [i18n](#internationalization) instead.
 | `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
 | `max_results` | Integer | `100` | Denotes the max number of returned search results.
+| `index_content` | Boolean | `false` | When `true`, the engine will also search by content, you may need to tweak the `distance` parameter as well. Please note that, it may become a performance killer on a large site.
 | `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
 | `expand_results_meta` | Boolean | `false` | When `true`, expand the results meta by default.
 | `modal_container` | String | `body` | The container for the search modal. It should be a valid CSS selector. Leave it empty if you're using single search page mode only.
