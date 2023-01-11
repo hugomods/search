@@ -76,6 +76,10 @@ class Engine {
         return keys
     }
 
+    private query
+
+    private results
+
     /**
      * Search by the given query and language, then return the results and time.
      * 
@@ -89,11 +93,22 @@ class Engine {
         const start = (new Date()).getTime()
         return new Promise((resolve) => {
             setTimeout(() => {
-                const results = this.index.search(pattern, {
+                // re-sort previous results when receiving the same query
+                if (JSON.stringify(this.query) === JSON.stringify(pattern)) {
+                    resolve({
+                        'results': this.sort(this.results, sorting),
+                        'time': (new Date()).getTime() - start,
+                    })
+                    return
+                }
+
+                this.results = this.index.search(pattern, {
                     limit: params.max_results
                 })
+                this.query = pattern
+
                 return resolve({
-                    'results': this.sort(results, sorting),
+                    'results': this.sort(this.results, sorting),
                     'time': (new Date()).getTime() - start,
                 })
             }, 1)
