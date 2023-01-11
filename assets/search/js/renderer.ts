@@ -93,6 +93,26 @@ export default class Renderer {
             + '</div>'
     }
 
+    private contentContextLength = 20
+
+    content(result) {
+        if (!params.index_content || !result.item.content) {
+            return ''
+        }
+
+        const matches = result.matches.filter((match) => match.key === 'content')
+        let content = this.highlight(result.item.content, matches)
+
+        // looking for the first highlight chars.
+        const first = content.indexOf('<mark>')
+        if (first > 0) {
+            // do not truncate all preceding chars to keep the context of the matched chars.
+            content = (first > this.contentContextLength ? '...' : '') + content.substring(Math.max(0, first - this.contentContextLength))
+        }
+
+        return `<div class="search-result-content-content">${content}</div>`
+    }
+
     highlight(s: string, matches) {
         // return the original string if no matches found.
         if (matches.length === 0) {
@@ -242,6 +262,7 @@ export default class Renderer {
     <span class="search-result-lang">${result.item.lang}</span>
     <span class="search-result-date">${this.date(result.item)}</span>
     ${this.taxonomies(result.item)}
+    ${this.content(result)}
   </div>
   <div class="search-result-actions">
     <div class="search-result-action search-result-action-meta">${params.icons['meta']}</div>
