@@ -22,10 +22,10 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 <div align="center">
 
-| | CSS | JS | Total
-|---|:-:|:-:|:-:
-| Compressed | `~20kB` | `~47kB` | `~67kB`
-| Gzip | `~6kB` | `~15kB` | `~21kB`
+|            |   CSS   |   JS    |  Total  |
+| ---------- | :-----: | :-----: | :-----: |
+| Compressed | `~20kB` | `~47kB` | `~67kB` |
+| Gzip       | `~6kB`  | `~15kB` | `~21kB` |
 
 </div>
 
@@ -33,10 +33,10 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 <div align="center">
 
-| Default Shortcuts | Description |
-|---|---|
-| <kbd>CTRL</kbd> + <kbd>K</kbd> | to search.
-| <kbd>ESC</kbd> | to close.
+| Default Shortcuts              | Description |
+| ------------------------------ | ----------- |
+| <kbd>CTRL</kbd> + <kbd>K</kbd> | to search.  |
+| <kbd>ESC</kbd>                 | to close.   |
 
 </div>
 
@@ -45,7 +45,7 @@ A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy
 
 ## Requirements
 
-- Hugo **extended** version.
+- Hugo **extended** version `v0.110.0` above.
 - [Hugo Module](https://gohugo.io/hugo-modules/use-modules/#prerequisite).
 - PostCSS, Autoprefixer and RTLCSS, you can install those dependencies via one command `npm i postcss-cli autoprefixer rtlcss`.
 
@@ -102,7 +102,7 @@ The last approach is recommended in the case of using only the single search pag
 #### Import the CSS via SCSS File (Recommended)
 
 ```scss
-@import 'search/scss/index'
+@import "search/scss/index";
 ```
 
 This way is more complex than the former, you'll need to take care of the [PostCSS](https://gohugo.io/hugo-pipes/postcss/), Autoprefixer and [RTLCSS](https://rtlcss.com/).
@@ -153,7 +153,7 @@ Adjust the button to your theme UI, place it wherever you like, for example,
 <button class="search-modal-toggle">Search</button>
 ```
 
-- The toggle *button* can be any HTML tag, not just the `button`, since the module will listen the `click` event on the tags have the `search-modal-toggle` class name, this also means that the page can contain multiple toggle *buttons*.
+- The toggle _button_ can be any HTML tag, not just the `button`, since the module will listen the `click` event on the tags have the `search-modal-toggle` class name, this also means that the page can contain multiple toggle _buttons_.
 
 ### 6. Create a Form or Link for Single Search Page (Optional)
 
@@ -198,24 +198,24 @@ stall_threshold = 200
 # ...
 ```
 
-| Name | Type | Default | Description
-|---|:-:|:-:|--|
-| `stall_threshold` | Integer | `300` | How many milliseconds must elapse before considering the autocomplete experience stalled.
-| `case_sensitive` | Boolean | `false` | Indicates whether comparisons should be case sensitive.
-| `min_match_char_length` | Integer | `1` | Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to `2`).
-| `location` | Integer | `0` | Determines approximately where in the text is the pattern expected to be found.
-| `threshold` | Integer | `0.6` | At what point does the match algorithm give up. A threshold of `0.0` requires a perfect match (of both letters and location), a threshold of `1.0` would match anything.
-| `distance` | Integer | `100` | Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match be at the exact location specified. A distance of `1000` would require a perfect match to be within `800` characters of the location to be found using a threshold of `0.8`.
-| `ignore_location` | Boolean | `false` | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
-| `shortcut_close` | Array | `["Escape"]` | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
-| `shortcut_search` | Array | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.
-| ~~`input_placeholder`~~ | String | `i18n "search"` | **Deprecated**, please use [i18n](#internationalization) instead.
-| `paginate` | Integer | `20` | How many results per page, at least `20`, for making sure the load more event will be able to trigger.
-| `max_results` | Integer | `100` | Denotes the max number of returned search results.
-| `index_content` | Boolean | `false` | When `true`, the engine will also search by content, you may need to tweak the `distance` parameter as well. Please note that, it may become a performance killer on a large site.
-| `index_all_pages` | Boolean | `true` | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.
-| `expand_results_meta` | Boolean | `false` | When `true`, expand the results meta by default.
-| `modal_container` | String | `body` | The container for the search modal. It should be a valid CSS selector. Leave it empty if you're using single search page mode only.
+| Name                    |  Type   |      Default       | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ----------------------- | :-----: | :----------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `stall_threshold`       | Integer |       `300`        | How many milliseconds must elapse before considering the autocomplete experience stalled.                                                                                                                                                                                                                                                                                                                                 |
+| `case_sensitive`        | Boolean |      `false`       | Indicates whether comparisons should be case sensitive.                                                                                                                                                                                                                                                                                                                                                                   |
+| `min_match_char_length` | Integer |        `1`         | Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to `2`).                                                                                                                                                                                                                                                           |
+| `location`              | Integer |        `0`         | Determines approximately where in the text is the pattern expected to be found.                                                                                                                                                                                                                                                                                                                                           |
+| `threshold`             | Integer |       `0.6`        | At what point does the match algorithm give up. A threshold of `0.0` requires a perfect match (of both letters and location), a threshold of `1.0` would match anything.                                                                                                                                                                                                                                                  |
+| `distance`              | Integer |       `100`        | Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match be at the exact location specified. A distance of `1000` would require a perfect match to be within `800` characters of the location to be found using a threshold of `0.8`. |
+| `ignore_location`       | Boolean |      `false`       | When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.                                                                                                                                                                                                                                                                                                          |
+| `shortcut_close`        |  Array  |    `["Escape"]`    | Shortcuts to close the search modal. Empty array means disabled. See [key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).                                                                                                                                                                                                                              |
+| `shortcut_search`       |  Array  | `["Control", "k"]` | Shortcuts to open the search modal. Leave it empty to disable.                                                                                                                                                                                                                                                                                                                                                            |
+| ~~`input_placeholder`~~ | String  |  `i18n "search"`   | **Deprecated**, please use [i18n](#internationalization) instead.                                                                                                                                                                                                                                                                                                                                                         |
+| `paginate`              | Integer |        `20`        | How many results per page, at least `20`, for making sure the load more event will be able to trigger.                                                                                                                                                                                                                                                                                                                    |
+| `max_results`           | Integer |       `100`        | Denotes the max number of returned search results.                                                                                                                                                                                                                                                                                                                                                                        |
+| `index_content`         | Boolean |      `false`       | When `true`, the engine will also search by content, you may need to tweak the `distance` parameter as well. Please note that, it may become a performance killer on a large site.                                                                                                                                                                                                                                        |
+| `index_all_pages`       | Boolean |       `true`       | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.                                                                                                                                                                                                                                                                                                |
+| `expand_results_meta`   | Boolean |      `false`       | When `true`, expand the results meta by default.                                                                                                                                                                                                                                                                                                                                                                          |
+| `modal_container`       | String  |       `body`       | The container for the search modal. It should be a valid CSS selector. Leave it empty if you're using single search page mode only.                                                                                                                                                                                                                                                                                       |
 
 ## CSS Variables
 
@@ -223,34 +223,34 @@ You can easily to adjust the search UI to fit your theme and dark mode via the f
 
 ```css
 :root {
-    --search-primary: skyblue;
+  --search-primary: skyblue;
 }
 ```
 
-| Name | Description
-|---|---
-| `--search-primary` | Primary color.
-| `--search-container-bg` | Container background color.
-| `--search-bg` | Background color.
-| `--search-color` | Primary text color.
-| `--search-color-secondary` | Secondary text color.
-| `--search-result-bg` | Result background color.
-| `--search-result-bg-active` | Result background color on active.
-| `--search-result-color` | Primary result text color.
-| `--search-result-color-active` | Primary result text color on active.
-| `--search-result-color-secondary` | Secondary result text color.
-| `--search-result-color-secondary-active` | Secondary result text color on active.
-| `--search-result-highlight-bg` | The highlight result background color, default to `inherit`.
-| `--search-result-highlight-color` | The highlight result color, default to `inherit`.
-| `--search-border-color` | Border color.
+| Name                                     | Description                                                  |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| `--search-primary`                       | Primary color.                                               |
+| `--search-container-bg`                  | Container background color.                                  |
+| `--search-bg`                            | Background color.                                            |
+| `--search-color`                         | Primary text color.                                          |
+| `--search-color-secondary`               | Secondary text color.                                        |
+| `--search-result-bg`                     | Result background color.                                     |
+| `--search-result-bg-active`              | Result background color on active.                           |
+| `--search-result-color`                  | Primary result text color.                                   |
+| `--search-result-color-active`           | Primary result text color on active.                         |
+| `--search-result-color-secondary`        | Secondary result text color.                                 |
+| `--search-result-color-secondary-active` | Secondary result text color on active.                       |
+| `--search-result-highlight-bg`           | The highlight result background color, default to `inherit`. |
+| `--search-result-highlight-color`        | The highlight result color, default to `inherit`.            |
+| `--search-border-color`                  | Border color.                                                |
 
 ## Page Parameters
 
 > AKA front matter.
 
-| Name | Type | Default | Description
-|---|:-:|:-:|---|
-| `noindex` | Boolean | `false` | When `true`, the page won't be indexed, that is, it won't appear on the search results.
+| Name      |  Type   | Default | Description                                                                             |
+| --------- | :-----: | :-----: | --------------------------------------------------------------------------------------- |
+| `noindex` | Boolean | `false` | When `true`, the page won't be indexed, that is, it won't appear on the search results. |
 
 ## Internationalization
 
@@ -278,6 +278,6 @@ All the available translations' keys can be found at [`data/search/i18n`](data/s
 
 ## Partial's Functions
 
-| Function | Description
-|---|---|
-| `search/functions/search-url` | Returns the search URL of current language site, which can be used to generate a link to the search page or the `action` for a search form.
+| Function                      | Description                                                                                                                                 |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search/functions/search-url` | Returns the search URL of current language site, which can be used to generate a link to the search page or the `action` for a search form. |
