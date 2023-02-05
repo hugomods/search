@@ -1,4 +1,4 @@
-{{- $js := partial "search/assets/js-resource" . }}
+{{- $js := partialCached "search/assets/js-resource" . }}
 {{- if hugo.IsProduction }}
   {{- $js = $js | fingerprint }}
 {{- end }}
