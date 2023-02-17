@@ -16,7 +16,7 @@ class Engine {
      * 
      * @returns {Promise} 
      */
-    init(): Promise<any> {
+    init(): Promise<unknown> {
         if (this.initialized) {
             return (new Promise((resolve, reject) => {
                 // create a checker that check whether the index is ready,
@@ -36,7 +36,7 @@ class Engine {
         // change it as true immediately, avoid indexing multiple times.
         this.initialized = true
 
-        const promises = new Array<Promise<any>>
+        const promises = new Array<Promise<Array<unknown>>>
         for (const i in params.indices) {
             const promise = fetch(params.indices[i]).then((resp) => resp.json())
             promises.push(promise)
@@ -67,7 +67,7 @@ class Engine {
     }
 
     private keys() {
-        let keys = ['title', 'summary', 'headings.title', 'lang']
+        const keys = ['title', 'summary', 'headings.title', 'lang']
 
         if (params.index_content) {
             keys.push('content')
@@ -86,9 +86,9 @@ class Engine {
      * @param {string} query query string.
      * @param {string} lang language.
      * @param {string} sorting language.
-     * @returns {Promise<Record<String,  Any>>}
+     * @returns {Promise<Record<string, unknown>>}
      */
-    search(query: string, sorting = '', lang = ''): Promise<any> {
+    search(query: string, sorting = '', lang = ''): Promise<Record<string, unknown>> {
         const pattern = this.pattern(query, lang)
         const start = (new Date()).getTime()
         return new Promise((resolve) => {
@@ -121,12 +121,12 @@ class Engine {
      * @param {string} query 
      * @param {string} lang 
      */
-    private pattern(query: string, lang: string): any {
+    private pattern(query: string, lang: string): string | Record<string, unknown> {
         if (lang === '') {
             return query
         }
 
-        let p: Array<any> = [
+        const p: Array<Record<string, unknown>> = [
             {
                 "$or": [
                     { title: query },

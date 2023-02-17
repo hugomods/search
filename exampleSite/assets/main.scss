@@ -3,25 +3,25 @@ html {
     font-family: system-ui, sans-serif;
 }
 
+body {
+    margin: 0;
+    color: rgba(0, 0, 0, 80%);
+}
+
 [data-theme="dark"] {
     --search-primary: #9864ff;
     --search-bg: #121212;
     --search-color: white;
-    --search-color-secondary: rgba(255, 255, 255, 0.7);
-    --search-border-color: rgba(255, 255, 255, 0.5);
+    --search-color-secondary: rgba(255, 255, 255, 70%);
+    --search-border-color: rgba(255, 255, 255, 50%);
     --search-result-bg: #1e1e1e;
-    --search-result-color: rgba(255, 255, 255, 0.7);
-    --search-result-color-secondary: rgba(255, 255, 255, 0.5);
+    --search-result-color: rgba(255, 255, 255, 70%);
+    --search-result-color-secondary: rgba(255, 255, 255, 50%);
 
     body {
         background: #121212;
         color: white;
     }
-}
-
-body {
-    margin: 0;
-    color: rgba(0, 0, 0, 0.8);
 }
 
 a {
@@ -39,8 +39,7 @@ header {
     background: #9864ff;
     color: white;
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+    flex-flow: row nowrap;
     z-index: 1000;
 }
 
@@ -56,8 +55,7 @@ ul {
 .navbar {
     padding: 0 1rem;
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: space-between;
     width: 100%;
 
@@ -71,7 +69,6 @@ ul {
 }
 
 .nav-link {
-    padding: 0.25rem;
     cursor: pointer;
     padding: 0;
     background: inherit;

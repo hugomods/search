@@ -15,7 +15,7 @@ class Keyboard {
             // record the pressed key.
             this.keys[e.key] = true
 
-            for (let i in this.events) {
+            for (const i in this.events) {
                 const event = this.events[i]
                 if (this.isPressed(event.keys)) {
                     e.preventDefault()
@@ -36,7 +36,7 @@ class Keyboard {
             return false
         }
 
-        for (let i in keys) {
+        for (const i in keys) {
             if (!(keys[i] in this.keys)) {
                 return false
             }
