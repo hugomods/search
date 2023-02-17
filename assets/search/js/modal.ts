@@ -42,7 +42,7 @@ export default class Modal {
 
         this.render()
 
-        this.form.init()
+        params.lazy_loading === false && this.form.init()
 
         // close the modal when losing focus.
         this.container.addEventListener('click', (e) => {
@@ -110,6 +110,8 @@ export default class Modal {
     }
 
     show() {
+        this.form.init()
+
         document.body.classList.add('search-modal-active')
         this.container.classList.add('active')
         this.form.focus()

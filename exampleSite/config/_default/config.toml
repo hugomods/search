@@ -30,3 +30,4 @@ LanguageDirection = 'rtl'
 # expand_results_meta = true
 # distance = 10000
 # min_match_char_length = 3
+# lazy_loading = false
