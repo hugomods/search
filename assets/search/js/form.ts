@@ -62,7 +62,7 @@ export default class Form {
         let label = i18n.translate('all')
         let options = `<li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${label}</li>`
 
-        for (let i in params.langs) {
+        for (const i in params.langs) {
             const item = params.langs[i]
             let className = ''
             if (item.lang === lang) {
@@ -155,7 +155,7 @@ export default class Form {
         })
 
         if (!this.modal) {
-            window.addEventListener('popstate', (e) => {
+            window.addEventListener('popstate', () => {
                 this.popstate = true
                 this.fillInputByURL()
                 this.submit()

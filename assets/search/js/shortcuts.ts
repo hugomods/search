@@ -23,7 +23,7 @@ class Shortcuts {
     render(): string {
         let shortcuts = ''
 
-        for (let i in this.shortcuts) {
+        for (const i in this.shortcuts) {
             const shortcut = this.shortcuts[i]
             shortcuts += `<span class="search-shortcut">
 ${this.renderKbds(shortcut.kbds)}
@@ -36,7 +36,7 @@ ${this.renderKbds(shortcut.kbds)}
 
     private renderKbds(kbds: Kbds, wrap = false): string {
         let s = ''
-        for (let kbd of kbds) {
+        for (const kbd of kbds) {
             if (kbd instanceof Array) {
                 s += this.renderKbds(kbd, true)
                 continue

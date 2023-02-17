@@ -64,7 +64,7 @@ export default class Renderer {
     taxonomies(page) {
         let v = ''
 
-        for (let i in page.taxonomies) {
+        for (const i in page.taxonomies) {
             v += `<span class="search-result-taxonomy">${page.taxonomies[i]}</span> `
         }
 
@@ -121,9 +121,9 @@ export default class Renderer {
 
         let ret = ''
         let start = 0
-        for (let i in matches) {
+        for (const i in matches) {
             const match = matches[i]
-            for (let j in match.indices) {
+            for (const j in match.indices) {
                 // Ignore the matched characters that have been highlighted already.
                 // Since Fuse.js may return duplicate pieces of matches, such as [[0,4], [2,4]].
                 const idxStart = Math.max(start, match.indices[j][0])
@@ -177,10 +177,10 @@ export default class Renderer {
             }
         })
 
-        const observe = (mutations, observer) => {
-            for (let mutation of mutations) {
+        const observe = (mutations) => {
+            for (const mutation of mutations) {
                 if (mutation.type === 'childList') {
-                    for (let node of mutation.addedNodes) {
+                    for (const node of mutation.addedNodes) {
                         const action = node.querySelector('.search-result-action-meta')
                         action?.addEventListener('click', (e) => {
                             this.toggleMeta(node.querySelector('.search-result-meta'))
@@ -285,9 +285,9 @@ export default class Renderer {
 
         let headings = ''
 
-        for (let i in result.item.headings) {
+        for (const i in result.item.headings) {
             const heading = result.item.headings[i]
-            for (let j in matches) {
+            for (const j in matches) {
                 if (matches[j].value !== heading.title) {
                     continue
                 }

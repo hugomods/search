@@ -1,11 +1,11 @@
 .search-form {
     display: flex;
+    flex-flow: column wrap;
     margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 
 .search-input-group {
+    display: flex;
     flex: 1;
     position: relative;
 }
@@ -43,13 +43,10 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
-}
-
-.search-input-group {
-    display: flex;
 }
 
 .search-input {
