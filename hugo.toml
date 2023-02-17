@@ -46,3 +46,4 @@ paginate = 20
 index_all_pages = true
 index_content = false
 expand_results_meta = false
+lazy_loading = true

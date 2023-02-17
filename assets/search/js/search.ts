@@ -1,9 +1,7 @@
-import { default as params } from '@params'
 import Form from './form'
 import Spinner from './spinner'
 import Renderer from './renderer'
 import { Navigate, Select, Shortcuts } from './shortcuts'
-
 
 export default class Search {
     private container: HTMLElement

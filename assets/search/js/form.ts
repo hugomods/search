@@ -100,8 +100,14 @@ export default class Form {
 </div>`
     }
 
+    private initialized = false
+
     // Initialize the form after rendering.
     init() {
+        if (this.initialized) {
+            return
+        }
+        this.initialized = true
         this.pageTitle = document.title
 
         this.ele = document.querySelector('.search-form') as HTMLFormElement

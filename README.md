@@ -222,6 +222,7 @@ stall_threshold = 200
 | `index_all_pages`       | Boolean |       `true`       | When `true`, all pages except `noindex` pages will be indexed, include non-regular pages, such as home and taxonomy lists.                                                                                                                                                                                                                                                                                                |
 | `expand_results_meta`   | Boolean |      `false`       | When `true`, expand the results meta by default.                                                                                                                                                                                                                                                                                                                                                                          |
 | `modal_container`       | String  |       `body`       | The container for the search modal. It should be a valid CSS selector. Leave it empty if you're using single search page mode only.                                                                                                                                                                                                                                                                                       |
+| `lazy_loading` | Boolean | `true` | Lazy loading the indices. |
 
 ## CSS Variables
 
