@@ -292,7 +292,7 @@ export default class Renderer {
                     continue
                 }
 
-                headings += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}${heading.anchor}" class="search-result search-result-heading">
+                headings += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}#${heading.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>

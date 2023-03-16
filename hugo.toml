@@ -16,7 +16,7 @@ notAlternative = true
 [module]
 [module.hugoVersion]
 extended = true
-min = "0.110.0"
+min = "0.111.3"
 
 [[module.imports]]
 path = "github.com/razonyang/hugo-mod-i18n-js"
