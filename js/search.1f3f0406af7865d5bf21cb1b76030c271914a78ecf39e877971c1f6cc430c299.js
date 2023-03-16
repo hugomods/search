@@ -150,7 +150,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   <div class="search-result-actions">
     <div class="search-result-action search-result-action-meta">${x.icons.meta}</div>
   </div>
-</a>`,u+=this.renderHeadings(y)}this.getContainer().insertAdjacentHTML("beforeend",u)}renderHeadings(r){if(!r.item.headings||r.item.headings.length==0)return"";let s=r.matches.filter(u=>u.key==="headings.title");if(s.length==0)return"";let c="";for(let u in r.item.headings){let m=r.item.headings[u];for(let y in s)s[y].value===m.title&&(c+=`<a title="${m.title} - ${r.item.title}" href="${r.item.url}${m.anchor}" class="search-result search-result-heading">
+</a>`,u+=this.renderHeadings(y)}this.getContainer().insertAdjacentHTML("beforeend",u)}renderHeadings(r){if(!r.item.headings||r.item.headings.length==0)return"";let s=r.matches.filter(u=>u.key==="headings.title");if(s.length==0)return"";let c="";for(let u in r.item.headings){let m=r.item.headings[u];for(let y in s)s[y].value===m.title&&(c+=`<a title="${m.title} - ${r.item.title}" href="${r.item.url}#${m.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${x.icons.heading}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(m.title,[s[y]])}</div>
