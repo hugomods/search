@@ -1,9 +1,8 @@
 {{- $headings := slice }}
-{{- $pattern := `<a.+href="(.+)".*>(.+)</a>` }}
-{{- range findRESubmatch $pattern .TableOfContents }}
+{{- range .Fragments.HeadingsMap }}
   {{- $headings = $headings | append (dict
-    "anchor" (index . 1)
-    "title" (index . 2 | htmlUnescape))
+    "anchor" .ID
+    "title" (.Title | htmlUnescape))
   }}
 {{- end }}
 {{- return $headings -}}
