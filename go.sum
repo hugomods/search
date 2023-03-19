@@ -1,0 +1,6 @@
+github.com/hugomods/fuse-js v0.1.0 h1:CmWHBZANvjOP44RDNQNLntqlLf9GLqeM29jekxTNcPE=
+github.com/hugomods/fuse-js v0.1.0/go.mod h1:srCqvtBQR02HS/abTraDU4oINv1D3PljNPdexdoHhpo=
+github.com/hugomods/i18n-js v0.1.0 h1:gJmJVObN8rvtMEwBW/z9Wiitown5ZT91092UaAO+UIE=
+github.com/hugomods/i18n-js v0.1.0/go.mod h1:eJfxjgI2CQsNA1/ReIVvr5127DftUKcbHd2A2SQmDvU=
+github.com/hugomods/icons/vendors/bootstrap v0.4.0 h1:+2r0aWG/qdsdLBtQ+b5VN7z3Kh/M0/TduF9ZxW0d9Kg=
+github.com/hugomods/icons/vendors/bootstrap v0.4.0/go.mod h1:my/xxEyTvWAym67NVfhWRvdQKrHcscU43neIBXnlbfM=

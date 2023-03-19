@@ -1,0 +1,4 @@
+{{- $css := partial "search/assets/css-resource" . }}
+{{- if hugo.IsProduction }}
+  {{- $css = $css | fingerprint }}
+{{- end -}} <link rel="stylesheet" href="{{ $css.RelPermalink }}" />

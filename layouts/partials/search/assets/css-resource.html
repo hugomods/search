@@ -1,0 +1,12 @@
+{{- $rtl := eq .Language.LanguageDirection "rtl" }}
+{{- $postCSSOpts := dict
+  "use" (cond $rtl "autoprefixer rtlcss" "autoprefixer")
+}}
+{{- $css := resources.Get "search/scss/index.scss" }}
+{{- $options := dict
+  "targetPath" (cond $rtl "css/search.rtl.css" "css/search.css")
+  "enableSourceMap" (not hugo.IsProduction)
+  "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+}}
+{{- $css = $css | toCSS $options | resources.PostCSS $postCSSOpts }}
+{{- return $css -}}

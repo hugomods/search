@@ -1,0 +1,2 @@
+{{ $js := resources.Get "main.ts" | js.Build }}
+{{ return $js }}

@@ -1,0 +1,122 @@
+.search-form {
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 0.5rem;
+}
+
+.search-input-group {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.search-input-icon,
+.search-spinner {
+    background: inherit;
+    border: none;
+    color: var(--search-primary);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+    left: 0;
+
+    &.disabled {
+        display: none;
+    }
+}
+
+.search-spinner {
+    svg {
+        background: var(--search-bg);
+        animation-name: search-spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
+
+@keyframes search-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.search-input {
+    border-radius: 0.25rem;
+    border: 1px solid var(--search-primary);
+    padding: 0.75rem 0.5rem 0.75rem 2.25rem;
+    flex: 1;
+
+    &::-webkit-search-cancel-button {
+        cursor: pointer;
+        padding: 0.125rem;
+    }
+}
+
+.search-form-control {
+    height: 100%;
+    margin-right: 0.25rem;
+    outline: none;
+    background: var(--search-bg);
+    color: var(--search-color);
+}
+
+.search-form-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.search-panel {
+    display: flex;
+}
+
+.search-panel-action {
+    align-items: center;
+    border: 0;
+    background: transparent;
+    color: var(--search-color);
+    display: flex;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+
+    &.active {
+        color: var(--search-primary);
+    }
+}
+
+.search-panel-action-icon {
+    display: flex;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.search-panel-action-label {
+    margin-left: 0.25rem;
+
+    @media (max-width: 576px) {
+        display: none;
+    }
+}
+
+.search-filter-lang {
+    border: none;
+    appearance: none;
+}
+
+.search-expand-toggle {
+    padding: 0 0.125rem;
+}

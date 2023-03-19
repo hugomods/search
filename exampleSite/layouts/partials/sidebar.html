@@ -1,0 +1,43 @@
+<div>
+  <h3>Languages</h3>
+  <hr />
+  <ul>
+    {{ range .Sites }}
+      <li>
+        <a href="{{ .Home.RelPermalink }}">
+          {{ .Language.LanguageName }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>
+
+{{ range $name, $taxonomy := .Site.Taxonomies }}
+  <div>
+    <h3>{{ $name | title }}</h3>
+    <hr />
+    <ul>
+      {{ $count := 0 }}
+      {{ range $taxonomy }}
+        {{ if gt $count 9 }}
+          {{ break }}
+        {{ end }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}">
+            {{ .Page.Title }}
+          </a>
+        </li>
+        {{ $count = add $count 1 }}
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
+
+
+<h3>Posts</h3>
+<hr />
+<ul>
+  {{ range first 10 .Site.RegularPages }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{ end }}
+</ul>

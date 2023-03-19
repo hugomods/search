@@ -1,0 +1,23 @@
+.search-shortcut {
+    display: inline-flex;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    font-size: 0.875rem;
+    align-items: center;
+}
+
+.search-shortcut-kbds {
+    &:not(:first-child) {
+        &::before {
+            content: "+";
+            margin-right: 0.125rem;
+        }
+    }
+}
+
+.search-shortcut-kbd {
+    background: #3e3e3e;
+    border-radius: 0.125rem;
+    padding: 0.125rem 0.25rem;
+    color: white;
+    margin-right: 0.25rem;
+}

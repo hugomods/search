@@ -1,0 +1,13 @@
+{
+  "name": "Hugo Search Module Example Site",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugomods/search.git"
+  },
+  "author": "Razon Yang <razonyang@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hugomods/search/issues"
+  },
+  "homepage": "https://github.com/hugomods/search"
+}

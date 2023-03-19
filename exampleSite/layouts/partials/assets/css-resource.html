@@ -1,0 +1,5 @@
+{{ $css := resources.Get "main.scss" | toCSS (dict
+  "enableSourceMap" (not hugo.IsProduction)
+  "outputStyle" (cond hugo.IsProduction "compressed" "expanded") )
+}}
+{{ return $css }}

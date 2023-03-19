@@ -1,0 +1,8 @@
+{{- $headings := slice }}
+{{- range .Fragments.HeadingsMap }}
+  {{- $headings = $headings | append (dict
+    "anchor" .ID
+    "title" (.Title | htmlUnescape))
+  }}
+{{- end }}
+{{- return $headings -}}
