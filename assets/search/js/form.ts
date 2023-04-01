@@ -147,10 +147,10 @@ export default class Form {
         }).then(() => {
             if (!this.modal) {
                 this.fillInputByURL()
-                this.input.focus()
                 this.submit()
             }
         }).finally(() => {
+            this.focus()
             this.spinner.hide()
         })
 
