@@ -18,8 +18,7 @@ class Keyboard {
             for (const i in this.events) {
                 const event = this.events[i]
                 if (this.isPressed(event.keys)) {
-                    e.preventDefault()
-                    event.callback()
+                    event.callback(e)
                 }
             }
 
