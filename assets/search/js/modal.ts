@@ -83,7 +83,8 @@ export default class Modal {
         }
 
         if (params.shortcut_search.length > 0) {
-            keyboard.attach(params.shortcut_search, () => {
+            keyboard.attach(params.shortcut_search, (e) => {
+                e.preventDefault()
                 this.show()
             })
         }
