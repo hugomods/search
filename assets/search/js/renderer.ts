@@ -186,6 +186,10 @@ export default class Renderer {
                             this.toggleMeta(node.querySelector('.search-result-meta'))
                             e.preventDefault()
                         })
+
+                        node.addEventListener('mousemove', () => {
+                            this.activeResult(node)
+                        })
                     }
                 }
             }
@@ -193,6 +197,17 @@ export default class Renderer {
 
         const observer = new MutationObserver(observe);
         observer.observe(container, { childList: true });
+    }
+
+    activeResult(target) {
+        if (target.ariaSelected === 'true') {
+            return
+        }
+
+        this.getContainer().querySelectorAll('.search-result').forEach((result) => {
+            result.ariaSelected = 'false'
+        });
+        target.ariaSelected = 'true'
     }
 
     private toggleMeta(meta: HTMLElement) {
@@ -251,7 +266,7 @@ export default class Renderer {
         let results = ''
         for (let i = min; i < this.results.length && i < max; i++) {
             const result = this.results[i]
-            results += `<a title="${result.item.title}" href="${result.item.url}" class="search-result">
+            results += `<a title="${result.item.title}" href="${result.item.url}" class="search-result" aria-selected="false">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>

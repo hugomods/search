@@ -143,8 +143,7 @@
         margin-top: 0;
     }
 
-    &:hover,
-    &.active {
+    &[aria-selected="true"] {
         background: var(--search-result-bg-active);
         color: var(--search-result-color-active);
 

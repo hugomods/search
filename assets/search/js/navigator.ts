@@ -7,22 +7,22 @@ class Navigator {
 
     private current(): null | HTMLElement {
         const modal = this.modal()
-        return modal ? modal.querySelector('.search-result.active') : document.querySelector('.search-container .search-result.active')
+        return modal ? 
+          modal.querySelector('.search-result[aria-selected="true"]') : 
+          document.querySelector('.search-container .search-result[aria-selected="true"]')
     }
 
     private go(dir) {
         const current = this.current()
         let target
-        if (!current) {
-            target = current
-        } else {
+        if (current) {
+            current.ariaSelected = 'false'
             target = dir === 'prev' ? current.previousElementSibling : current.nextElementSibling
         }
         target = target ?? this.first()
 
-        current?.classList.remove('active')
         target.focus()
-        target.classList.add('active')
+        target.ariaSelected = 'true'
     }
 
     private first() {
