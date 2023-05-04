@@ -63,7 +63,7 @@ export default class Modal {
         })
 
         // open modal when clicking toggle button.
-        document.querySelectorAll('.search-modal-toggle').forEach((toggle) => {
+        document.querySelectorAll(params.modal_toggle_selector).forEach((toggle) => {
             toggle.addEventListener('click', () => {
                 this.show()
             })
