@@ -8,7 +8,7 @@ other = "Cancel"
 other = "Expand"
 
 [index_fails]
-other = "Failed to initial index."
+other = "Failed to initialise index."
 
 [input_placeholder]
 other = "Type to search"
