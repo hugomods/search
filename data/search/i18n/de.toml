@@ -1,0 +1,39 @@
+[all]
+other = "Alle"
+
+[cancel]
+other = "Abbrechen"
+
+[expand]
+other = "Aufklappen"
+
+[index_fails]
+other = "Initialisierung des Indexes fehlgeschlagen."
+
+[input_placeholder]
+other = "Suchbegriff eingeben"
+
+[search_stat]
+one = "{total} Resultat in {time} gefunden."
+other = "{total} Resultate in {time} gefunden."
+
+[sort_by_default]
+other = "Beste Übereinstimmung"
+
+[sort_by_date_asc]
+other = "Älteste"
+
+[sort_by_date_desc]
+other = "Neueste"
+
+[to_close]
+other = "Schließen"
+
+[to_navigate]
+other = "Navigieren"
+
+[to_search]
+other = "Suchen"
+
+[to_select]
+other = "Auswählen"
