@@ -1,0 +1,39 @@
+[all]
+other = "Allen"
+
+[cancel]
+other = "Annuleren"
+
+[expand]
+other = "Uitbreiden"
+
+[index_fails]
+other = "Initialisatie-index mislukt."
+
+[input_placeholder]
+other = "Typ om te zoeken"
+
+[search_stat]
+one = "Gevonden {total} resultaat in {time}."
+other = "Gevonden {total} resultaten in {time}."
+
+[sort_by_default]
+other = "Beste overeenkomst"
+
+[sort_by_date_asc]
+other = "Oudste"
+
+[sort_by_date_desc]
+other = "Nieuwste"
+
+[to_close]
+other = "sluiten"
+
+[to_navigate]
+other = "navigeren"
+
+[to_search]
+other = "zoeken"
+
+[to_select]
+other = "selecteren"
