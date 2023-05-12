@@ -3,6 +3,7 @@
     background: transparent;
     border: 0;
     color: inherit;
+    cursor: pointer;
     display: flex;
 }
 
@@ -41,6 +42,7 @@
 }
 
 .search-dropdown {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     position: relative;
