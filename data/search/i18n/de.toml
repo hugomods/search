@@ -37,3 +37,6 @@ other = "Suchen"
 
 [to_select]
 other = "Auswählen"
+
+[years]
+other = "Years"

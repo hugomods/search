@@ -37,3 +37,6 @@ other = "搜索"
 
 [to_select]
 other = "选择"
+
+[years]
+other = "年份"

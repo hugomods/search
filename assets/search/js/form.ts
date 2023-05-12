@@ -115,7 +115,7 @@ export default class Form {
 
         return `<div class="search-dropdown search-panel-action search-years" multiple>
         <button class="search-dropdown-toggle" type="button" aria-expanded="false">
-          ${params.icons['year']} <span class="search-dropdown-label">Years</span>
+          ${params.icons['year']} <span class="search-dropdown-label">${i18n.translate('years')}</span>
         </button>
         <ul class="search-dropdown-menu">${items}</ul>
       </div>`
