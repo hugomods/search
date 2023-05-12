@@ -24,6 +24,8 @@ export default class Form {
 
     private sorting: HTMLElement
 
+    private years: HTMLElement
+
     modal = true
 
     constructor(private spinner: Spinner, private renderer: Renderer) {
@@ -42,6 +44,7 @@ export default class Form {
     <div class="search-panel">
       ${this.renderLanguage()}
       ${this.renderSorting()}
+      ${this.renderYears()}
       <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}">
         <span class="search-panel-action-icon">${params.icons['expand']}</span>
         <span class="search-panel-action-label">${i18n.translate('expand')}</span>
@@ -100,6 +103,24 @@ export default class Form {
 </div>`
     }
 
+    private renderYears(): string {
+        if (params.years.length === 0) {
+            return ''
+        }
+
+        let items = ''
+        for (const year of params.years) {
+            items += `<li class="search-dropdown-item" data-value="${year}">${year}</li>`
+        }
+
+        return `<div class="search-dropdown search-panel-action search-years" multiple>
+        <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+          ${params.icons['year']} <span class="search-dropdown-label">Years</span>
+        </button>
+        <ul class="search-dropdown-menu">${items}</ul>
+      </div>`
+    }
+
     private initialized = false
 
     // Initialize the form after rendering.
@@ -136,6 +157,11 @@ export default class Form {
 
         this.sorting = this.ele.querySelector('.search-sorting') as HTMLElement
         this.sorting.addEventListener('change', () => {
+            this.submit()
+        })
+
+        this.years = this.ele.querySelector('.search-years') as HTMLElement
+        this.years.addEventListener('change', () => {
             this.submit()
         })
 
@@ -193,7 +219,8 @@ export default class Form {
         this.spinner.show()
         const sorting = this.getSorting()
         const lang = this.getLanguage()
-        engine.search(query, sorting, lang).then(({ results, time }) => {
+        const years = this.getYears()
+        engine.search(query, sorting, lang, years).then(({ results, time }) => {
             this.renderer.render(query, results, time)
         }).finally(() => {
             this.spinner.hide()
@@ -231,6 +258,14 @@ export default class Form {
 
     getSorting(): string {
         return this.sorting.getAttribute('data-value') ?? ''
+    }
+
+    getYears(): Array<string> {
+        const v: Array<string> = []
+        this.years.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
+            v.push(item.getAttribute('data-value') ?? '')
+        })
+        return v
     }
 }
 

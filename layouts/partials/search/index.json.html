@@ -1,5 +1,6 @@
 {{- $items := slice -}}
 {{- $indexContent := default false .Site.Params.search.index_content -}}
+{{- $years := true }}
 {{- $indexAllPages := default true .Site.Params.search.index_all_pages -}}
 {{- $pages := cond $indexAllPages .Site.Pages .Site.RegularPages -}}
 {{- $pages = where $pages "Params.noindex" "ne" true -}}
@@ -15,6 +16,9 @@
   {{- $item.Set "lang" .Language.Lang -}}
   {{- $item.Set "url" .RelPermalink -}}
   {{- $item.Set "date" .Date.Unix -}}
+  {{- if $years }}
+    {{- $item.Set "year" (.Date.Format "2006") }}
+  {{- end }}
   {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) -}}
   {{/* Taxonomies */}}
   {{- range $name, $taxonomy := $.Site.Taxonomies -}}
