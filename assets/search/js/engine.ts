@@ -67,7 +67,7 @@ class Engine {
     }
 
     private keys() {
-        const keys = ['title', 'summary', 'headings.title', 'lang']
+        const keys = ['title', 'summary', 'headings.title', 'lang', 'year']
 
         if (params.index_content) {
             keys.push('content')
@@ -88,8 +88,8 @@ class Engine {
      * @param {string} sorting language.
      * @returns {Promise<Record<string, unknown>>}
      */
-    search(query: string, sorting = '', lang = ''): Promise<Record<string, unknown>> {
-        const pattern = this.pattern(query, lang)
+    search(query: string, sorting = '', lang = '', years: Array<string> = []): Promise<Record<string, unknown>> {
+        const pattern = this.pattern(query, lang, years)
         const start = (new Date()).getTime()
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -121,7 +121,7 @@ class Engine {
      * @param {string} query 
      * @param {string} lang 
      */
-    private pattern(query: string, lang: string): string | Record<string, unknown> {
+    private pattern(query: string, lang: string, years: Array<string> = []): string | Record<string, unknown> {
         if (lang === '') {
             return query
         }
@@ -143,6 +143,18 @@ class Engine {
         if (lang) {
             p.push({
                 lang: '=' + lang
+            })
+        }
+
+        if (years.length > 0) {
+            const yearsConditions: Array<Record<string, string>> = []
+            for (const year of years) {
+                yearsConditions.push({
+                    year: `=${year}`
+                })
+            }
+            p.push({
+                "$or": yearsConditions
             })
         }
 
