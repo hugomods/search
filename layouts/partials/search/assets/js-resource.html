@@ -11,6 +11,9 @@
   {{- $pages = where $pages "Params.noindex" "ne" true }}
   {{- with $pages.GroupByDate "2006" }}
     {{- range . }}
+      {{- if eq .Key "0001" }}
+        {{- continue }}
+      {{- end }}
       {{- $years = $years | append .Key }}
     {{- end }}
     {{- $years = sort $years }}
