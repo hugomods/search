@@ -74,7 +74,10 @@
 {{- $indices := slice }}
 {{- range .Sites }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
-    {{- $indices = $indices | append .RelPermalink }}
+    {{- $indexURL := .RelPermalink }}
+    {{/* TODO */}}
+    {{- $indexURL = printf "%s?v=%s" $indexURL "HASH" }}
+    {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}
 {{- $defaultParams := partialCached "search/functions/params" . }}
