@@ -23,7 +23,7 @@
   {{/* Taxonomies */}}
   {{- range $name, $taxonomy := $.Site.Taxonomies -}}
     {{- range $page.GetTerms $name -}}
-      {{- $item.Add "taxonomies" (slice .Title) -}}
+      {{- $item.Add $name (slice .Title) }}
     {{- end -}}
   {{- end -}}
   {{- $items = $items | append $item.Values -}}

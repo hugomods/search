@@ -45,6 +45,7 @@ export default class Form {
       ${this.renderLanguage()}
       ${this.renderSorting()}
       ${this.renderYears()}
+      ${this.renderTaxonomies()}
       <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}">
         <span class="search-panel-action-icon">${params.icons['expand']}</span>
         <span class="search-panel-action-label">${i18n.translate('expand')}</span>
@@ -121,6 +122,28 @@ export default class Form {
       </div>`
     }
 
+    private renderTaxonomies(): string {
+        let v = ''
+        for (const name in params.taxonomies) {
+            v += this.renderTaxonomy(name, params.taxonomies[name])
+        }
+        return v
+    }
+
+    private renderTaxonomy(name: string, items: Array<string>): string {
+        let v = ''
+        for (const name of items) {
+            v += `<li class="search-dropdown-item" data-value="${name}">${name}</li>`
+        }
+
+        return `<div class="search-dropdown search-panel-action search-taxonomies search-taxonomies-${name}" multiple>
+        <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+          ${params.icons['taxonomies']} <span class="search-dropdown-label">${i18n.translate("taxonomy_" + name, null, name)}</span>
+        </button>
+        <ul class="search-dropdown-menu">${v}</ul>
+      </div>`
+    }
+
     private initialized = false
 
     // Initialize the form after rendering.
@@ -163,6 +186,12 @@ export default class Form {
         this.years = this.ele.querySelector('.search-years') as HTMLElement
         this.years.addEventListener('change', () => {
             this.submit()
+        })
+
+        this.ele.querySelectorAll('.search-taxonomies').forEach((el) => {
+            el.addEventListener('change', () => {
+                this.submit()
+            })
         })
 
         engine.init().then(() => {
@@ -220,7 +249,8 @@ export default class Form {
         const sorting = this.getSorting()
         const lang = this.getLanguage()
         const years = this.getYears()
-        engine.search(query, sorting, lang, years).then(({ results, time }) => {
+        const taxonomies = this.getTaxonomies()
+        engine.search(query, sorting, lang, years, taxonomies).then(({ results, time }) => {
             this.renderer.render(query, results, time)
         }).finally(() => {
             this.spinner.hide()
@@ -265,6 +295,20 @@ export default class Form {
         this.years.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
             v.push(item.getAttribute('data-value') ?? '')
         })
+        return v
+    }
+
+    getTaxonomies(): Record<string, Array<string>> {
+        const v = {}
+
+        for (const taxonomy in params.taxonomies) {
+            const terms: Array<string> = []
+            document.querySelectorAll(`.search-taxonomies-${taxonomy} .search-dropdown-item.active`).forEach((item) => {
+                terms.push(item.getAttribute('data-value') ?? '')
+            })
+            v[taxonomy] = terms
+        }
+
         return v
     }
 }

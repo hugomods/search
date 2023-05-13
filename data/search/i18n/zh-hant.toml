@@ -26,6 +26,18 @@ other = "最舊的"
 [sort_by_date_desc]
 other = "最新的"
 
+[taxonomy_authors]
+other = "作者"
+
+[taxonomy_categories]
+other = "分類"
+
+[taxonomy_series]
+other = "專欄"
+
+[taxonomy_tags]
+other = "標籤"
+
 [to_close]
 other = "關閉"
 

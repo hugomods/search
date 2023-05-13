@@ -31,3 +31,4 @@ LanguageDirection = 'rtl'
 # distance = 10000
 # min_match_char_length = 3
 # lazy_loading = false
+# filter_taxonomies = false

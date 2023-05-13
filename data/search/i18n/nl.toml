@@ -26,6 +26,18 @@ other = "Oudste"
 [sort_by_date_desc]
 other = "Nieuwste"
 
+[taxonomy_authors]
+other = "Authors"
+
+[taxonomy_categories]
+other = "Categories"
+
+[taxonomy_series]
+other = "Series"
+
+[taxonomy_tags]
+other = "Tags"
+
 [to_close]
 other = "sluiten"
 

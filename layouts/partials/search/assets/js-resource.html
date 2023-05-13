@@ -14,6 +14,26 @@
   {{- end }}
   {{- $years = sort $years }}
 {{- end }}
+{{/* taxonomies. */}}
+{{- $taxonomies := newScratch }}
+{{- if default true site.Params.search.filter_taxonomies }}
+  {{- $allTaxonomies := newScratch }}
+  {{- range .Site.Sites }}
+    {{- range $name, $taxonomy := .Taxonomies }}
+      {{- range $taxonomy }}
+        {{- $allTaxonomies.Add $name (slice .Page.Title) }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{/* remove duplicate taxonomies. */}}
+  {{- range $name, $v := $allTaxonomies.Values }}
+    {{- $taxonomies.Set $name ($v | uniq) }}
+  {{- end }}
+{{- end }}
+{{- $taxonomyKeys := slice }}
+{{- range $name, $v := .Site.Taxonomies }}
+  {{- $taxonomyKeys = $taxonomyKeys | append $name }}
+{{- end }}
 {{/* i18n messages. */}}
 {{- $i18n := newScratch }}
 {{- range $lang, $messages := .Site.Data.search.i18n }}
@@ -34,6 +54,7 @@
   "sort" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "sort-down" "width" "1rem" "height" "1rem"))
   "expand" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "chevron-expand" "width" "1rem" "height" "1rem"))
   "year" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "calendar-check" "width" "1rem" "height" "1rem"))
+  "taxonomies" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "width" "1rem" "height" "1rem"))
 }}
 {{/* Include the following icons when necessary. */}}
 {{- if default true .Site.Params.search.index_all_pages }}
@@ -58,7 +79,9 @@
   "i18n" $i18n.Values
   "defaultLang" $defaultLang
   "langs" $langs.Values
-  "years" $years)
+  "years" $years
+  "taxonomies" $taxonomies.Values
+  "taxonomyKeys" $taxonomyKeys)
 }}
 {{- $options := dict
   "targetPath" "js/search.js"

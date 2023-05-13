@@ -73,6 +73,10 @@ class Engine {
             keys.push('content')
         }
 
+        for (const taxonomy in params.taxonomies) {
+            keys.push(taxonomy)
+        }
+
         return keys
     }
 
@@ -88,8 +92,8 @@ class Engine {
      * @param {string} sorting language.
      * @returns {Promise<Record<string, unknown>>}
      */
-    search(query: string, sorting = '', lang = '', years: Array<string> = []): Promise<Record<string, unknown>> {
-        const pattern = this.pattern(query, lang, years)
+    search(query: string, sorting = '', lang = '', years: Array<string> = [], taxonomies: Record<string, Array<string>> = {}): Promise<Record<string, unknown>> {
+        const pattern = this.pattern(query, lang, years, taxonomies)
         const start = (new Date()).getTime()
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -121,7 +125,7 @@ class Engine {
      * @param {string} query 
      * @param {string} lang 
      */
-    private pattern(query: string, lang: string, years: Array<string> = []): string | Record<string, unknown> {
+    private pattern(query: string, lang: string, years: Array<string> = [], taxonomies: Record<string, Array<string>> = {}): string | Record<string, unknown> {
         if (lang === '') {
             return query
         }
@@ -155,6 +159,22 @@ class Engine {
             }
             p.push({
                 "$or": yearsConditions
+            })
+        }
+
+        for (const taxonomy in taxonomies) {
+            if (taxonomies[taxonomy].length === 0) {
+                continue
+            }
+
+            const taxonomyConditions: Array<Record<string, string>> = []
+            for (const name of taxonomies[taxonomy]) {
+                taxonomyConditions.push({
+                    [taxonomy]: `="${name}"`,
+                })
+            }
+            p.push({
+                "$and": taxonomyConditions
             })
         }
 
