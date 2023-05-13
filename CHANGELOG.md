@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.1](https://github.com/hugomods/search/compare/v0.3.0...v0.3.1) (2023-05-13)
+
+
+### Bug Fixes
+
+* check if the taxonomies exist before rendering ([6f6dd63](https://github.com/hugomods/search/commit/6f6dd63ce22f2bcbb88f12fd65626d5dea0f7268))
+* ignore invalid years ([f87cb77](https://github.com/hugomods/search/commit/f87cb7748411f6fa4236f7867d3b9ae3403a1408))
+* set z-index as 1 for dropdown menu to avoid overlapping with others ([52584dc](https://github.com/hugomods/search/commit/52584dce1368edeecfbc5280586f1a74d1cdca57))
+
 ## [0.3.0](https://github.com/hugomods/search/compare/v0.2.1...v0.3.0) (2023-05-13)
 
 
