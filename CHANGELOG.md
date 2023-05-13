@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/hugomods/search/compare/v0.3.1...v0.4.0) (2023-05-13)
+
+
+### Features
+
+* generate the hash for search indices ([#140](https://github.com/hugomods/search/issues/140)) ([03db352](https://github.com/hugomods/search/commit/03db352944287a788450af84a153578d4be547b5))
+
 ## [0.3.1](https://github.com/hugomods/search/compare/v0.3.0...v0.3.1) (2023-05-13)
 
 
