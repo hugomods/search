@@ -184,7 +184,7 @@ export default class Form {
         })
 
         this.years = this.ele.querySelector('.search-years') as HTMLElement
-        this.years.addEventListener('change', () => {
+        this.years?.addEventListener('change', () => {
             this.submit()
         })
 
@@ -292,7 +292,7 @@ export default class Form {
 
     getYears(): Array<string> {
         const v: Array<string> = []
-        this.years.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
+        this.years?.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
             v.push(item.getAttribute('data-value') ?? '')
         })
         return v
