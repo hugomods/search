@@ -74,11 +74,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-top: 0.25rem;
 }
 
 .search-panel {
     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
 }
 
 .search-panel-action {

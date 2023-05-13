@@ -26,6 +26,18 @@ other = "Älteste"
 [sort_by_date_desc]
 other = "Neueste"
 
+[taxonomy_authors]
+other = "Authors"
+
+[taxonomy_categories]
+other = "Categories"
+
+[taxonomy_series]
+other = "Series"
+
+[taxonomy_tags]
+other = "Tags"
+
 [to_close]
 other = "Schließen"
 
