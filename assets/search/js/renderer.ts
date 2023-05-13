@@ -65,7 +65,11 @@ export default class Renderer {
         let v = ''
 
         for (const key of params.taxonomyKeys) {
-            for (const name of page[key]) {
+            const terms = page[key]
+            if (!terms) {
+                continue
+            }
+            for (const name of terms) {
                 v += `<span class="search-result-taxonomy">${name}</span>`
             }
         }
