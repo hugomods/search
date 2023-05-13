@@ -15,5 +15,5 @@ jobs:
     steps:
       - uses: google-github-actions/release-please-action@v3
         with:
-          command: release-pr
+          # command: github-release
           release-type: go
