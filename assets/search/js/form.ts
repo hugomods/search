@@ -46,7 +46,7 @@ export default class Form {
       ${this.renderSorting()}
       ${this.renderYears()}
       ${this.renderTaxonomies()}
-      <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}">
+      <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}" title="Expand">
         <span class="search-panel-action-icon">${params.icons['expand']}</span>
         <span class="search-panel-action-label">${i18n.translate('expand')}</span>
       </button>
@@ -77,7 +77,7 @@ export default class Form {
         }
 
         return `<div class="search-dropdown search-panel-action search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="Languages">
     ${params.icons['lang']}
     <span class="search-dropdown-label">${label}</span>
   </button>
@@ -93,7 +93,7 @@ export default class Form {
         const defaultSort = i18n.translate('sort_by_default')
 
         return `<div class="search-dropdown search-panel-action search-sorting">
-  <button class="search-dropdown-toggle" type="button" aria-expanded="false">
+  <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="Sorting">
     ${params.icons['sort']} <span class="search-dropdown-label">${defaultSort}</span>
   </button>
   <ul class="search-dropdown-menu">
@@ -114,9 +114,10 @@ export default class Form {
             items += `<li class="search-dropdown-item" data-value="${year}">${year}</li>`
         }
 
+        const label = i18n.translate('years')
         return `<div class="search-dropdown search-panel-action search-years" multiple>
-        <button class="search-dropdown-toggle" type="button" aria-expanded="false">
-          ${params.icons['year']} <span class="search-dropdown-label">${i18n.translate('years')}</span>
+        <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
+          ${params.icons['year']} <span class="search-dropdown-label">${label}</span>
         </button>
         <ul class="search-dropdown-menu">${items}</ul>
       </div>`
@@ -136,9 +137,10 @@ export default class Form {
             v += `<li class="search-dropdown-item" data-value="${name}">${name}</li>`
         }
 
+        const label = i18n.translate("taxonomy_" + name, null, name)
         return `<div class="search-dropdown search-panel-action search-taxonomies search-taxonomies-${name}" multiple>
-        <button class="search-dropdown-toggle" type="button" aria-expanded="false">
-          ${params.icons['taxonomies']} <span class="search-dropdown-label">${i18n.translate("taxonomy_" + name, null, name)}</span>
+        <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
+          ${params.icons['taxonomies']} <span class="search-dropdown-label">${label}</span>
         </button>
         <ul class="search-dropdown-menu">${v}</ul>
       </div>`

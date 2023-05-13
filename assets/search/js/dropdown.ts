@@ -1,14 +1,29 @@
 (() => {
+    const hide = (dropdown: HTMLElement) => {
+        dropdown.classList.remove('show')
+        dropdown.setAttribute('aria-expanded', 'false')
+    }
+
+    const show = (dropdown: HTMLElement) => {
+        dropdown.classList.add('show')
+        dropdown.setAttribute('aria-expanded', 'true')
+    }
+
+    const toggle = (dropdown: HTMLElement) => {
+        if (dropdown.classList.contains('show')) {
+            hide(dropdown)
+            return
+        }
+
+        show(dropdown)
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', (e: Event) => {
-            const toggle = e.target.closest('.search-dropdown-toggle')
-            if (toggle) {
-                const dropdown = toggle.closest('.search-dropdown')
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show')
-                } else {
-                    dropdown.classList.add('show')
-                }
+            const toggleEl = e.target.closest('.search-dropdown-toggle')
+            if (toggleEl) {
+                const dropdown = toggleEl.closest('.search-dropdown')
+                toggle(dropdown)
                 e.preventDefault()
                 return
             }
@@ -39,7 +54,7 @@
                         dropdown.classList.remove('active')
                     }
                     dropdown.querySelector('.search-dropdown-label').innerText = item.innerText
-    
+
                     dropdown.querySelectorAll('.search-dropdown-item').forEach((lang) => {
                         lang.classList.remove('active')
                     })
@@ -56,8 +71,8 @@
             }
 
             // close opened dropdown when losing focus.
-            document.querySelectorAll('.search-dropdown.show').forEach((dropdown) => {
-                dropdown.classList.remove('show')
+            document.querySelectorAll<HTMLElement>('.search-dropdown.show').forEach((dropdown) => {
+                hide(dropdown)
             })
         })
     })
