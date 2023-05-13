@@ -73,10 +73,10 @@
 {{/* Index files URL. */}}
 {{- $indices := slice }}
 {{- range .Sites }}
+  {{- $site := . }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
-    {{- $indexURL := .RelPermalink }}
-    {{/* TODO */}}
-    {{- $indexURL = printf "%s?v=%s" $indexURL "HASH" }}
+    {{- $idxCtx := dict "Site" $site "Index" . }}
+    {{- $indexURL := partialCached "search/functions/search-index-url" $idxCtx $idxCtx }}
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}

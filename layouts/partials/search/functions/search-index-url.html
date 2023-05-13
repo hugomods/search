@@ -1,0 +1,3 @@
+{{- $ctx := dict "Site" .Site }}
+{{- $hash := partialCached "search/index.json" $ctx $ctx | md5 }}
+{{- return (printf "%s?v=%s" .Index.RelPermalink $hash) }}
