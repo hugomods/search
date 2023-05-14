@@ -1,9 +1,8 @@
 {{- $items := slice -}}
 {{- $indexContent := default false .Site.Params.search.index_content -}}
 {{- $years := true }}
-{{- $indexAllPages := default true .Site.Params.search.index_all_pages -}}
-{{- $pages := cond $indexAllPages .Site.Pages .Site.RegularPages -}}
-{{- $pages = where $pages "Params.noindex" "ne" true -}}
+{{- $pagesCtx := dict "Site" .Site }}
+{{- $pages := partialCached "search/functions/pages" $pagesCtx $pagesCtx -}}
 {{- range $pages -}}
   {{- $page := . -}}
   {{- $item := newScratch -}}
