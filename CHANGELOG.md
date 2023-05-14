@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/hugomods/search/compare/v0.4.0...v0.4.1) (2023-05-14)
+
+
+### Performance Improvements
+
+* simplify the hashing method ([e6d2d90](https://github.com/hugomods/search/commit/e6d2d90a1b52079262d1543dffa4046ab17ee1df))
+
 ## [0.4.0](https://github.com/hugomods/search/compare/v0.3.1...v0.4.0) (2023-05-13)
 
 
