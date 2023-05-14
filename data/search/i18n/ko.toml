@@ -1,0 +1,54 @@
+[all]
+other = "모두 선택"
+
+[cancel]
+other = "취소"
+
+[expand]
+other = "확장"
+
+[index_fails]
+other = "인덱스 초기화에 실패하였습니다."
+
+[input_placeholder]
+other = "검색"
+
+[search_stat]
+one = "{total}개의 결과를 찾았습니다. (소요시간: {time})"
+other = "{total}개의 결과를 찾았습니다. (소요시간: {time})"
+
+[sort_by_default]
+other = "유사도 순"
+
+[sort_by_date_asc]
+other = "오랜 날짜 순"
+
+[sort_by_date_desc]
+other = "최근 날짜 순"
+
+[taxonomy_authors]
+other = "작성자"
+
+[taxonomy_categories]
+other = "카테고리"
+
+[taxonomy_series]
+other = "시리즈"
+
+[taxonomy_tags]
+other = "태그"
+
+[to_close]
+other = "로 닫기"
+
+[to_navigate]
+other = "로 이동"
+
+[to_search]
+other = "로 검색"
+
+[to_select]
+other = "로 선택"
+
+[years]
+other = "연도"
