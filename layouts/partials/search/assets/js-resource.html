@@ -75,8 +75,8 @@
 {{- range .Sites }}
   {{- $site := . }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
-    {{- $idxCtx := dict "Site" $site "Index" . }}
-    {{- $indexURL := partialCached "search/functions/search-index-url" $idxCtx $idxCtx }}
+    {{- $hash := partialCached "search/functions/search-index-hash" $site $site }}
+    {{- $indexURL := printf "%s?v=%s" .RelPermalink $hash }}
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}
