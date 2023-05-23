@@ -7,7 +7,10 @@
 {{- $years := slice }}
 {{- if default true site.Params.search.filter_years }}
   {{- $indexAllPages := default true .Site.Params.search.index_all_pages }}
-  {{- $pages := cond $indexAllPages .Site.AllPages .Site.AllRegularPages }}
+  {{- $pages := .Site.AllPages }}
+  {{- if not $indexAllPages }}
+    {{- $pages = where $pages "kind" "page" }}
+  {{- end }}
   {{- $pages = where $pages "Params.noindex" "ne" true }}
   {{- with $pages.GroupByDate "2006" }}
     {{- range . }}

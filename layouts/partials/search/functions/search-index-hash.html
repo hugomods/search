@@ -1,6 +1,6 @@
 {{/* This hashing function just calculate the number of pages and the lastmod time. */}}
 {{- $ctx := dict "Site" . }}
-{{- $pages := partialCached "search/functions/pages" $ctx $ctx -}}
+{{- $pages := partialCached "search/functions/pages" $ctx .Language.Lang -}}
 {{- $hash := printf "total=%d" $pages.Len }}
 {{- $latest := first 1 $pages.ByLastmod.Reverse }}
 {{- with index $latest 0 }}
