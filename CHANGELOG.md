@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/hugomods/search/compare/v0.4.2...v0.4.3) (2023-05-23)
+
+
+### Bug Fixes
+
+* adjust to Hugo v0.112.0 changes ([e2715f4](https://github.com/hugomods/search/commit/e2715f4bc05fe9f9822cd839c6d0ca9523ca2760))
+
 ## [0.4.2](https://github.com/hugomods/search/compare/v0.4.1...v0.4.2) (2023-05-23)
 
 
