@@ -2,7 +2,7 @@
 {{- $indexContent := default false .Site.Params.search.index_content -}}
 {{- $years := true }}
 {{- $pagesCtx := dict "Site" .Site }}
-{{- $pages := partialCached "search/functions/pages" $pagesCtx $pagesCtx -}}
+{{- $pages := partialCached "search/functions/pages" $pagesCtx .Site.Language.Lang -}}
 {{- range $pages -}}
   {{- $page := . -}}
   {{- $item := newScratch -}}
