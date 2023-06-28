@@ -2,7 +2,7 @@
 {{- range .Fragments.HeadingsMap }}
   {{- $headings = $headings | append (dict
     "anchor" .ID
-    "title" (.Title | htmlUnescape))
+    "title" (.Title | plainify))
   }}
 {{- end }}
 {{- return $headings -}}
