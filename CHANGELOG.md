@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/hugomods/search/compare/v0.4.3...v0.4.4) (2023-06-28)
+
+
+### Bug Fixes
+
+* strip HTML tags from headings ([167d5f1](https://github.com/hugomods/search/commit/167d5f1436c158bb944055d6882f79fefe5afaac))
+
 ## [0.4.3](https://github.com/hugomods/search/compare/v0.4.2...v0.4.3) (2023-05-23)
 
 
