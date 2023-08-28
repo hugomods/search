@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.5](https://github.com/hugomods/search/compare/v0.4.4...v0.4.5) (2023-08-28)
+
+
+### Bug Fixes
+
+* unescape the summary ([ab1521c](https://github.com/hugomods/search/commit/ab1521c9f8d4b93659fb66412c57ba3562cfd2b2))
+* use page description as summary if present ([bd6dc23](https://github.com/hugomods/search/commit/bd6dc236e752754572c853ed633fba9d8c67db34))
+
 ## [0.4.4](https://github.com/hugomods/search/compare/v0.4.3...v0.4.4) (2023-06-28)
 
 
