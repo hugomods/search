@@ -7,7 +7,7 @@
   {{- $page := . -}}
   {{- $item := newScratch -}}
   {{- $item.Set "title" .Title -}}
-  {{- $item.Set "summary" (.Summary | plainify) -}}
+  {{- $item.Set "summary" (default .Summary .Description | plainify) -}}
   {{- if $indexContent }}
     {{- $item.Set "content" .Plain }}
   {{- end }}
