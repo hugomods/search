@@ -1,0 +1,54 @@
+[all]
+other = "Semua"
+
+[cancel]
+other = "Batal"
+
+[expand]
+other = "Kembangkan"
+
+[index_fails]
+other = "Gagal untuk memulakan indeks."
+
+[input_placeholder]
+other = "Taip untuk cari"
+
+[search_stat]
+one = "Jumpa {total} hasil dalam {time}."
+other = "Jumpa {total} hasil dalam {time}."
+
+[sort_by_default]
+other = "Padanan terbaik"
+
+[sort_by_date_asc]
+other = "Paling lama"
+
+[sort_by_date_desc]
+other = "Paling baharu"
+
+[taxonomy_authors]
+other = "Pengarang"
+
+[taxonomy_categories]
+other = "Kategori"
+
+[taxonomy_series]
+other = "Siri"
+
+[taxonomy_tags]
+other = "Tag"
+
+[to_close]
+other = "untuk tutup"
+
+[to_navigate]
+other = "untuk menavigasi"
+
+[to_search]
+other = "untuk cari"
+
+[to_select]
+other = "untuk pilih"
+
+[years]
+other = "Tahun"
