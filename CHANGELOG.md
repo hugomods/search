@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/hugomods/search/compare/v0.4.5...v0.5.0) (2023-10-21)
+
+
+### Features
+
+* **i18n:** add ms.toml ([#166](https://github.com/hugomods/search/issues/166)) ([9c555c8](https://github.com/hugomods/search/commit/9c555c85261b97527181447a21400eb74caeedf1))
+
 ## [0.4.5](https://github.com/hugomods/search/compare/v0.4.4...v0.4.5) (2023-08-28)
 
 
