@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/hugomods/search/compare/v0.5.0...v0.6.0) (2023-11-01)
+
+
+### Features
+
+* **i18n:** add Russian translations ([#170](https://github.com/hugomods/search/issues/170)) ([bcf8362](https://github.com/hugomods/search/commit/bcf83622fbd093ff77b4f6f48893a5b981a63045))
+
 ## [0.5.0](https://github.com/hugomods/search/compare/v0.4.5...v0.5.0) (2023-10-21)
 
 
