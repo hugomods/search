@@ -1,0 +1,54 @@
+[all]
+other = "Все"
+
+[cancel]
+other = "Отмена"
+
+[expand]
+other = "Подробности"
+
+[index_fails]
+other = "Не удалось инициализировать индекс."
+
+[input_placeholder]
+other = "Введите поисковый запрос"
+
+[search_stat]
+one = "Найден {total} результат за {time}."
+other = "Найдено результатов: {total} за {time}."
+
+[sort_by_default]
+other = "Лучшее совпадение"
+
+[sort_by_date_asc]
+other = "Самый старый"
+
+[sort_by_date_desc]
+other = "Самый новый"
+
+[taxonomy_authors]
+other = "Авторы"
+
+[taxonomy_categories]
+other = "Категории"
+
+[taxonomy_series]
+other = "Серии"
+
+[taxonomy_tags]
+other = "Теги"
+
+[to_close]
+other = "Закрыть"
+
+[to_navigate]
+other = "Навигация"
+
+[to_search]
+other = "Поиск"
+
+[to_select]
+other = "Выбрать"
+
+[years]
+other = "Год"
