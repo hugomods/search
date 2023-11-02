@@ -1,0 +1,54 @@
+[all]
+other = "Toutes les langues"
+
+[cancel]
+other = "Annuler"
+
+[expand]
+other = "Détailler"
+
+[index_fails]
+other = "Impossible d'initialiser l'index de recherche."
+
+[input_placeholder]
+other = "Rechercher..."
+
+[search_stat]
+one = "{total} resultat trouvé en {time}."
+other = "{total} resultats trouvés en {time}."
+
+[sort_by_default]
+other = "Pertinence"
+
+[sort_by_date_asc]
+other = "Le plus ancien"
+
+[sort_by_date_desc]
+other = "Le plus récent"
+
+[taxonomy_authors]
+other = "Auteurs"
+
+[taxonomy_categories]
+other = "Catégories"
+
+[taxonomy_series]
+other = "Séries"
+
+[taxonomy_tags]
+other = "Tags"
+
+[to_close]
+other = "pour fermer"
+
+[to_navigate]
+other = "pour naviguer"
+
+[to_search]
+other = "pour rechercher"
+
+[to_select]
+other = "pour sélectionner"
+
+[years]
+other = "Années"
