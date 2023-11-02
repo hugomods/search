@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/hugomods/search/compare/v0.6.0...v0.7.0) (2023-11-02)
+
+
+### Features
+
+* **i18n:** add French translations ([#172](https://github.com/hugomods/search/issues/172)) ([23706f7](https://github.com/hugomods/search/commit/23706f72fcfb2fb40e0c015a497ffc1866e44f85))
+
 ## [0.6.0](https://github.com/hugomods/search/compare/v0.5.0...v0.6.0) (2023-11-01)
 
 
