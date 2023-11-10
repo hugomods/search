@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/hugomods/search/compare/v0.8.0...v0.8.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** update pt-br.toml ([#177](https://github.com/hugomods/search/issues/177)) ([ec24428](https://github.com/hugomods/search/commit/ec244289c793ee48887d755e5c5102eb9610f8f5))
+
 ## [0.8.0](https://github.com/hugomods/search/compare/v0.7.0...v0.8.0) (2023-11-10)
 
 
