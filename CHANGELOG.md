@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.0](https://github.com/hugomods/search/compare/v0.7.0...v0.8.0) (2023-11-10)
+
+
+### Features
+
+* **i18n:** create pt-br.toml ([#174](https://github.com/hugomods/search/issues/174)) ([65ceb82](https://github.com/hugomods/search/commit/65ceb82813e68f21d46978292802e762418a873d))
+* **i18n:** create pt-br.toml ([#175](https://github.com/hugomods/search/issues/175)) ([688d8f6](https://github.com/hugomods/search/commit/688d8f622c5ed0aad10262f35954b6bb817eb2cb))
+
 ## [0.7.0](https://github.com/hugomods/search/compare/v0.6.0...v0.7.0) (2023-11-02)
 
 
