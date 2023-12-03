@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/hugomods/search/compare/v0.8.1...v0.8.2) (2023-12-03)
+
+
+### Bug Fixes
+
+* set the name attribute for search input ([c567d21](https://github.com/hugomods/search/commit/c567d213834d8c48086fd5c00855718a01e658fc))
+
 ## [0.8.1](https://github.com/hugomods/search/compare/v0.8.0...v0.8.1) (2023-11-10)
 
 
