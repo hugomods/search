@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.3](https://github.com/hugomods/search/compare/v0.8.2...v0.8.3) (2023-12-16)
+
+
+### Bug Fixes
+
+* prevent default for arrow up and down events ([#185](https://github.com/hugomods/search/issues/185)) ([1d31b05](https://github.com/hugomods/search/commit/1d31b05bfb75692f0faf0b4f9847d322ed966453))
+
 ## [0.8.2](https://github.com/hugomods/search/compare/v0.8.1...v0.8.2) (2023-12-03)
 
 
