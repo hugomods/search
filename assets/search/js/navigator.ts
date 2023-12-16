@@ -45,12 +45,14 @@ class Navigator {
     document.addEventListener('DOMContentLoaded', () => {
         const navigator = new Navigator()
 
-        keyboard.attach(['ArrowUp'], () => {
+        keyboard.attach(['ArrowUp'], (e: KeyboardEvent) => {
             navigator.prev()
+            e.preventDefault()
         })
 
-        keyboard.attach(['ArrowDown'], () => {
+        keyboard.attach(['ArrowDown'], (e: KeyboardEvent) => {
             navigator.next()
+            e.preventDefault()
         })
     })
 })()
