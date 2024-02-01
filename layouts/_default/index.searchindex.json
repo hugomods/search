@@ -1,2 +1,1 @@
-{{- $ctx := dict "Site" .Site }}
-{{- partialCached "search/index.json" $ctx $ctx -}}
+{{- partialCached "search/index.json" . -}}

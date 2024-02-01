@@ -1,8 +1,8 @@
 {{- $items := slice -}}
-{{- $indexContent := default false .Site.Params.search.index_content -}}
+{{- $multihost := partialCached "search/functions/is-multihost" . }}
+{{- $indexContent := default false site.Params.search.index_content -}}
 {{- $years := true }}
-{{- $pagesCtx := dict "Site" .Site }}
-{{- $pages := partialCached "search/functions/pages" $pagesCtx .Site.Language.Lang -}}
+{{- $pages := partial "search/functions/pages" . -}}
 {{- range $pages -}}
   {{- $page := . -}}
   {{- $item := newScratch -}}
@@ -13,14 +13,14 @@
   {{- end }}
   {{- $item.Set "kind" .Kind -}}
   {{- $item.Set "lang" .Language.Lang -}}
-  {{- $item.Set "url" .RelPermalink -}}
+  {{- $item.Set "url" (cond $multihost .Permalink .RelPermalink) -}}
   {{- $item.Set "date" .Date.Unix -}}
   {{- if $years }}
     {{- $item.Set "year" (.Date.Format "2006") }}
   {{- end }}
   {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) -}}
   {{/* Taxonomies */}}
-  {{- range $name, $taxonomy := $.Site.Taxonomies -}}
+  {{- range $name, $taxonomy := site.Taxonomies -}}
     {{- range $page.GetTerms $name -}}
       {{- $item.Add $name (slice .Title) }}
     {{- end -}}
