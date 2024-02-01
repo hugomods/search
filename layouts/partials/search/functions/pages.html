@@ -1,4 +1,4 @@
-{{- $indexAllPages := default true .Site.Params.search.index_all_pages -}}
-{{- $pages := cond $indexAllPages .Site.Pages .Site.RegularPages -}}
+{{- $indexAllPages := default true site.Params.search.index_all_pages -}}
+{{- $pages := cond $indexAllPages site.Pages site.RegularPages -}}
 {{- $pages = where $pages "Params.noindex" "ne" true -}}
 {{- return $pages }}
