@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.4](https://github.com/hugomods/search/compare/v0.8.3...v0.8.4) (2024-02-01)
+
+
+### Bug Fixes
+
+* correct indices URLs for multihost ([#190](https://github.com/hugomods/search/issues/190)) ([ec12c52](https://github.com/hugomods/search/commit/ec12c5244ae7211c9f056d6e4ab07160cb6386e2))
+
 ## [0.8.3](https://github.com/hugomods/search/compare/v0.8.2...v0.8.3) (2023-12-16)
 
 
