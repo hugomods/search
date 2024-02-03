@@ -57,7 +57,7 @@ export default class Form {
     }
 
     private renderLanguage(): string {
-        if (params.langs.length < 2) {
+        if (Object.keys(params.langs).length < 2) {
             return ''
         }
 
@@ -176,7 +176,7 @@ export default class Form {
         })
 
         this.language = this.ele.querySelector('.search-filter-lang') as HTMLElement
-        this.language.addEventListener('change', () => {
+        this.language?.addEventListener('change', () => {
             this.submit()
         })
 
