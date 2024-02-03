@@ -27,13 +27,13 @@ other = "Älteste"
 other = "Neueste"
 
 [taxonomy_authors]
-other = "Authors"
+other = "Autoren"
 
 [taxonomy_categories]
-other = "Categories"
+other = "Kategorien"
 
 [taxonomy_series]
-other = "Series"
+other = "Serien"
 
 [taxonomy_tags]
 other = "Tags"
@@ -51,4 +51,4 @@ other = "Suchen"
 other = "Auswählen"
 
 [years]
-other = "Years"
+other = "Jahre"
