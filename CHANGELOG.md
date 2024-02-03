@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.5](https://github.com/hugomods/search/compare/v0.8.4...v0.8.5) (2024-02-03)
+
+
+### Bug Fixes
+
+* hide the languages filter on monolingual site ([#195](https://github.com/hugomods/search/issues/195)) ([05bb665](https://github.com/hugomods/search/commit/05bb665fc4d62af512cec1a7db6933a57e0728b9))
+* **i18n:** improve German transalation ([#89](https://github.com/hugomods/search/issues/89)) ([#192](https://github.com/hugomods/search/issues/192)) ([be96a62](https://github.com/hugomods/search/commit/be96a62c12b11ca7bfba67429fc4505410da9eff))
+
 ## [0.8.4](https://github.com/hugomods/search/compare/v0.8.3...v0.8.4) (2024-02-01)
 
 
