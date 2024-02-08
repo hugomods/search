@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.6](https://github.com/hugomods/search/compare/v0.8.5...v0.8.6) (2024-02-08)
+
+
+### Styles 🎨
+
+* disable input autocomplete ([#197](https://github.com/hugomods/search/issues/197)) ([1b9b59b](https://github.com/hugomods/search/commit/1b9b59badecccf5cb84affdec90869297307ffb0)), closes [#196](https://github.com/hugomods/search/issues/196)
+
 ## [0.8.5](https://github.com/hugomods/search/compare/v0.8.4...v0.8.5) (2024-02-03)
 
 
