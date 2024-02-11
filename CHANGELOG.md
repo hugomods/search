@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.7](https://github.com/hugomods/search/compare/v0.8.6...v0.8.7) (2024-02-11)
+
+
+### Bug Fixes 🐞
+
+* set index_all_pages to false as the default value ([96d562b](https://github.com/hugomods/search/commit/96d562bfe4f930c87f745bc7c6059116ff9e1463))
+
 ## [0.8.6](https://github.com/hugomods/search/compare/v0.8.5...v0.8.6) (2024-02-08)
 
 
