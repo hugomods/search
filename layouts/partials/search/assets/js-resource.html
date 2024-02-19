@@ -54,24 +54,24 @@
 {{- $js := resources.Get "search/js/index.ts" }}
 {{/* The SVG icons. */}}
 {{- $icons := dict
-  "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "width" "1.5rem" "height" "1.5rem"))
-  "heading" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "hash" "width" "1.5rem" "height" "1.5rem"))
-  "meta" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "info-circle" "width" "1.5rem" "height" "1.5rem"))
-  "search" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "width" "1.25rem" "height" "1.25rem"))
-  "spinner" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "width" "1.5rem" "height" "1.5rem"))
-  "lang" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "translate" "width" "1rem" "height" "1rem"))
-  "sort" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "sort-down" "width" "1rem" "height" "1rem"))
-  "expand" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "chevron-expand" "width" "1rem" "height" "1rem"))
-  "year" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "calendar-check" "width" "1rem" "height" "1rem"))
-  "taxonomies" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "width" "1rem" "height" "1rem"))
+  "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "size" "2em"))
+  "heading" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "hash" "size" "2em"))
+  "meta" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "info-circle" "size" "2em"))
+  "search" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "size" "1.25em"))
+  "spinner" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "size" "2em"))
+  "lang" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "translate" "size" "1em"))
+  "sort" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "sort-down" "size" "1em"))
+  "expand" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "chevron-expand" "size" "1em"))
+  "year" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "calendar-check" "size" "1em"))
+  "taxonomies" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "size" "1em"))
 }}
 {{/* Include the following icons when necessary. */}}
 {{- if default true .Site.Params.search.index_all_pages }}
   {{- $icons = merge $icons (dict
-    "home" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "width" "1.5rem" "height" "1.5rem"))
-    "section" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "list" "width" "1.5rem" "height" "1.5rem"))
-    "term" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tag" "width" "1.5rem" "height" "1.5rem"))
-    "taxonomy" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "width" "1.5rem" "height" "1.5rem")))
+    "home" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "size" "2em"))
+    "section" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "list" "size" "2em"))
+    "term" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tag" "size" "2em"))
+    "taxonomy" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "size" "2em")))
   }}
 {{- end }}
 {{/* Index files URL. */}}
