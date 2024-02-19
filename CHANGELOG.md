@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/hugomods/search/compare/v0.8.7...v0.9.0) (2024-02-19)
+
+
+### Features ✨
+
+* allow searching without keywords ([#204](https://github.com/hugomods/search/issues/204)) ([714daf9](https://github.com/hugomods/search/commit/714daf9162905834b299465abce7fc41d7126cb7))
+
 ## [0.8.7](https://github.com/hugomods/search/compare/v0.8.6...v0.8.7) (2024-02-11)
 
 
