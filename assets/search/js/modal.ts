@@ -21,14 +21,16 @@ export default class Modal {
 
     private container: HTMLElement
 
+    private renderer: Renderer
+
     private form: Form
 
     private shortcuts: Shortcuts
 
     constructor() {
         const spinner = new Spinner('.search-modal .search-spinner')
-        const renderer = new Renderer('.search-modal .search-results', '.search-modal .search-stat', spinner)
-        this.form = new Form(spinner, renderer)
+        this.renderer = new Renderer('.search-modal .search-results', '.search-modal .search-stat', spinner)
+        this.form = new Form(spinner, this.renderer)
         this.shortcuts = new Shortcuts([
             closeShortcut,
             searchShortcut,
@@ -99,6 +101,7 @@ export default class Modal {
   ${this.renderFooter()}
 </div>`
         this.wrapper.appendChild(this.container)
+        this.renderer.renderHistories()
     }
 
     renderFooter(): string {

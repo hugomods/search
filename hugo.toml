@@ -50,3 +50,4 @@ expand_results_meta = false
 lazy_loading = true
 filter_taxonomies = true
 filter_years = true
+histories_count = 5
