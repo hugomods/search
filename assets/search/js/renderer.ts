@@ -227,10 +227,6 @@ export default class Renderer {
 
     private renderStat() {
         const stat = this.getStatistics()
-        if (this.query === '') {
-            stat.innerHTML = ''
-            return
-        }
         stat.innerHTML = i18n.translate('search_stat', {
             count: this.results.length,
             total: `<span class="search-stat-results">${this.results.length}</span>`,
