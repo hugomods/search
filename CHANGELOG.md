@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.0](https://github.com/hugomods/search/compare/v0.9.0...v0.10.0) (2024-02-19)
+
+
+### Features ✨
+
+* show page image if present ([#208](https://github.com/hugomods/search/issues/208)) ([0a36bdb](https://github.com/hugomods/search/commit/0a36bdba5d204ba9ede73f3740285244fff02e19))
+
+
+### Bug Fixes 🐞
+
+* correct icons size ([1559bcf](https://github.com/hugomods/search/commit/1559bcfc79c01d685c0f027537667a233c0ab402))
+* show search stat when searching without keywords ([b782874](https://github.com/hugomods/search/commit/b782874907474e86ddc96450091617ab052f4545))
+
 ## [0.9.0](https://github.com/hugomods/search/compare/v0.8.7...v0.9.0) (2024-02-19)
 
 
