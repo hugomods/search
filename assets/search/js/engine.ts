@@ -126,12 +126,10 @@ class Engine {
      * @param {string} lang 
      */
     private pattern(query: string, lang: string, years: Array<string> = [], taxonomies: Record<string, Array<string>> = {}): string | Record<string, unknown> {
-        if (lang === '') {
-            return query
-        }
+        const p: Array<Record<string, unknown>> = []
 
-        const p: Array<Record<string, unknown>> = [
-            {
+        if (query !== '') {
+            p.push({
                 "$or": [
                     { title: query },
                     { summary: query },
@@ -141,8 +139,8 @@ class Engine {
                         "$val": query
                     },
                 ]
-            },
-        ]
+             })
+        }
 
         if (lang) {
             p.push({

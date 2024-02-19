@@ -242,10 +242,6 @@ export default class Form {
     private submit() {
         const query = this.getQuery()
         this.updatePage(query)
-        if (query === '') {
-            this.renderer.render(query, [], 0)
-            return
-        }
 
         this.spinner.show()
         const sorting = this.getSorting()
