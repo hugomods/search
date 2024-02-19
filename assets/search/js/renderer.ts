@@ -58,6 +58,10 @@ export default class Renderer {
     }
 
     icon(page) {
+        if (page.img) {
+            return `<img class="search-result-img" src="${page.img}" />`
+        }
+
         return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
     }
 

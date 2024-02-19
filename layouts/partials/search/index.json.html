@@ -15,9 +15,16 @@
   {{- $item.Set "lang" .Language.Lang -}}
   {{- $item.Set "url" (cond $multihost .Permalink .RelPermalink) -}}
   {{- $item.Set "date" .Date.Unix -}}
-  {{- if $years }}
-    {{- $item.Set "year" (.Date.Format "2006") }}
-  {{- end }}
+  {{- if $years -}}
+    {{- $item.Set "year" (.Date.Format "2006") -}}
+  {{- end -}}
+  {{/* Image */}}
+  {{- if or $page.Params.images ($page.Resources.GetMatch "{*feature*,*cover*,*thumbnail*}") -}}
+    {{- with partial "_funcs/get-page-images" $page -}}
+      {{- $img := index . 0 -}}
+      {{- $item.Set "img" (cond $multihost $img.Permalink $img.RelPermalink) -}}
+    {{- end -}}
+  {{- end -}}
   {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) -}}
   {{/* Taxonomies */}}
   {{- range $name, $taxonomy := site.Taxonomies -}}
