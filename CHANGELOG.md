@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.11.0](https://github.com/hugomods/search/compare/v0.10.0...v0.11.0) (2024-02-19)
+
+
+### Features ✨
+
+* add support for histories ([#210](https://github.com/hugomods/search/issues/210)) ([4e28dfa](https://github.com/hugomods/search/commit/4e28dfa17d3ae9405590f6e068579b572346d2de))
+
+
+### Bug Fixes 🐞
+
+* correct spinner icon size ([88d6d7d](https://github.com/hugomods/search/commit/88d6d7d2a9a0b31dfec7b5b1569d216a82101db1))
+
 ## [0.10.0](https://github.com/hugomods/search/compare/v0.9.0...v0.10.0) (2024-02-19)
 
 
