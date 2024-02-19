@@ -1,6 +1,7 @@
 import { default as params } from '@params'
 import i18n from './i18n'
 import Spinner from './spinner'
+import { default as Historiographer } from './historiographer'
 
 export default class Renderer {
     private initialized = false
@@ -207,6 +208,33 @@ export default class Renderer {
 
         const observer = new MutationObserver(observe);
         observer.observe(container, { childList: true });
+    }
+
+    renderHistories() {
+        this.results = []
+        this.clean()
+        const histories = Historiographer.get()
+        let html = ''
+        histories.forEach((history) => {
+            html += `<a title="${history.query}" data-query="${history.query}" href="#" class="search-result search-history" aria-selected="false">
+  <div class="search-result-icon">${params.icons['history']}</div>
+  <div class="search-result-content">
+    <div class="search-result-title">${history.query}</div>
+    <div class="search-result-desc">${history.date ? history.date.toLocaleString() : ''}</div>
+  </div>
+</a>`
+        })
+        this.getContainer().insertAdjacentHTML('beforeend', html)
+        this.getContainer().querySelectorAll('.search-history').forEach((ele) => {
+            ele.addEventListener('click', (e) => {
+                e.preventDefault()
+                document.dispatchEvent(new CustomEvent('search:input:change', {
+                    detail: {
+                        value: ele.getAttribute('data-query')
+                    }
+                }))
+            })
+        })
     }
 
     activeResult(target) {

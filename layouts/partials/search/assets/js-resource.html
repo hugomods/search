@@ -56,6 +56,7 @@
 {{- $icons := dict
   "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "size" "2em"))
   "heading" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "hash" "size" "2em"))
+  "history" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "clock" "size" "2em"))
   "meta" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "info-circle" "size" "2em"))
   "search" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "size" "1.25em"))
   "spinner" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "size" "1.25em"))
@@ -89,6 +90,7 @@
   "icons" $icons
   "indices" $indices
   "i18n" $i18n.Values
+  "historiesCount" (default 5 site.Params.search.histories_count)
   "defaultLang" $defaultLang
   "langs" $langs.Values
   "years" $years

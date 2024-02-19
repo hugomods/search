@@ -10,6 +10,8 @@ export default class Search {
 
     private shortcuts: Shortcuts
 
+    private renderer: Renderer
+
     constructor() {
         const container = document.querySelector('.search-container') as HTMLElement
         if (!container) {
@@ -19,8 +21,8 @@ export default class Search {
         this.container = container
 
         const spinner = new Spinner('.search-container .search-spinner')
-        const renderer = new Renderer('.search-container .search-results', '.search-container .search-stat', spinner)
-        this.form = new Form(spinner, renderer)
+        this.renderer = new Renderer('.search-container .search-results', '.search-container .search-stat', spinner)
+        this.form = new Form(spinner, this.renderer)
         this.form.modal = false
 
         this.shortcuts = new Shortcuts([Navigate, Select])
@@ -34,6 +36,7 @@ export default class Search {
 <div class="search-footer">${this.shortcuts.render()}</div>`
         this.container.insertAdjacentHTML('beforeend', html)
         this.form.init()
+        this.renderer.renderHistories()
     }
 }
 

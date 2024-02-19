@@ -3,6 +3,7 @@ import i18n from './i18n'
 import Renderer from './renderer'
 import engine from './engine'
 import Spinner from './spinner'
+import { default as Historiographer } from './historiographer'
 
 export default class Form {
     // Original page title.
@@ -174,6 +175,10 @@ export default class Form {
         this.input.addEventListener('search', () => {
             this.submit()
         })
+        document.addEventListener('search:input:change', (e) => {
+            this.input.value = e.detail.value
+            this.submit()
+        })
 
         this.language = this.ele.querySelector('.search-filter-lang') as HTMLElement
         this.language?.addEventListener('change', () => {
@@ -243,14 +248,21 @@ export default class Form {
         const query = this.getQuery()
         this.updatePage(query)
 
-        this.spinner.show()
         const sorting = this.getSorting()
         const lang = this.getLanguage()
         const years = this.getYears()
         const taxonomies = this.getTaxonomies()
+
+        if (query === '' && Object.values(taxonomies).filter((item) => item.length > 0).length == 0) {
+            this.renderer.renderHistories()
+            return
+        }
+
+        this.spinner.show()
         engine.search(query, sorting, lang, years, taxonomies).then(({ results, time }) => {
             this.renderer.render(query, results, time)
         }).finally(() => {
+            Historiographer.save(query)
             this.spinner.hide()
         })
     }
