@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.1](https://github.com/hugomods/search/compare/v0.11.0...v0.11.1) (2024-02-20)
+
+
+### Bug Fixes 🐞
+
+* make sure hiding search icon before showing spinner icon ([#215](https://github.com/hugomods/search/issues/215)) ([7fe1301](https://github.com/hugomods/search/commit/7fe13018ca92dde2789a3ef5186b68f0a0fb608a))
+* stop propagation when selecting history entities ([#213](https://github.com/hugomods/search/issues/213)) ([a33e085](https://github.com/hugomods/search/commit/a33e085338b2cc4e140c86e1c728126fe096bdc8))
+
+
+### Styles 🎨
+
+* change spinner icon size to 1.35em ([7fe1301](https://github.com/hugomods/search/commit/7fe13018ca92dde2789a3ef5186b68f0a0fb608a))
+
 ## [0.11.0](https://github.com/hugomods/search/compare/v0.10.0...v0.11.0) (2024-02-19)
 
 
