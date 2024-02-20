@@ -55,6 +55,7 @@ export default class Renderer {
     }
 
     clean() {
+        this.results = []
         this.getContainer().innerHTML = ''
     }
 
@@ -211,8 +212,10 @@ export default class Renderer {
     }
 
     renderHistories() {
-        this.results = []
-        this.clean()
+        if (!params.histories) {
+            return
+        }
+
         const histories = Historiographer.get()
         let html = ''
         histories.forEach((history) => {

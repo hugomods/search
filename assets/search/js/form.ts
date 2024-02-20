@@ -255,6 +255,7 @@ export default class Form {
         const taxonomies = this.getTaxonomies()
 
         if (query === '' && Object.values(taxonomies).filter((item) => item.length > 0).length == 0) {
+            this.renderer.clean()
             this.renderer.renderHistories()
             return
         }
