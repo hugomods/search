@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0](https://github.com/hugomods/search/compare/v0.11.1...v0.12.0) (2024-02-20)
+
+
+### Features ✨
+
+* add the search.histories parameter, disable histories if `false` ([#217](https://github.com/hugomods/search/issues/217)) ([280694f](https://github.com/hugomods/search/commit/280694faa82378edda56285c4537bb09a353a0ab))
+
+
+### Styles 🎨
+
+* fix height as 48px for result img ([d6cba31](https://github.com/hugomods/search/commit/d6cba3145036a9a3e0beac5a1d95a9fc9f07bdb4))
+
 ## [0.11.1](https://github.com/hugomods/search/compare/v0.11.0...v0.11.1) (2024-02-20)
 
 
