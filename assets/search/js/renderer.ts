@@ -228,6 +228,7 @@ export default class Renderer {
         this.getContainer().querySelectorAll('.search-history').forEach((ele) => {
             ele.addEventListener('click', (e) => {
                 e.preventDefault()
+                e.stopPropagation()
                 document.dispatchEvent(new CustomEvent('search:input:change', {
                     detail: {
                         value: ele.getAttribute('data-query')
