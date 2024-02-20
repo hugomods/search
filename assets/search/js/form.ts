@@ -201,6 +201,7 @@ export default class Form {
             })
         })
 
+        this.spinner.show()
         engine.init().then(() => {
             this.input.removeAttribute('disabled')
         }).catch((err) => {

@@ -31,6 +31,9 @@ export default class Spinner {
 
     show() {
         this.getSearchIcon().classList.add('disabled')
-        this.getElement().classList.remove('disabled')
+        // delay for making sure the search icon was hidden.
+        setTimeout(() => {
+            this.getElement().classList.remove('disabled')
+        }, 1)
     }
 }
