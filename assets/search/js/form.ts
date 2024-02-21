@@ -35,10 +35,13 @@ export default class Form {
 
     render() {
         return `<form class="search-form">
-  <div class="search-input-group">
-    <span class="search-input-icon">${params.icons['search']}</span>
-    <span class="search-spinner">${params.icons['spinner']}</span>
-    <input type="search" name="q" class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" autocomplete="off" disabled/>
+  <div class="search-input-group-wrapper">
+    <div class="search-input-group">
+        <span class="search-input-icon">${params.icons['search']}</span>
+        <span class="search-spinner">${params.icons['spinner']}</span>
+        <input type="search" name="q" class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" autocomplete="off" disabled/>
+        <button class="search-reset-button disabled" type="reset">${params.icons['reset']}</button>
+    </div>
     <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
   </div>
   <div class="search-form-meta">
@@ -200,6 +203,31 @@ export default class Form {
                 this.submit()
             })
         })
+        
+        this.ele.addEventListener('reset', () => {
+            const lang = document.documentElement.getAttribute('lang') ?? ''
+            this.language?.querySelectorAll('.search-dropdown-item').forEach((ele) => {
+                if (ele.getAttribute('data-value') !== lang) {
+                    ele.classList.remove('active')
+                } else {
+                    this.language.classList.add('active')
+                    this.language.setAttribute('data-value', lang)
+                    this.language.querySelector('.search-dropdown-label').innerHTML = ele.innerHTML
+                    ele.classList.add('active')
+                }
+            })
+            for (const name of ['years', 'taxonomies']) {
+                this.ele.querySelectorAll(`.search-${name}.active`).forEach((ele) => {
+                    ele.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
+                        item.classList.remove('active')
+                    })
+                    ele.classList.remove('active')
+                })
+            }
+            setTimeout(() => {
+                this.submit()
+            }, 1)
+        })
 
         this.spinner.show()
         engine.init().then(() => {
@@ -245,6 +273,14 @@ export default class Form {
         }
     }
 
+    private showResetBtn() {
+        this.ele.querySelector('button[type="reset"]')?.classList.remove('disabled')
+    }
+
+    private hideResetBtn() {
+        this.ele.querySelector('button[type="reset"]')?.classList.add('disabled')
+    }
+
     private submit() {
         const query = this.getQuery()
         this.updatePage(query)
@@ -255,11 +291,13 @@ export default class Form {
         const taxonomies = this.getTaxonomies()
 
         if (query === '' && Object.values(taxonomies).filter((item) => item.length > 0).length == 0) {
+            this.hideResetBtn()
             this.renderer.clean()
             this.renderer.renderHistories()
             return
         }
 
+        this.showResetBtn()
         this.spinner.show()
         engine.search(query, sorting, lang, years, taxonomies).then(({ results, time }) => {
             this.renderer.render(query, results, time)
