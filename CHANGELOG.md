@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.13.0](https://github.com/hugomods/search/compare/v0.12.0...v0.13.0) (2024-02-21)
+
+
+### Features ✨
+
+* add the reset button ([#220](https://github.com/hugomods/search/issues/220)) ([526a7de](https://github.com/hugomods/search/commit/526a7de9e350f5bf39210342c223191b0bfd6bf4))
+
+
+### Styles 🎨
+
+* set top as 0.5rem for search result actions to avoid CLS ([a06fea1](https://github.com/hugomods/search/commit/a06fea10d97ac65ca62a5b2416739810ef41df94))
+
 ## [0.12.0](https://github.com/hugomods/search/compare/v0.11.1...v0.12.0) (2024-02-20)
 
 
