@@ -302,7 +302,9 @@ export default class Form {
         engine.search(query, sorting, lang, years, taxonomies).then(({ results, time }) => {
             this.renderer.render(query, results, time)
         }).finally(() => {
-            Historiographer.save(query)
+            if (params.histories) {
+                Historiographer.save(query)
+            }
             this.spinner.hide()
         })
     }
