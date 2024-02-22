@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/hugomods/search/compare/v0.13.0...v0.13.1) (2024-02-22)
+
+
+### Bug Fixes 🐞
+
+* do not save history to client if search.histories parameter is `false` ([#222](https://github.com/hugomods/search/issues/222)) ([6e9b943](https://github.com/hugomods/search/commit/6e9b94333faf93a9a6722f79f06830bda9e3b5ae))
+
 ## [0.13.0](https://github.com/hugomods/search/compare/v0.12.0...v0.13.0) (2024-02-21)
 
 
