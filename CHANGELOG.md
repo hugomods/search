@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.2](https://github.com/hugomods/search/compare/v0.13.1...v0.13.2) (2024-02-23)
+
+
+### Styles 🎨
+
+* change top as 0.25rem for result actions ([4d3181d](https://github.com/hugomods/search/commit/4d3181d8db6c1af2fa14e098a95554e6a0111359))
+
 ## [0.13.1](https://github.com/hugomods/search/compare/v0.13.0...v0.13.1) (2024-02-22)
 
 
