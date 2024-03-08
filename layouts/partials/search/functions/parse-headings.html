@@ -1,8 +1,10 @@
 {{- $headings := slice }}
-{{- range .Fragments.HeadingsMap }}
-  {{- $headings = $headings | append (dict
-    "anchor" .ID
-    "title" (.Title | plainify))
-  }}
+{{- with .Fragments }}
+  {{- range .HeadingsMap }}
+    {{- $headings = $headings | append (dict
+      "anchor" .ID
+      "title" (.Title | plainify))
+    }}
+  {{- end }}
 {{- end }}
 {{- return $headings -}}
