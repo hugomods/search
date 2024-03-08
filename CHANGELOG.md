@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.3](https://github.com/hugomods/search/compare/v0.13.2...v0.13.3) (2024-03-08)
+
+
+### Bug Fixes 🐞
+
+* check before parsing headings ([1af30b8](https://github.com/hugomods/search/commit/1af30b8caaa4824ecd3e9785247ee883e30b5f8d))
+
 ## [0.13.2](https://github.com/hugomods/search/compare/v0.13.1...v0.13.2) (2024-02-23)
 
 
