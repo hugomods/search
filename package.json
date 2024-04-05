@@ -13,7 +13,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
-    "eslint": "^8.34.0",
+    "eslint": "^9.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-go-template": "^0.0.13",
     "stylelint": "^15.1.0",
