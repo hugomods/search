@@ -6,4 +6,4 @@
 [![Version](https://img.shields.io/github/v/tag/hugomods/search?label=version&style=flat-square)](https://github.com/hugomods/search/tags)
 
 A powerful, flexible and responsive [Hugo](https://gohugo.io/) client side fuzzy search module built on top of [Fuse.js](https://github.com/krisk/Fuse).
-Please check out the [documentation](https://hugomods.com/en/docs/search/) for details.
+Please check out the [documentation](https://hugomods.com/search/) for details.
