@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.4](https://github.com/hugomods/search/compare/v0.13.3...v0.13.4) (2024-05-26)
+
+
+### Performance Improvements ⚡️
+
+* use hugo.IsMultihost instead of custom function ([#237](https://github.com/hugomods/search/issues/237)) ([bc1adb5](https://github.com/hugomods/search/commit/bc1adb5f5ff0c3860c1acb38ee481ac6828535b8)), closes [#225](https://github.com/hugomods/search/issues/225)
+
 ## [0.13.3](https://github.com/hugomods/search/compare/v0.13.2...v0.13.3) (2024-03-08)
 
 
