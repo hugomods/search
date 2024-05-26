@@ -1,5 +1,4 @@
 {{- $defaultLang := .Sites.First.Language.Lang }}
-{{- $multihost := partialCached "search/functions/is-multihost" . }}
 {{- $langs := newScratch }}
 {{- range .Site.Languages }}
   {{- $langs.Set .Lang (dict "lang" .Lang "name" .LanguageName) }}
@@ -82,7 +81,7 @@
   {{- $site := . }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
     {{- $hash := partialCached "search/functions/search-index-hash" $site $site }}
-    {{- $indexURL := printf "%s?v=%s" (cond $multihost .Permalink .RelPermalink) $hash }}
+    {{- $indexURL := printf "%s?v=%s" (cond hugo.IsMultihost .Permalink .RelPermalink) $hash }}
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}
