@@ -1,0 +1,54 @@
+[all]
+other = "All"
+
+[cancel]
+other = "Cancel"
+
+[expand]
+other = "Expand"
+
+[index_fails]
+other = "Failed to initialise index."
+
+[input_placeholder]
+other = "Type to search"
+
+[search_stat]
+one = "Found {total} result in {time}."
+other = "Found {total} results in {time}."
+
+[sort_by_default]
+other = "Best match"
+
+[sort_by_date_asc]
+other = "Oldest"
+
+[sort_by_date_desc]
+other = "Newest"
+
+[taxonomy_authors]
+other = "Authors"
+
+[taxonomy_categories]
+other = "Categories"
+
+[taxonomy_series]
+other = "Series"
+
+[taxonomy_tags]
+other = "Tags"
+
+[to_close]
+other = "to close"
+
+[to_navigate]
+other = "to navigate"
+
+[to_search]
+other = "to search"
+
+[to_select]
+other = "to select"
+
+[years]
+other = "Years"
