@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/hugomods/search/compare/v0.14.0...v0.14.1) (2024-08-20)
+
+
+### Bug Fixes 🐞
+
+* replace resources.PostCSS with css.PostCSS ([#243](https://github.com/hugomods/search/issues/243)) ([ee85370](https://github.com/hugomods/search/commit/ee8537018887839cdd0c5c72a373722dc8c9af06))
+
 ## [0.14.0](https://github.com/hugomods/search/compare/v0.13.4...v0.14.0) (2024-05-28)
 
 
