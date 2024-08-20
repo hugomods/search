@@ -1,4 +1,4 @@
-{{- $defaultLang := .Sites.First.Language.Lang }}
+{{- $defaultLang := .Sites.Default.Language.Lang }}
 {{- $langs := newScratch }}
 {{- range .Site.Languages }}
   {{- $langs.Set .Lang (dict "lang" .Lang "name" .LanguageName) }}

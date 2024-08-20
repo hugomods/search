@@ -8,5 +8,5 @@
   "enableSourceMap" (not hugo.IsProduction)
   "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
 }}
-{{- $css = $css | toCSS $options | resources.PostCSS $postCSSOpts }}
+{{- $css = $css | toCSS $options | css.PostCSS $postCSSOpts }}
 {{- return $css -}}
