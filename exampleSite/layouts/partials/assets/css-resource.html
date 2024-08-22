@@ -1,4 +1,5 @@
 {{ $css := resources.Get "main.scss" | toCSS (dict
+  "transpiler" (default "dartsass" site.Params.search.sass_transpiler)
   "enableSourceMap" (not hugo.IsProduction)
   "outputStyle" (cond hugo.IsProduction "compressed" "expanded") )
 }}

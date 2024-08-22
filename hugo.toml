@@ -32,6 +32,7 @@ path = "github.com/hugomods/icons/vendors/bootstrap"
 [params.hugopress.modules.search.hooks.body-end]
 
 [params.search]
+sass_transpiler = "dartsass"
 modal_container = "body"
 modal_toggle_selector = '.search-modal-toggle'
 stall_threshold = 300

@@ -4,6 +4,7 @@
 }}
 {{- $css := resources.Get "search/scss/index.scss" }}
 {{- $options := dict
+  "transpiler" (default "dartsass" site.Params.search.sass_transpiler)
   "targetPath" (cond $rtl "css/search.rtl.css" "css/search.css")
   "enableSourceMap" (not hugo.IsProduction)
   "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
