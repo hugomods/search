@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/hugomods/search/compare/v0.14.1...v0.15.0) (2024-08-22)
+
+
+### Features ✨
+
+* add the search.sass_transpiler parameter, default to dartsass ([25c6f06](https://github.com/hugomods/search/commit/25c6f067fa4d90d22114a11ac152900808586e1e))
+
 ## [0.14.1](https://github.com/hugomods/search/compare/v0.14.0...v0.14.1) (2024-08-20)
 
 
