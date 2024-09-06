@@ -1,10 +1,5 @@
 {{- $headings := slice }}
 {{- with .Fragments }}
-  {{- range .HeadingsMap }}
-    {{- $headings = $headings | append (dict
-      "anchor" .ID
-      "title" (.Title | plainify))
-    }}
-  {{- end }}
+  {{- $headings = partial "search/functions/walk-headings" (dict "Headings" .Headings "PID" -1) }}
 {{- end }}
 {{- return $headings -}}
