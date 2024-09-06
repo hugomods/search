@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.16.0](https://github.com/hugomods/search/compare/v0.15.1...v0.16.0) (2024-09-06)
+
+
+### Features ✨
+
+* add search.key_weights parameters ([#252](https://github.com/hugomods/search/issues/252)) ([8e58fd9](https://github.com/hugomods/search/commit/8e58fd9050ebbfab46c4158df557724cc455a92f))
+
+
+### Bug Fixes 🐞
+
+* show ancestors of headings ([#250](https://github.com/hugomods/search/issues/250)) ([56760ab](https://github.com/hugomods/search/commit/56760abd60282f43b41e82c525318188240a085d)), closes [#249](https://github.com/hugomods/search/issues/249)
+
 ## [0.15.1](https://github.com/hugomods/search/compare/v0.15.0...v0.15.1) (2024-09-06)
 
 
