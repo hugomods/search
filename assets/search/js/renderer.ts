@@ -352,6 +352,7 @@ export default class Renderer {
     <div class="search-result-desc">${result.item.title}</div>
   </div>
 </a>`
+                break // avoid match same heading multiple times.
             }
         }
 
