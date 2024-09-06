@@ -15,5 +15,14 @@
   "expand_results_meta" false
   "index_content" false
   "lazy_loading" true
+  "key_weights" (dict
+    "title" 1
+    "summary" 1
+    "headings" 0.5
+    "content" 0.5
+    "lang" 1
+    "year" 1
+    "taxonomies" 0.1
+  )
 }}
 {{- return (merge $defaults site.Params.search) -}}

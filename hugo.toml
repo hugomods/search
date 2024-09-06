@@ -53,3 +53,12 @@ filter_taxonomies = true
 filter_years = true
 histories = true
 histories_count = 5
+
+[params.search.key_weights]
+title = 1
+summary = 1
+headings = 0.5
+content = 0.5
+lang = 1
+year = 1
+taxonomies = 0.1

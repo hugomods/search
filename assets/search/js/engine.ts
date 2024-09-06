@@ -55,7 +55,7 @@ class Engine {
                 threshold: params.threshold,
                 distance: params.distance,
                 ignoreLocation: params.ignore_location,
-                keys: this.keys(),
+                keys: this.getKeys(),
                 includeMatches: true,
                 useExtendedSearch: true,
                 includeScore: true,
@@ -66,18 +66,31 @@ class Engine {
         })
     }
 
-    private keys() {
-        const keys = ['title', 'summary', 'headings.title', 'lang', 'year']
+    private keys
+
+    private getKeys() {
+        if (this.keys) {
+            return this.keys
+        }
+
+        const keys = [
+            {name: 'title', weight: params.key_weights.title},
+            {name: 'summary', weight: params.key_weights.summary},
+            {name: 'headings.title', weight: params.key_weights.headings},
+            {name: 'lang', weight: params.key_weights.lang},
+            {name: 'year', weight: params.key_weights.year},
+        ]
 
         if (params.index_content) {
-            keys.push('content')
+            keys.push({name: 'content', weight: params.key_weights.content})
         }
 
         for (const taxonomy in params.taxonomies) {
-            keys.push(taxonomy)
+            keys.push({name: taxonomy, weight: params.key_weights.taxonomies})
         }
 
-        return keys
+        this.keys = keys
+        return this.keys
     }
 
     private query
