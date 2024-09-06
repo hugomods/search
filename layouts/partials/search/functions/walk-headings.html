@@ -1,0 +1,16 @@
+{{- $v := slice }}
+{{- $pid := .PID }}
+{{- range .Headings }}
+  {{- if ne .Title "" }}
+    {{- $v = $v | append (dict
+      "pid" $pid
+      "anchor" .ID
+      "title" (.Title | plainify))
+    }}
+  {{- end }}
+  {{- $v = $v | append (partial "search/functions/walk-headings" (dict
+    "Headings" .Headings
+    "PID" (add $pid (len $v))))
+  }}
+{{- end }}
+{{- return $v }}

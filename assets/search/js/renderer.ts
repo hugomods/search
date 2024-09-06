@@ -345,11 +345,15 @@ export default class Renderer {
                     continue
                 }
 
-                headings += `<a title="${heading.title} - ${result.item.title}" href="${result.item.url}#${heading.anchor}" class="search-result search-result-heading">
+                let ancestors = this.headingAncestors(result.item.headings, heading.pid)
+                ancestors = ancestors.concat(result.item.title)
+                const subtitle = ancestors.join(' · ')
+                
+                headings += `<a title="${heading.title} - ${subtitle}" href="${result.item.url}#${heading.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>
-    <div class="search-result-desc">${result.item.title}</div>
+    <div class="search-result-desc">${subtitle}</div>
   </div>
 </a>`
                 break // avoid match same heading multiple times.
@@ -357,5 +361,14 @@ export default class Renderer {
         }
 
         return headings
+    }
+
+    headingAncestors(headings, pid): Array<string> {
+        let v :Array<string> = []
+        if (pid >= 0) {
+            v.push(headings[pid].title)
+            v = v.concat(this.headingAncestors(headings, headings[pid].pid))
+        }
+        return v
     }
 }
