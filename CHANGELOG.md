@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/hugomods/search/compare/v0.15.0...v0.15.1) (2024-09-06)
+
+
+### Bug Fixes 🐞
+
+* duplicate matched headings ([#247](https://github.com/hugomods/search/issues/247)) ([18331e8](https://github.com/hugomods/search/commit/18331e83fe695d79ab5aa8f38e6c8f9bf3cd072b)), closes [#246](https://github.com/hugomods/search/issues/246)
+
 ## [0.15.0](https://github.com/hugomods/search/compare/v0.14.1...v0.15.0) (2024-08-22)
 
 
