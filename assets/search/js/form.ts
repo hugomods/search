@@ -282,6 +282,7 @@ export default class Form {
     }
 
     private submit() {
+        this.input.disabled = true
         const query = this.getQuery()
         this.updatePage(query)
 
@@ -306,6 +307,8 @@ export default class Form {
                 Historiographer.save(query)
             }
             this.spinner.hide()
+            this.input.disabled = false
+            this.focus()
         })
     }
 
