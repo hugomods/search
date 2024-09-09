@@ -56,6 +56,7 @@ filter_taxonomies = true
 filter_years = true
 histories = true
 histories_count = 5
+headings_end_level = 6
 
 [params.search.key_weights]
 title = 1

@@ -1,6 +1,9 @@
 {{- $v := slice }}
 {{- $pid := .PID }}
 {{- range .Headings }}
+  {{- if gt .Level (default 6 site.Params.search.headings_end_level) }}
+    {{- break }}
+  {{- end }}
   {{- if ne .Title "" }}
     {{- $v = $v | append (dict
       "pid" $pid
