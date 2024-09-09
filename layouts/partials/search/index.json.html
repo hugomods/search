@@ -6,7 +6,9 @@
   {{- $page := . -}}
   {{- $item := newScratch -}}
   {{- $item.Set "title" .Title -}}
-  {{- $item.Set "summary" (default .Summary .Description | plainify | htmlUnescape) -}}
+  {{- if default true site.Params.search.index_summary -}}
+    {{- $item.Set "summary" (default .Summary .Description | plainify | htmlUnescape) -}}
+  {{- end -}}
   {{- if $indexContent }}
     {{- $item.Set "content" .Plain }}
   {{- end }}
@@ -24,13 +26,17 @@
       {{- $item.Set "img" (cond hugo.IsMultihost $img.Permalink $img.RelPermalink) -}}
     {{- end -}}
   {{- end -}}
-  {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) -}}
+  {{- if default true site.Params.search.index_headings -}}
+    {{- $item.Set "headings" (partialCached "search/functions/parse-headings" . .) -}}
+  {{- end }}
   {{/* Taxonomies */}}
-  {{- range $name, $taxonomy := site.Taxonomies -}}
-    {{- range $page.GetTerms $name -}}
-      {{- $item.Add $name (slice .Title) }}
+  {{- if default true site.Params.search.index_taxonomies -}}
+    {{- range $name, $taxonomy := site.Taxonomies -}}
+      {{- range $page.GetTerms $name -}}
+        {{- $item.Add $name (slice .Title) }}
+      {{- end -}}
     {{- end -}}
-  {{- end -}}
+  {{- end }}
   {{- $items = $items | append $item.Values -}}
 {{- end -}}
 {{- $items | jsonify -}}
