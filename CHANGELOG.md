@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.17.0](https://github.com/hugomods/search/compare/v0.16.0...v0.17.0) (2024-09-09)
+
+
+### Features ✨
+
+* add more index* parameters ([0e06ef2](https://github.com/hugomods/search/commit/0e06ef283ff7d90b0baacb3debec77f87bf7faaa))
+* add the `headings_end_level` parameter, default to `6` ([d6ba834](https://github.com/hugomods/search/commit/d6ba834afef9a4090126ceb9468d2acf92b775fa))
+* add the `index_headings` parameter, default to `true` ([0e06ef2](https://github.com/hugomods/search/commit/0e06ef283ff7d90b0baacb3debec77f87bf7faaa))
+* add the `index_summary` parameter, default to `true` ([0e06ef2](https://github.com/hugomods/search/commit/0e06ef283ff7d90b0baacb3debec77f87bf7faaa))
+* add the `index_taxonomies` parameter, default to `true` ([0e06ef2](https://github.com/hugomods/search/commit/0e06ef283ff7d90b0baacb3debec77f87bf7faaa))
+
+
+### Bug Fixes 🐞
+
+* **ue:** disable input while searching and then resume it once the ([b4cacc7](https://github.com/hugomods/search/commit/b4cacc72cecf7d6d1e410095a42de8aeaca01658))
+
 ## [0.16.0](https://github.com/hugomods/search/compare/v0.15.1...v0.16.0) (2024-09-06)
 
 
