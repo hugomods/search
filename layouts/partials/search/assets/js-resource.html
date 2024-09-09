@@ -24,7 +24,9 @@
 {{- end }}
 {{/* taxonomies. */}}
 {{- $taxonomies := newScratch }}
-{{- if default true site.Params.search.filter_taxonomies }}
+{{- $indexTaxonomies := default true site.Params.search.index_taxonomies }}
+{{- $filterTaxonomies := default true site.Params.search.filter_taxonomies }}
+{{- if and $indexTaxonomies $filterTaxonomies }}
   {{- $allTaxonomies := newScratch }}
   {{- range .Site.Sites }}
     {{- range $name, $taxonomy := .Taxonomies }}
