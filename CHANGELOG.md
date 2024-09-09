@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.1](https://github.com/hugomods/search/compare/v0.17.0...v0.17.1) (2024-09-09)
+
+
+### Styles 🎨
+
+* add the disabled state for input ([915f75e](https://github.com/hugomods/search/commit/915f75eab06ae078c759f065b69f4e41e9c70c4c))
+
 ## [0.17.0](https://github.com/hugomods/search/compare/v0.16.0...v0.17.0) (2024-09-09)
 
 
