@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.2](https://github.com/hugomods/search/compare/v0.17.1...v0.17.2) (2024-10-05)
+
+
+### Bug Fixes 🐞
+
+* do not disable input after resetting form ([#259](https://github.com/hugomods/search/issues/259)) ([d3d9db7](https://github.com/hugomods/search/commit/d3d9db7727827a0f63b7bfeb6a159d2584d02cbd)), closes [#258](https://github.com/hugomods/search/issues/258)
+
 ## [0.17.1](https://github.com/hugomods/search/compare/v0.17.0...v0.17.1) (2024-09-09)
 
 
