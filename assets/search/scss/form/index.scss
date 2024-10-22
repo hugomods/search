@@ -84,7 +84,7 @@
     color: var(--search-color);
 
     &:disabled {
-        filter: brightness(0.95);
+        cursor: progress;
     }
 }
 
