@@ -1,6 +1,6 @@
 {{- $items := slice -}}
 {{- $indexContent := default false site.Params.search.index_content -}}
-{{- $years := true }}
+{{- $filterYears := default true site.Params.search.filter_years }}
 {{- $pages := partial "search/functions/pages" . -}}
 {{- range $pages -}}
   {{- $page := . -}}
@@ -14,16 +14,16 @@
   {{- end }}
   {{- $item.Set "kind" .Kind -}}
   {{- $item.Set "lang" .Language.Lang -}}
-  {{- $item.Set "url" (cond hugo.IsMultihost .Permalink .RelPermalink) -}}
+  {{- $item.Set "url" .RelPermalink -}}
   {{- $item.Set "date" .Date.Unix -}}
-  {{- if $years -}}
+  {{- if $filterYears -}}
     {{- $item.Set "year" (.Date.Format "2006") -}}
   {{- end -}}
   {{/* Image */}}
   {{- if or $page.Params.images ($page.Resources.GetMatch "{*feature*,*cover*,*thumbnail*}") -}}
     {{- with partial "_funcs/get-page-images" $page -}}
       {{- $img := index . 0 -}}
-      {{- $item.Set "img" (cond hugo.IsMultihost $img.Permalink $img.RelPermalink) -}}
+      {{- $item.Set "img" $img.RelPermalink -}}
     {{- end -}}
   {{- end -}}
   {{- if default true site.Params.search.index_headings -}}
@@ -39,4 +39,22 @@
   {{- end }}
   {{- $items = $items | append $item.Values -}}
 {{- end -}}
-{{- $items | jsonify -}}
+{{- $langs := newScratch -}}
+{{- range .Site.Languages -}}
+  {{- $langs.Set .Lang .LanguageName -}}
+{{- end }}
+{{- $taxonomies := newScratch -}}
+{{- range $name, $taxonomy := site.Taxonomies -}}
+  {{- range $taxonomy -}}
+    {{- $taxonomies.Add $name (slice .Page.Title) -}}
+  {{- end -}}
+{{- end -}}
+{{- $years := partial "search/functions/years" . -}}
+{{- $data := dict
+  "baseURL" site.BaseURL
+  "langs" $langs.Values
+  "pages" $items
+  "taxonomies" $taxonomies.Values
+  "years" $years
+-}}
+{{- $data | jsonify -}}

@@ -1,19 +1,23 @@
 import { default as params } from '@params'
-import i18n from './i18n'
+import { translate } from './i18n'
 import keyboard from './keyboard'
 import Form from './form'
 import Spinner from './spinner'
 import Renderer from './renderer'
 import { Navigate, Select, Shortcut, Shortcuts } from './shortcuts'
 
-const searchShortcut: Shortcut = {
-    kbds: [params.shortcut_search],
-    action: i18n.translate('to_search'),
+const searchShortcut = (): Shortcut => {
+    return {
+        kbds: [params.shortcut_search],
+        action: translate('to_search'),
+    }
 }
 
-const closeShortcut: Shortcut = {
-    kbds: [params.shortcut_close],
-    action: i18n.translate('to_close'),
+const closeShortcut = (): Shortcut => {
+    return {
+      kbds: [params.shortcut_close],
+      action: translate('to_close'),
+    }
 }
 
 export default class Modal {
@@ -121,13 +125,3 @@ export default class Modal {
         this.form.focus()
     }
 }
-
-(() => {
-    'use strict'
-
-    document.addEventListener('DOMContentLoaded', () => {
-        if (params.modal_container !== '') {
-            (new Modal()).init()
-        }
-    })
-})()

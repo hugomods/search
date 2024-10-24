@@ -1,0 +1,19 @@
+{{- $years := slice }}
+{{- if default true site.Params.search.filter_years }}
+  {{- $indexAllPages := default true site.Params.search.index_all_pages }}
+  {{- $pages := site.AllPages }}
+  {{- if not $indexAllPages }}
+    {{- $pages = where $pages "Kind" "page" }}
+  {{- end }}
+  {{- $pages = where $pages "Params.noindex" "ne" true }}
+  {{- with $pages.GroupByDate "2006" }}
+    {{- range . }}
+      {{- if eq .Key "0001" }}
+        {{- continue }}
+      {{- end }}
+      {{- $years = $years | append .Key }}
+    {{- end }}
+    {{- $years = sort $years }}
+  {{- end }}
+{{- end }}
+{{- return $years }}

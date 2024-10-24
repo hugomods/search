@@ -1,5 +1,5 @@
 import { default as params } from '@params'
-import i18n from './i18n'
+import { translate } from './i18n'
 import Renderer from './renderer'
 import engine from './engine'
 import Spinner from './spinner'
@@ -39,45 +39,36 @@ export default class Form {
     <div class="search-input-group">
         <span class="search-input-icon">${params.icons['search']}</span>
         <span class="search-spinner">${params.icons['spinner']}</span>
-        <input type="search" name="q" class="search-input search-form-control" placeholder="${i18n.translate('input_placeholder')}" autocomplete="off" disabled/>
+        <input type="search" name="q" class="search-input search-form-control" placeholder="${translate('input_placeholder')}" autocomplete="off" disabled/>
         <button class="search-reset-button disabled" type="reset">${params.icons['reset']}</button>
     </div>
-    <button class="search-modal-close" type="button">${i18n.translate('cancel')}</button>
+    <button class="search-modal-close" type="button">${translate('cancel')}</button>
   </div>
   <div class="search-form-meta">
-    <div class="search-panel">
-      ${this.renderLanguage()}
-      ${this.renderSorting()}
-      ${this.renderYears()}
-      ${this.renderTaxonomies()}
-      <button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}" title="Expand">
-        <span class="search-panel-action-icon">${params.icons['expand']}</span>
-        <span class="search-panel-action-label">${i18n.translate('expand')}</span>
-      </button>
-    </div>
+    <div class="search-panel"></div>
     <div class="search-stat"></div>
   </div>
 </form>`
     }
 
     private renderLanguage(): string {
-        if (Object.keys(params.langs).length < 2) {
+        if (Object.keys(engine.langs).length < 2) {
             return ''
         }
 
         const lang = document.documentElement.getAttribute('lang') ?? ''
 
-        let label = i18n.translate('all')
+        let label = translate('all')
         let options = `<li class="search-dropdown-item${lang ? '' : ' active'}" data-value="">${label}</li>`
 
-        for (const i in params.langs) {
-            const item = params.langs[i]
+        for (const langCode in engine.langs) {
+            const langName = engine.langs[langCode]
             let className = ''
-            if (item.lang === lang) {
+            if (langCode === lang) {
                 className = ' active'
-                label = item.name
+                label = langName
             }
-            options += `<li class="search-dropdown-item${className}" data-value="${item.lang}">${item.name}</li>`
+            options += `<li class="search-dropdown-item${className}" data-value="${langName}">${langName}</li>`
         }
 
         return `<div class="search-dropdown search-panel-action search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
@@ -90,11 +81,11 @@ export default class Form {
     }
 
     private renderSorting(): string {
-        if (params.langs.length < 2) {
+        if (engine.langs.length < 2) {
             return ''
         }
 
-        const defaultSort = i18n.translate('sort_by_default')
+        const defaultSort = translate('sort_by_default')
 
         return `<div class="search-dropdown search-panel-action search-sorting">
   <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="Sorting">
@@ -102,23 +93,23 @@ export default class Form {
   </button>
   <ul class="search-dropdown-menu">
     <li class="search-dropdown-item active" data-value="">${defaultSort}</li>
-    <li class="search-dropdown-item" data-value="date_asc">${i18n.translate('sort_by_date_asc')}</li>
-    <li class="search-dropdown-item" data-value="date_desc">${i18n.translate('sort_by_date_desc')}</li>
+    <li class="search-dropdown-item" data-value="date_asc">${translate('sort_by_date_asc')}</li>
+    <li class="search-dropdown-item" data-value="date_desc">${translate('sort_by_date_desc')}</li>
   </ul>
 </div>`
     }
 
     private renderYears(): string {
-        if (params.years.length === 0) {
+        if (engine.years.length === 0) {
             return ''
         }
 
         let items = ''
-        for (const year of params.years) {
+        for (const year of engine.years) {
             items += `<li class="search-dropdown-item" data-value="${year}">${year}</li>`
         }
 
-        const label = i18n.translate('years')
+        const label = translate('years')
         return `<div class="search-dropdown search-panel-action search-years" multiple>
         <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
           ${params.icons['year']} <span class="search-dropdown-label">${label}</span>
@@ -129,8 +120,8 @@ export default class Form {
 
     private renderTaxonomies(): string {
         let v = ''
-        for (const name in params.taxonomies) {
-            v += this.renderTaxonomy(name, params.taxonomies[name])
+        for (const name in engine.taxonomies) {
+            v += this.renderTaxonomy(name, engine.taxonomies[name])
         }
         return v
     }
@@ -141,7 +132,7 @@ export default class Form {
             v += `<li class="search-dropdown-item" data-value="${name}">${name}</li>`
         }
 
-        const label = i18n.translate("taxonomy_" + name, null, name)
+        const label = translate("taxonomy_" + name, null, name)
         return `<div class="search-dropdown search-panel-action search-taxonomies search-taxonomies-${name}" multiple>
         <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
           ${params.icons['taxonomies']} <span class="search-dropdown-label">${label}</span>
@@ -182,27 +173,6 @@ export default class Form {
             this.input.value = e.detail.value
             this.submit()
         })
-
-        this.language = this.ele.querySelector('.search-filter-lang') as HTMLElement
-        this.language?.addEventListener('change', () => {
-            this.submit()
-        })
-
-        this.sorting = this.ele.querySelector('.search-sorting') as HTMLElement
-        this.sorting.addEventListener('change', () => {
-            this.submit()
-        })
-
-        this.years = this.ele.querySelector('.search-years') as HTMLElement
-        this.years?.addEventListener('change', () => {
-            this.submit()
-        })
-
-        this.ele.querySelectorAll('.search-taxonomies').forEach((el) => {
-            el.addEventListener('change', () => {
-                this.submit()
-            })
-        })
         
         this.ele.addEventListener('reset', () => {
             const lang = document.documentElement.getAttribute('lang') ?? ''
@@ -231,10 +201,12 @@ export default class Form {
 
         this.spinner.show()
         engine.init().then(() => {
+            this.renderPanel()
+        }).then(() => {
             this.input.removeAttribute('disabled')
         }).catch((err) => {
-            this.input.value = i18n.translate('index_fails')
-            throw new Error(err)
+            this.input.value = translate('index_fails')
+            throw err
         }).then(() => {
             if (!this.modal) {
                 this.fillInputByURL()
@@ -252,6 +224,39 @@ export default class Form {
                 this.submit()
             })
         }
+    }
+
+    private renderPanel() {
+        const panel = this.ele.querySelector('.search-panel') as HTMLElement
+        panel.innerHTML = `${this.renderLanguage()}
+${this.renderSorting()}
+${this.renderYears()}
+${this.renderTaxonomies()}
+<button class="search-panel-action search-expand-toggle${params.expand_results_meta ? ' active' : ''}" title="Expand">
+    <span class="search-panel-action-icon">${params.icons['expand']}</span>
+    <span class="search-panel-action-label">${translate('expand')}</span>
+</button>`
+
+        this.language = this.ele.querySelector('.search-filter-lang') as HTMLElement
+        this.language?.addEventListener('change', () => {
+            this.submit()
+        })
+
+        this.sorting = this.ele.querySelector('.search-sorting') as HTMLElement
+        this.sorting.addEventListener('change', () => {
+            this.submit()
+        })
+
+        this.years = this.ele.querySelector('.search-years') as HTMLElement
+        this.years?.addEventListener('change', () => {
+            this.submit()
+        })
+
+        this.ele.querySelectorAll('.search-taxonomies').forEach((el) => {
+            el.addEventListener('change', () => {
+                this.submit()
+            })
+        })
 
         const expand = this.ele.querySelector('.search-expand-toggle')
         expand?.addEventListener('click', (e) => {
@@ -357,7 +362,7 @@ export default class Form {
     getTaxonomies(): Record<string, Array<string>> {
         const v = {}
 
-        for (const taxonomy in params.taxonomies) {
+        for (const taxonomy in engine.taxonomies) {
             const terms: Array<string> = []
             document.querySelectorAll(`.search-taxonomies-${taxonomy} .search-dropdown-item.active`).forEach((item) => {
                 terms.push(item.getAttribute('data-value') ?? '')
