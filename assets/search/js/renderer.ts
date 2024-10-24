@@ -1,7 +1,8 @@
 import { default as params } from '@params'
-import i18n from './i18n'
+import { translate } from './i18n'
 import Spinner from './spinner'
 import { default as Historiographer } from './historiographer'
+import engine from './engine'
 
 export default class Renderer {
     private initialized = false
@@ -48,7 +49,7 @@ export default class Renderer {
 
     private getLang(): string {
         if (!this.lang) {
-            this.lang = document.documentElement.getAttribute('lang') ?? params.defaultLang
+            this.lang = document.documentElement.getAttribute('lang') ?? params.lang
         }
 
         return this.lang
@@ -61,16 +62,20 @@ export default class Renderer {
 
     icon(page) {
         if (page.img) {
-            return `<img class="search-result-img" src="${page.img}" />`
+            return `<img class="search-result-img" src="${this.url(page, page.img)}" />`
         }
 
         return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
     }
 
+    url(page, url): string {
+        return engine.getBaseURL(page.site) + url
+    }
+
     taxonomies(page) {
         let v = ''
 
-        for (const key of params.taxonomyKeys) {
+        for (const key of Object.keys(engine.taxonomies)) {
             const terms = page[key]
             if (!terms) {
                 continue
@@ -263,7 +268,7 @@ export default class Renderer {
 
     private renderStat() {
         const stat = this.getStatistics()
-        stat.innerHTML = i18n.translate('search_stat', {
+        stat.innerHTML = translate('search_stat', {
             count: this.results.length,
             total: `<span class="search-stat-results">${this.results.length}</span>`,
             time: this.prettifyTime(),
@@ -304,7 +309,7 @@ export default class Renderer {
         let results = ''
         for (let i = min; i < this.results.length && i < max; i++) {
             const result = this.results[i]
-            results += `<a title="${result.item.title}" href="${result.item.url}" class="search-result" aria-selected="false">
+            results += `<a title="${result.item.title}" href="${this.url(result.item, result.item.url)}" class="search-result" aria-selected="false">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>
@@ -349,7 +354,7 @@ export default class Renderer {
                 ancestors = ancestors.concat(result.item.title)
                 const subtitle = ancestors.join(' · ')
                 
-                headings += `<a title="${heading.title} - ${subtitle}" href="${result.item.url}#${heading.anchor}" class="search-result search-result-heading">
+                headings += `<a title="${heading.title} - ${subtitle}" href="${this.url(result.item, result.item.url)}#${heading.anchor}" class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>

@@ -39,11 +39,3 @@ export default class Search {
         this.renderer.renderHistories()
     }
 }
-
-(() => {
-    'use strict'
-
-    document.addEventListener('DOMContentLoaded', () => {
-        new Search()
-    })
-})()

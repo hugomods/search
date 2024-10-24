@@ -1,56 +1,10 @@
-{{- $defaultLang := .Sites.Default.Language.Lang }}
-{{- $langs := newScratch }}
-{{- range .Site.Languages }}
-  {{- $langs.Set .Lang (dict "lang" .Lang "name" .LanguageName) }}
-{{- end }}
-{{/* years. */}}
-{{- $years := slice }}
-{{- if default true site.Params.search.filter_years }}
-  {{- $indexAllPages := default true .Site.Params.search.index_all_pages }}
-  {{- $pages := .Site.AllPages }}
-  {{- if not $indexAllPages }}
-    {{- $pages = where $pages "kind" "page" }}
-  {{- end }}
-  {{- $pages = where $pages "Params.noindex" "ne" true }}
-  {{- with $pages.GroupByDate "2006" }}
-    {{- range . }}
-      {{- if eq .Key "0001" }}
-        {{- continue }}
-      {{- end }}
-      {{- $years = $years | append .Key }}
-    {{- end }}
-    {{- $years = sort $years }}
-  {{- end }}
-{{- end }}
-{{/* taxonomies. */}}
-{{- $taxonomies := newScratch }}
-{{- $indexTaxonomies := default true site.Params.search.index_taxonomies }}
-{{- $filterTaxonomies := default true site.Params.search.filter_taxonomies }}
-{{- if and $indexTaxonomies $filterTaxonomies }}
-  {{- $allTaxonomies := newScratch }}
-  {{- range .Site.Sites }}
-    {{- range $name, $taxonomy := .Taxonomies }}
-      {{- range $taxonomy }}
-        {{- $allTaxonomies.Add $name (slice .Page.Title) }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
-  {{/* remove duplicate taxonomies. */}}
-  {{- range $name, $v := $allTaxonomies.Values }}
-    {{- $taxonomies.Set $name ($v | uniq) }}
-  {{- end }}
-{{- end }}
-{{- $taxonomyKeys := slice }}
-{{- range $name, $v := .Site.Taxonomies }}
-  {{- $taxonomyKeys = $taxonomyKeys | append $name }}
-{{- end }}
-{{/* i18n messages. */}}
-{{- $i18n := newScratch }}
+{{/* Locales. */}}
+{{- $locales := newScratch }}
 {{- range $lang, $messages := .Site.Data.search.i18n }}
-  {{/* Exclude the unused messages. */}}
-  {{- if isset $langs.Values $lang }}
-    {{- $i18n.Set $lang $messages }}
-  {{- end }}
+  {{- $locale := resources.Get "search/templates/locale.html" }}
+  {{- $localeURL := printf "/js/search/locales.%s.json" $lang }}
+  {{- $locale = $locale | resources.ExecuteAsTemplate $localeURL . }}
+  {{- $locales.Set $lang $locale.Permalink }}
 {{- end }}
 {{- $js := resources.Get "search/js/index.ts" }}
 {{/* The SVG icons. */}}
@@ -78,12 +32,12 @@
   }}
 {{- end }}
 {{/* Index files URL. */}}
-{{- $indices := slice }}
+{{- $indices := default slice site.Params.search.indices }}
 {{- range .Sites }}
   {{- $site := . }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
     {{- $hash := partialCached "search/functions/search-index-hash" $site $site }}
-    {{- $indexURL := printf "%s?v=%s" (cond hugo.IsMultihost .Permalink .RelPermalink) $hash }}
+    {{- $indexURL := printf "%s?v=%s" .Permalink $hash }}
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}
@@ -91,14 +45,10 @@
 {{- $params := merge $defaultParams (dict
   "icons" $icons
   "indices" $indices
-  "i18n" $i18n.Values
+  "locales" $locales.Values
   "histories" (default true site.Params.search.histories)
   "historiesCount" (default 5 site.Params.search.histories_count)
-  "defaultLang" $defaultLang
-  "langs" $langs.Values
-  "years" $years
-  "taxonomies" $taxonomies.Values
-  "taxonomyKeys" $taxonomyKeys)
+  "lang" .Sites.Default.Language.Lang)
 }}
 {{- $options := dict
   "targetPath" "js/search.js"

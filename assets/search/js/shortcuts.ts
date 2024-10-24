@@ -1,4 +1,4 @@
-import i18n from './i18n'
+import { translate } from './i18n'
 
 type Kbds = Array<string | Array<string>>
 
@@ -7,24 +7,28 @@ type Shortcut = {
     action: string
 }
 
-const Navigate: Shortcut = {
-    kbds: ["↑", "↓"],
-    action: i18n.translate('to_navigate'),
+const Navigate = (): Shortcut => {
+    return {
+        kbds: ["↑", "↓"],
+        action: translate('to_navigate'),
+    }
 }
 
-const Select: Shortcut = {
-    kbds: ["⏎"],
-    action: i18n.translate('to_select'),
+const Select = (): Shortcut => {
+    return {
+        kbds: ["⏎"],
+        action: translate('to_select'),
+    }
 }
 
 class Shortcuts {
-    constructor(private shortcuts: Array<Shortcut>) { }
+    constructor(private shortcuts: Array<() => Shortcut>) { }
 
     render(): string {
         let shortcuts = ''
 
         for (const i in this.shortcuts) {
-            const shortcut = this.shortcuts[i]
+            const shortcut = this.shortcuts[i]()
             shortcuts += `<span class="search-shortcut">
 ${this.renderKbds(shortcut.kbds)}
 <span class="search-shortcut-action">${shortcut['action']}</span>

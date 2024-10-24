@@ -11,6 +11,18 @@ class Engine {
 
     private initialized = false
 
+    private sites =  []
+
+    public getBaseURL(site): string {
+        return this.sites[site] ? this.sites[site].baseURL : ''
+    }
+
+    public taxonomies: Record<string, string[]> = {}
+
+    public years: string[] = []
+
+    public langs: Record<string, string> = {}
+
     /**
      * Initialize the search index.
      * 
@@ -38,15 +50,42 @@ class Engine {
 
         const promises = new Array<Promise<Array<unknown>>>
         for (const i in params.indices) {
-            const promise = fetch(params.indices[i]).then((resp) => resp.json())
+            const index = params.indices[i]
+            const promise = fetch(index).then((resp) => resp.json())
             promises.push(promise)
         }
 
         return Promise.all(promises).then((resp) => {
-            let pages = resp[0]
-            for (let i = 1; i < resp.length; i++) {
-                pages = pages.concat(resp[i])
+            let pages = []
+            for (let i = 0; i < resp.length; i++) {
+                const data = resp[i]
+                if (Array.isArray(data)) {
+                    // backward compatibility 
+                    pages = pages.concat(data)
+                } else {
+                    const baseURL = data.baseURL.replace(/\/$/, "")
+                    const siteIdx = this.sites.push({baseURL: baseURL}) - 1
+                    pages = pages.concat(data.pages.map((page) => {
+                        return {...page, site: siteIdx}
+                    }))
+
+                    for (const taxonomy in data.taxonomies) {
+                        if (this.taxonomies[taxonomy] === undefined) {
+                            this.taxonomies[taxonomy] = []
+                        }
+                        this.taxonomies[taxonomy].push(...data.taxonomies[taxonomy])
+                    }
+
+                    Object.assign(this.langs, data.langs)
+                    this.years.push(...data.years)
+                }
             }
+            for (const taxonomy in this.taxonomies) {
+                const terms = this.taxonomies[taxonomy]
+                this.taxonomies[taxonomy] = terms.filter((term, i) => terms.indexOf(term) === i).sort()
+            }
+
+            this.years = this.years.filter((year, i) => this.years.indexOf(year) === i).sort()
 
             this.index = new Fuse(pages, {
                 isCaseSensitive: params.case_sensitive,
@@ -62,7 +101,7 @@ class Engine {
             })
         }).catch((err) => {
             this.indexFailed = true
-            throw new Error(err)
+            throw err
         })
     }
 
@@ -85,7 +124,7 @@ class Engine {
             keys.push({name: 'content', weight: params.key_weights.content})
         }
 
-        for (const taxonomy in params.taxonomies) {
+        for (const taxonomy in engine.taxonomies) {
             keys.push({name: taxonomy, weight: params.key_weights.taxonomies})
         }
 
