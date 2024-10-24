@@ -41,6 +41,9 @@
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
 {{- end }}
+{{- if not $indices }}
+  {{- errorf `[github.com/hugomods/search] no search index is specified. To rectify this, you can either add the "SearchIndex" to the "outputs.home" for internal indices, or specify external indices with the "search.indices" parameter.` }}
+{{- end }}
 {{- $defaultParams := partialCached "search/functions/params" . }}
 {{- $params := merge $defaultParams (dict
   "icons" $icons
