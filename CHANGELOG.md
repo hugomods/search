@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.18.0](https://github.com/hugomods/search/compare/v0.17.2...v0.18.0) (2024-10-24)
+
+
+### Features ✨
+
+* add the `indices` parameter, to load external indices ([23784f5](https://github.com/hugomods/search/commit/23784f58e57b7648587d4c3dcd48a18dc5573217))
+
+
+### Bug Fixes 🐞
+
+* check if indices is set ([#268](https://github.com/hugomods/search/issues/268)) ([35025a1](https://github.com/hugomods/search/commit/35025a14452c06ae8b245d907ad4a551a85d96cd)), closes [#261](https://github.com/hugomods/search/issues/261)
+
+
+### Performance Improvements ⚡️
+
+* lazy loading locales ([#267](https://github.com/hugomods/search/issues/267)) ([23784f5](https://github.com/hugomods/search/commit/23784f58e57b7648587d4c3dcd48a18dc5573217))
+
+
+### Styles 🎨
+
+* tweak disabled input ([3bb42d6](https://github.com/hugomods/search/commit/3bb42d64ab13f2dc32f696aba72d5d1a77d609aa))
+
 ## [0.17.2](https://github.com/hugomods/search/compare/v0.17.1...v0.17.2) (2024-10-05)
 
 
