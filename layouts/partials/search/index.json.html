@@ -23,7 +23,15 @@
   {{- if or $page.Params.images ($page.Resources.GetMatch "{*feature*,*cover*,*thumbnail*}") -}}
     {{- with partial "_funcs/get-page-images" $page -}}
       {{- $img := index . 0 -}}
-      {{- $item.Set "img" $img.RelPermalink -}}
+      {{- $item.Set "img" $img.Permalink -}}
+      {{- with $img.Image -}}
+        {{- with .Width -}}
+          {{- $item.Set "img_w" . -}}
+        {{- end -}}
+        {{- with .Height -}}
+          {{- $item.Set "img_h" . -}}
+        {{- end -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
   {{- if default true site.Params.search.index_headings -}}
