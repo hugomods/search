@@ -58,6 +58,7 @@ export default class Renderer {
     clean() {
         this.results = []
         this.getContainer().innerHTML = ''
+        this.getStatistics().innerHTML = ''
     }
 
     icon(page) {
