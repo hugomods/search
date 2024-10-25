@@ -13,6 +13,9 @@ other = "Initialisierung des Indexes fehlgeschlagen."
 [input_placeholder]
 other = "Suchbegriff eingeben"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "{total} Resultat in {time} gefunden."
 other = "{total} Resultate in {time} gefunden."

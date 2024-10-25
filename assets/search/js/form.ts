@@ -119,6 +119,7 @@ export default class Form {
           ${params.icons['year']} <span class="search-dropdown-label">${label}</span>
         </button>
         <div class="search-dropdown-body">
+          <button class="search-dropdown-reset">${translate('reset')}</button>
           <ul class="search-dropdown-menu">${items}</ul>
         </div>
       </div>`
@@ -145,6 +146,7 @@ export default class Form {
         </button>
         <div class="search-dropdown-body">
             <input class="search-dropdown-input">
+            <button class="search-dropdown-reset">${translate('reset')}</button>
             <ul class="search-dropdown-menu">${v}</ul>
         </div>
       </div>`

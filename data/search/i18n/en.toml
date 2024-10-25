@@ -13,6 +13,9 @@ other = "Failed to initialise index."
 [input_placeholder]
 other = "Type to search"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "Found {total} result in {time}."
 other = "Found {total} results in {time}."
