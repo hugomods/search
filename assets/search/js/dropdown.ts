@@ -18,8 +18,6 @@
         show(dropdown)
     }
 
-    const filtering = {}
-
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keyup', (e: Event) => {
             const input = e.target as HTMLInputElement
