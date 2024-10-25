@@ -45,7 +45,7 @@ export default class Renderer {
         }
 
         return this.statistics
-    }
+    }""
 
     private getLang(): string {
         if (!this.lang) {
@@ -63,7 +63,15 @@ export default class Renderer {
 
     icon(page) {
         if (page.img) {
-            return `<img class="search-result-img" src="${this.url(page, page.img)}" />`
+            let h = ''
+            let w = ''
+            if (page.img_h) {
+                h = ` height="${page.img_h}"`
+            }
+            if (page.img_w) {
+                w = ` width="${page.img_w}"`
+            }
+            return `<img class="search-result-img" src="${page.img}"${w}${h} />`
         }
 
         return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
