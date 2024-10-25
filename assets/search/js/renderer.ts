@@ -301,8 +301,8 @@ export default class Renderer {
             }, options)
         }
 
-        const result = document.querySelector('.search-result:last-child') as HTMLElement
-        if (this.lastResult != result) {
+        const result = document.querySelector('.search-result:last-child')
+        if (result !== null && this.lastResult != result) {
             this.loadMoreObserver.observe(result)
         }
         this.lastResult && this.loadMoreObserver.unobserve(this.lastResult)
