@@ -187,12 +187,6 @@ export default class Renderer {
 
         this.initialized = true
         const container = this.getContainer()
-        const wrapper = container.parentElement
-        wrapper?.addEventListener('scroll', () => {
-            if (wrapper.scrollHeight - wrapper.scrollTop === wrapper.clientHeight) {
-                this.loadMore()
-            }
-        })
 
         const observe = (mutations) => {
             for (const mutation of mutations) {
@@ -287,6 +281,34 @@ export default class Renderer {
         return ((1 - score) * 100).toFixed(0) + '%';
     }
 
+    private loadMoreObserver: IntersectionObserver
+
+    private lastResult: null|Element;
+
+    observeLoadMore() {
+        if (this.loadMoreObserver === undefined) {
+            const options = {
+                rootMargin: "0px",
+                threshold: 1.0,
+            }
+              
+            this.loadMoreObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting){
+                        this.loadMore()
+                    }
+                })
+            }, options)
+        }
+
+        const result = document.querySelector('.search-result:last-child') as HTMLElement
+        if (this.lastResult != result) {
+            this.loadMoreObserver.observe(result)
+        }
+        this.lastResult && this.loadMoreObserver.unobserve(this.lastResult)
+        this.lastResult = result
+    }
+
     loadMore() {
         if (this.page * this.paginate > this.results.length) {
             return
@@ -329,6 +351,7 @@ export default class Renderer {
             results += this.renderHeadings(result)
         }
         this.getContainer().insertAdjacentHTML('beforeend', results)
+        this.observeLoadMore()
     }
 
     renderHeadings(result) {
