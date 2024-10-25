@@ -18,13 +18,42 @@
         show(dropdown)
     }
 
+    const filtering = {}
+
     document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('keyup', (e: Event) => {
+            const input = e.target as HTMLInputElement
+            if (!input.classList.contains('search-dropdown-input')) {
+                return
+            }
+
+            const value = input.value.toLowerCase().trim()
+            const dropdown = input.closest('.search-dropdown')
+            const items = Array.from(dropdown?.querySelectorAll<HTMLElement>('.search-dropdown-item') ?? [])
+            for (const item of items) {
+                if (value === '' || item.textContent?.toLowerCase().indexOf(value) !== -1) {
+                    item.classList.remove('hide')
+                    continue
+                }
+
+                if (!item.classList.contains('active')) {
+                    item.classList.add('hide')
+                }
+            }
+        })
+
         document.addEventListener('click', (e: Event) => {
             const toggleEl = e.target.closest('.search-dropdown-toggle')
             if (toggleEl) {
                 const dropdown = toggleEl.closest('.search-dropdown')
                 toggle(dropdown)
                 e.preventDefault()
+                return
+            }
+
+            const input = e.target.closest('.search-dropdown-input')
+            if (input) {
+                // do not hide dropdown body when focus on input.
                 return
             }
 

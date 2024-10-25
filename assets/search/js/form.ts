@@ -76,7 +76,9 @@ export default class Form {
     ${params.icons['lang']}
     <span class="search-dropdown-label">${label}</span>
   </button>
-  <ul class="search-dropdown-menu">${options}</ul>
+  <div class="search-dropdown-body">
+    <ul class="search-dropdown-menu">${options}</ul>
+  </div>
 </div>`
     }
 
@@ -91,11 +93,13 @@ export default class Form {
   <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="Sorting">
     ${params.icons['sort']} <span class="search-dropdown-label">${defaultSort}</span>
   </button>
-  <ul class="search-dropdown-menu">
-    <li class="search-dropdown-item active" data-value="">${defaultSort}</li>
-    <li class="search-dropdown-item" data-value="date_asc">${translate('sort_by_date_asc')}</li>
-    <li class="search-dropdown-item" data-value="date_desc">${translate('sort_by_date_desc')}</li>
-  </ul>
+  <div class="search-dropdown-body">
+    <ul class="search-dropdown-menu">
+        <li class="search-dropdown-item active" data-value="">${defaultSort}</li>
+        <li class="search-dropdown-item" data-value="date_asc">${translate('sort_by_date_asc')}</li>
+        <li class="search-dropdown-item" data-value="date_desc">${translate('sort_by_date_desc')}</li>
+    </ul>
+  </div>
 </div>`
     }
 
@@ -114,7 +118,9 @@ export default class Form {
         <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
           ${params.icons['year']} <span class="search-dropdown-label">${label}</span>
         </button>
-        <ul class="search-dropdown-menu">${items}</ul>
+        <div class="search-dropdown-body">
+          <ul class="search-dropdown-menu">${items}</ul>
+        </div>
       </div>`
     }
 
@@ -137,7 +143,10 @@ export default class Form {
         <button class="search-dropdown-toggle" type="button" aria-expanded="false" title="${label}">
           ${params.icons['taxonomies']} <span class="search-dropdown-label">${label}</span>
         </button>
-        <ul class="search-dropdown-menu">${v}</ul>
+        <div class="search-dropdown-body">
+            <input class="search-dropdown-input">
+            <ul class="search-dropdown-menu">${v}</ul>
+        </div>
       </div>`
     }
 
