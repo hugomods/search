@@ -68,7 +68,7 @@ export default class Form {
                 className = ' active'
                 label = langName
             }
-            options += `<li class="search-dropdown-item${className}" data-value="${langName}">${langName}</li>`
+            options += `<li class="search-dropdown-item${className}" data-value="${langCode}">${langName}</li>`
         }
 
         return `<div class="search-dropdown search-panel-action search-filter-lang${lang ? ' active' : ''}" data-value="${lang}">
