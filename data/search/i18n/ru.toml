@@ -13,6 +13,9 @@ other = "Не удалось инициализировать индекс."
 [input_placeholder]
 other = "Введите поисковый запрос"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "Найден {total} результат за {time}."
 other = "Найдено результатов: {total} за {time}."

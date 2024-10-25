@@ -13,6 +13,9 @@ other = "Impossible d'initialiser l'index de recherche."
 [input_placeholder]
 other = "Rechercher..."
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "{total} resultat trouvé en {time}."
 other = "{total} resultats trouvés en {time}."

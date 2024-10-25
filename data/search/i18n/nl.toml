@@ -13,6 +13,9 @@ other = "Initialisatie-index mislukt."
 [input_placeholder]
 other = "Typ om te zoeken"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "Gevonden {total} resultaat in {time}."
 other = "Gevonden {total} resultaten in {time}."

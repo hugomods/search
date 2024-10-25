@@ -13,6 +13,9 @@ other = "인덱스 초기화에 실패하였습니다."
 [input_placeholder]
 other = "검색"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "{total}개의 결과를 찾았습니다. (소요시간: {time})"
 other = "{total}개의 결과를 찾았습니다. (소요시간: {time})"

@@ -13,6 +13,9 @@ other = "初始化索引失敗。"
 [input_placeholder]
 other = "請輸入關鍵詞"
 
+[reset]
+other = "重置"
+
 [search_stat]
 one = "在 {time} 內找到 {total} 個結果。"
 other = "在 {time} 內找到 {total} 個結果。"

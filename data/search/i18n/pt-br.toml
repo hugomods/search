@@ -13,6 +13,9 @@ other = "Falha ao inicializar índice."
 [input_placeholder]
 other = "Digite para buscar"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "Encontrado {total} resultado em {time}."
 other = "Encontrados {total} resultados em {time}."

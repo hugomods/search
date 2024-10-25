@@ -4,7 +4,7 @@
         dropdown.setAttribute('aria-expanded', 'false')
     }
 
-    const hideAll = (except: null|HTMLElement) => {
+    const hideAll = (except?: null|HTMLElement) => {
         document.querySelectorAll<HTMLElement>('.search-dropdown.show').forEach((dropdown) => {
             if (dropdown != except) {
                 hide(dropdown)
@@ -62,6 +62,16 @@
             if (input) {
                 // do not hide dropdown body when focus on input.
                 return
+            }
+
+            const resetBtn = e.target.closest('.search-dropdown-reset')
+            if (resetBtn) {
+                const dropdown = resetBtn.closest('.search-dropdown')
+                dropdown?.querySelectorAll('.search-dropdown-item.active').forEach((item) => {
+                    item.classList.remove('active')
+                    dropdown.removeAttribute('data-value')
+                    dropdown.classList.remove('active')
+                })
             }
 
             const item = e.target.closest('.search-dropdown-item')

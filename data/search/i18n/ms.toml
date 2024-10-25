@@ -13,6 +13,9 @@ other = "Gagal untuk memulakan indeks."
 [input_placeholder]
 other = "Taip untuk cari"
 
+[reset]
+other = "Reset"
+
 [search_stat]
 one = "Jumpa {total} hasil dalam {time}."
 other = "Jumpa {total} hasil dalam {time}."
