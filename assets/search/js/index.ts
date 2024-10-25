@@ -13,7 +13,7 @@ import { init as i18nInit } from "./i18n"
       new Search()
     
       if (params.modal_container !== '') {
-          (new Modal()).init()
+        (new Modal()).init()
       }
     })
   })

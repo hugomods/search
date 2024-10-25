@@ -325,13 +325,24 @@ export default class Renderer {
 
     }
 
+    private resultLinkTarget = ''
+
+    private getResultLinkTarget(): string {
+        if (this.resultLinkTarget === '' && this.getContainer().closest('.search-container') !== null) {
+            // open result on new tab on single search page mode.
+            this.resultLinkTarget = ' target="_blank"'
+        }
+
+        return this.resultLinkTarget
+    }
+
     private renderPage(page = 1) {
         const max = page * this.paginate
         const min = max - this.paginate
         let results = ''
         for (let i = min; i < this.results.length && i < max; i++) {
             const result = this.results[i]
-            results += `<a title="${result.item.title}" href="${this.url(result.item, result.item.url)}" class="search-result" aria-selected="false">
+            results += `<a title="${result.item.title}" href="${this.url(result.item, result.item.url)}"${this.getResultLinkTarget()} class="search-result" aria-selected="false">
   <div class="search-result-icon">${this.icon(result.item)}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.title(result)}</div>
@@ -377,7 +388,7 @@ export default class Renderer {
                 ancestors = ancestors.concat(result.item.title)
                 const subtitle = ancestors.join(' · ')
                 
-                headings += `<a title="${heading.title} - ${subtitle}" href="${this.url(result.item, result.item.url)}#${heading.anchor}" class="search-result search-result-heading">
+                headings += `<a title="${heading.title} - ${subtitle}" href="${this.url(result.item, result.item.url)}#${heading.anchor}"${this.getResultLinkTarget()} class="search-result search-result-heading">
   <div class="search-result-icon search-result-heading-icon">${params.icons['heading']}</div>
   <div class="search-result-content">
     <div class="search-result-title">${this.highlight(heading.title, [matches[j]])}</div>
