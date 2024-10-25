@@ -62,6 +62,10 @@ export default class Renderer {
     }
 
     icon(page) {
+        return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
+    }
+
+    img(page) {
         if (page.img) {
             let h = ''
             let w = ''
@@ -74,7 +78,7 @@ export default class Renderer {
             return `<img class="search-result-img" src="${page.img}"${w}${h} />`
         }
 
-        return page.kind in params.icons ? params.icons[page.kind] : params.icons.page
+        return ''
     }
 
     url(page, url): string {
@@ -357,6 +361,7 @@ export default class Renderer {
     <div class="search-result-title">${this.title(result)}</div>
     ${this.desc(result)}
   </div>
+  ${this.img(result.item)}
   <div class="search-result-meta">
     <span class="search-result-score">${this.score(result.score)}</span>
     <span class="search-result-lang">${result.item.lang}</span>
