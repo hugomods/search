@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.18.0](https://github.com/hugomods/search/compare/v0.17.2...v0.18.0) (2024-10-25)
+
+
+### Features ✨
+
+* add the `indices` parameter, to load external indices ([23784f5](https://github.com/hugomods/search/commit/23784f58e57b7648587d4c3dcd48a18dc5573217))
+* add the reset button for dropdowns ([#273](https://github.com/hugomods/search/issues/273)) ([36af817](https://github.com/hugomods/search/commit/36af817b3e45ca17a107174aa9438a928dce6de8))
+* allow filtering taxonomies with search box ([#272](https://github.com/hugomods/search/issues/272)) ([0f42374](https://github.com/hugomods/search/commit/0f42374fbe3b4be918740d3f077c5c783d4aacae)), closes [#264](https://github.com/hugomods/search/issues/264)
+* **ue:** open result on new tab when on single search page mode ([#270](https://github.com/hugomods/search/issues/270)) ([e3e6d56](https://github.com/hugomods/search/commit/e3e6d56be5d8654f891acb3dfb3619023e43b796))
+
+
+### Bug Fixes 🐞
+
+* able to trigger load more event without specifying max-height ([#269](https://github.com/hugomods/search/issues/269)) ([884385a](https://github.com/hugomods/search/commit/884385ae46defae85ab00c813562662ac3ca6ac1))
+* check if indices is set ([#268](https://github.com/hugomods/search/issues/268)) ([35025a1](https://github.com/hugomods/search/commit/35025a14452c06ae8b245d907ad4a551a85d96cd)), closes [#261](https://github.com/hugomods/search/issues/261)
+* languages filter ([#271](https://github.com/hugomods/search/issues/271)) ([e685ace](https://github.com/hugomods/search/commit/e685ace3be181185ce85edfa3dc608ae3abd3c02))
+* remove stats when query is empty ([f0e5f7d](https://github.com/hugomods/search/commit/f0e5f7d8aaab0aede9716352951ee51cb2539885))
+* set the height and width attributes for image resources ([#274](https://github.com/hugomods/search/issues/274)) ([4b09871](https://github.com/hugomods/search/commit/4b098718d9348f7dd5d8d29b0f67ebe25f619cca)), closes [#242](https://github.com/hugomods/search/issues/242)
+* **ue:** display at most one dropdown ([b670c84](https://github.com/hugomods/search/commit/b670c8453f389ecfc3b14747290c5d186d46e9d9))
+
+
+### Performance Improvements ⚡️
+
+* lazy loading locales ([#267](https://github.com/hugomods/search/issues/267)) ([23784f5](https://github.com/hugomods/search/commit/23784f58e57b7648587d4c3dcd48a18dc5573217))
+
+
+### Styles 🎨
+
+* display filter labels on small screen ([a1a7313](https://github.com/hugomods/search/commit/a1a7313a5e4fa02d007da2e8c9490ef938f32ace))
+* minor changes ([8e2e295](https://github.com/hugomods/search/commit/8e2e295f1a8c15836c86f9423e8d68d5b0e68072))
+* tweak disabled input ([3bb42d6](https://github.com/hugomods/search/commit/3bb42d64ab13f2dc32f696aba72d5d1a77d609aa))
+
 ## [0.17.2](https://github.com/hugomods/search/compare/v0.17.1...v0.17.2) (2024-10-05)
 
 
