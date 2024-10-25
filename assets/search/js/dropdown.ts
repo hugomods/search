@@ -4,6 +4,14 @@
         dropdown.setAttribute('aria-expanded', 'false')
     }
 
+    const hideAll = (except: null|HTMLElement) => {
+        document.querySelectorAll<HTMLElement>('.search-dropdown.show').forEach((dropdown) => {
+            if (dropdown != except) {
+                hide(dropdown)
+            }
+        })
+    }
+
     const show = (dropdown: HTMLElement) => {
         dropdown.classList.add('show')
         dropdown.setAttribute('aria-expanded', 'true')
@@ -16,6 +24,7 @@
         }
 
         show(dropdown)
+        hideAll(dropdown)
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -98,9 +107,7 @@
             }
 
             // close opened dropdown when losing focus.
-            document.querySelectorAll<HTMLElement>('.search-dropdown.show').forEach((dropdown) => {
-                hide(dropdown)
-            })
+            hideAll()
         })
     })
 })()
