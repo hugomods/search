@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.1](https://github.com/hugomods/search/compare/v0.18.0...v0.18.1) (2024-10-26)
+
+
+### Bug Fixes 🐞
+
+* import github.com/hugomods/search-index ([#275](https://github.com/hugomods/search/issues/275)) ([5a836e5](https://github.com/hugomods/search/commit/5a836e5d7cabfd80bcb00cefa5af8db03a0e1fc0))
+
 ## [0.18.0](https://github.com/hugomods/search/compare/v0.17.2...v0.18.0) (2024-10-25)
 
 
