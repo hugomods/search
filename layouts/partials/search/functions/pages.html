@@ -1,4 +1,1 @@
-{{- $indexAllPages := default true site.Params.search.index_all_pages -}}
-{{- $pages := cond $indexAllPages site.Pages site.RegularPages -}}
-{{- $pages = where $pages "Params.noindex" "ne" true -}}
-{{- return $pages }}
+{{- return partial "search-index/functions/pages" . }}

@@ -36,7 +36,7 @@
 {{- range .Sites }}
   {{- $site := . }}
   {{- with .Home.OutputFormats.Get "SearchIndex" }}
-    {{- $hash := partialCached "search/functions/search-index-hash" $site $site }}
+    {{- $hash := partialCached "search-index/functions/hash" $site $site }}
     {{- $indexURL := printf "%s?v=%s" .Permalink $hash }}
     {{- $indices = $indices | append $indexURL }}
   {{- end }}
