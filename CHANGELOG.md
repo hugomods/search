@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.2](https://github.com/hugomods/search/compare/v0.18.1...v0.18.2) (2024-11-03)
+
+
+### Bug Fixes 🐞
+
+* do not transform the baseURL, leave it as it is ([#277](https://github.com/hugomods/search/issues/277)) ([e9b39f8](https://github.com/hugomods/search/commit/e9b39f80f429749ee640099d6810ed847d700fc3))
+
 ## [0.18.1](https://github.com/hugomods/search/compare/v0.18.0...v0.18.1) (2024-10-26)
 
 
