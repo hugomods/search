@@ -63,8 +63,7 @@ class Engine {
                     // backward compatibility 
                     pages = pages.concat(data)
                 } else {
-                    const baseURL = data.baseURL.replace(/\/$/, "")
-                    const siteIdx = this.sites.push({baseURL: baseURL}) - 1
+                    const siteIdx = this.sites.push({baseURL: data.baseURL}) - 1
                     pages = pages.concat(data.pages.map((page) => {
                         return {...page, site: siteIdx}
                     }))
