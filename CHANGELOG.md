@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.3](https://github.com/hugomods/search/compare/v0.18.2...v0.18.3) (2024-11-04)
+
+
+### Styles 🎨
+
+* set the width of dropdown search box to 100% ([596de5a](https://github.com/hugomods/search/commit/596de5a46d9ea66db4088378fbbfef035574c794))
+
 ## [0.18.2](https://github.com/hugomods/search/compare/v0.18.1...v0.18.2) (2024-11-03)
 
 
