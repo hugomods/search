@@ -1,0 +1,57 @@
+[all]
+other = "Todos"
+
+[cancel]
+other = "Cancelar"
+
+[expand]
+other = "Ampliar"
+
+[index_fails]
+other = "Error al inicializar el índice."
+
+[input_placeholder]
+other = "Escribe aquí para buscar"
+
+[reset]
+other = "Restablecer"
+
+[search_stat]
+one = "Encontrado {total} resultado en {time}."
+other = "Encontrados {total} resultados en {time}."
+
+[sort_by_default]
+other = "Mejor coincidencia"
+
+[sort_by_date_asc]
+other = "Más antiguo"
+
+[sort_by_date_desc]
+other = "Más nuevo"
+
+[taxonomy_authors]
+other = "Autores"
+
+[taxonomy_categories]
+other = "Categorías"
+
+[taxonomy_series]
+other = "Series"
+
+[taxonomy_tags]
+other = "Etiquetas"
+
+[to_close]
+other = "para cerrar"
+
+[to_navigate]
+other = "para navegar"
+
+[to_search]
+other = "para buscar"
+
+[to_select]
+other = "para seleccionar"
+
+[years]
+other = "Años"
