@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/hugomods/search/compare/v0.18.3...v0.19.0) (2024-11-23)
+
+
+### Features ✨
+
+* **i18n:** add Spanish translations ([#281](https://github.com/hugomods/search/issues/281)) ([3ad9f94](https://github.com/hugomods/search/commit/3ad9f94cc12d0a09f0bfc51e2061f9ed686dbc86))
+
 ## [0.18.3](https://github.com/hugomods/search/compare/v0.18.2...v0.18.3) (2024-11-04)
 
 
