@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://github.com/hugomods/search/compare/v0.19.0...v0.19.1) (2025-02-15)
+
+
+### Bug Fixes 🐞
+
+* **ue:** revert b4cacc7 ([2f473e5](https://github.com/hugomods/search/commit/2f473e53f7c8cc50b3ba16e36f0027969b559fd2))
+
 ## [0.19.0](https://github.com/hugomods/search/compare/v0.18.3...v0.19.0) (2024-11-23)
 
 
