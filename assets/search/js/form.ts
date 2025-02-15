@@ -298,7 +298,6 @@ ${this.renderTaxonomies()}
     }
 
     private submit() {
-        this.input.disabled = true
         const query = this.getQuery()
         this.updatePage(query)
 
@@ -308,7 +307,6 @@ ${this.renderTaxonomies()}
         const taxonomies = this.getTaxonomies()
 
         if (query === '' && Object.values(taxonomies).filter((item) => item.length > 0).length == 0) {
-            this.input.disabled = false
             this.hideResetBtn()
             this.renderer.clean()
             this.renderer.renderHistories()
@@ -324,8 +322,6 @@ ${this.renderTaxonomies()}
                 Historiographer.save(query)
             }
             this.spinner.hide()
-            this.input.disabled = false
-            this.focus()
         })
     }
 
