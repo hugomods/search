@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.2](https://github.com/hugomods/search/compare/v0.19.1...v0.19.2) (2025-02-16)
+
+
+### Bug Fixes 🐞
+
+* remove the disabled attribute from input, to pop up keyboard on iOS devices ([#287](https://github.com/hugomods/search/issues/287)) ([73d8de2](https://github.com/hugomods/search/commit/73d8de2e1a58f096b7de15f7ac5d16cf93d53fce))
+
 ## [0.19.1](https://github.com/hugomods/search/compare/v0.19.0...v0.19.1) (2025-02-15)
 
 
