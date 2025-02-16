@@ -39,7 +39,7 @@ export default class Form {
     <div class="search-input-group">
         <span class="search-input-icon">${params.icons['search']}</span>
         <span class="search-spinner">${params.icons['spinner']}</span>
-        <input type="search" name="q" class="search-input search-form-control" placeholder="${translate('input_placeholder')}" autocomplete="off" disabled/>
+        <input type="search" name="q" class="search-input search-form-control" placeholder="${translate('input_placeholder')}" autocomplete="off" />
         <button class="search-reset-button disabled" type="reset">${params.icons['reset']}</button>
     </div>
     <button class="search-modal-close" type="button">${translate('cancel')}</button>
@@ -154,6 +154,8 @@ export default class Form {
 
     private initialized = false
 
+    private engineInitialized = false
+
     // Initialize the form after rendering.
     init() {
         if (this.initialized) {
@@ -213,9 +215,8 @@ export default class Form {
         this.spinner.show()
         engine.init().then(() => {
             this.renderPanel()
-        }).then(() => {
-            this.input.removeAttribute('disabled')
         }).catch((err) => {
+            this.input.setAttribute('disabled', '')
             this.input.value = translate('index_fails')
             throw err
         }).then(() => {
@@ -223,8 +224,8 @@ export default class Form {
                 this.fillInputByURL()
                 this.submit()
             }
+            this.engineInitialized = true
         }).finally(() => {
-            this.focus()
             this.spinner.hide()
         })
 
@@ -282,6 +283,11 @@ ${this.renderTaxonomies()}
     }
 
     private fillInputByURL() {
+        // If the input is not empty, do nothing.
+        if (this.input.value.trim() !== '') {
+            return
+        }
+
         const params = new URLSearchParams(location.search)
         const q = params.get('q')
         if (q) {
@@ -300,6 +306,11 @@ ${this.renderTaxonomies()}
     private submit() {
         const query = this.getQuery()
         this.updatePage(query)
+
+        // Do not search if the engine is not initialized.
+        if (!this.engineInitialized) {
+            return
+        }
 
         const sorting = this.getSorting()
         const lang = this.getLanguage()
