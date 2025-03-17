@@ -6,7 +6,7 @@ let i18n: Translator = undefined
 export const init = (): Promise<boolean> => {
   return new Promise((resolve) => {
     const lang = document.documentElement.getAttribute('lang') ?? params.lang
-    const locale = params.locales[lang] ?? Object.values(params.locales)[0]
+    const locale = params.locales[lang] ?? params.locales['en']
     fetch(locale).then((resp) => resp.json()).then((messages) => {
       i18n = new Translator({[lang]: messages}, lang)
       resolve(true)
