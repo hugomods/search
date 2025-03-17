@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.20.0](https://github.com/hugomods/search/compare/v0.19.2...v0.20.0) (2025-03-17)
+
+
+### Features ✨
+
+* **i18n:** add support for pt  ([#291](https://github.com/hugomods/search/issues/291)) ([79e847a](https://github.com/hugomods/search/commit/79e847a8dddc9c2643f8fc6d9c01c5f125862a4f))
+
+
+### Bug Fixes 🐞
+
+* fallback locale to default locale if not supported ([#289](https://github.com/hugomods/search/issues/289)) ([9d845b1](https://github.com/hugomods/search/commit/9d845b18b13ad01b8b980577021cb4f835cc6d55))
+* set default locale as en ([6fcf16f](https://github.com/hugomods/search/commit/6fcf16fd5fdb2964d9c4c505d3de32f98f89e48e))
+
 ## [0.19.2](https://github.com/hugomods/search/compare/v0.19.1...v0.19.2) (2025-02-16)
 
 
