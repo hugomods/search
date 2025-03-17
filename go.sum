@@ -4,6 +4,7 @@ github.com/hugomods/i18n-js v0.2.1 h1:uIUl4LiYdwo8IK08oq7OmluYLedL21Wc9Rig1taDTS
 github.com/hugomods/i18n-js v0.2.1/go.mod h1:eJfxjgI2CQsNA1/ReIVvr5127DftUKcbHd2A2SQmDvU=
 github.com/hugomods/icons v0.6.2 h1:uESGgdnZ0NW/IPNfbGuq1dYG/p5XiqZ9R9CNq0Snr4c=
 github.com/hugomods/icons v0.6.2/go.mod h1:cIkSvK6W0q6N4U6n9KGz+QfRWQXAW0INd+1P31gPNGg=
+github.com/hugomods/icons v0.6.6/go.mod h1:cIkSvK6W0q6N4U6n9KGz+QfRWQXAW0INd+1P31gPNGg=
 github.com/hugomods/icons/vendors/bootstrap v0.5.4 h1:I/Zr7xBYZZsVkR8NJkTn3x3a5Mp8y1EUmWoI/Ypg6/I=
 github.com/hugomods/icons/vendors/bootstrap v0.5.4/go.mod h1:DtuYP+dG9Sttfsggd9k09h/hapZBsel6JJ1vNetkaCg=
 github.com/krisk/Fuse v7.0.0+incompatible h1:jVyg6No+Joc51Rn97QQYJZIpCxzd4ywACn/4+FKWjvo=
