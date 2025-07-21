@@ -11,8 +11,8 @@
   },
   "homepage": "https://github.com/hugomods/search",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^8.34.0",
     "prettier": "^2.7.1",
     "prettier-plugin-go-template": "^0.0.13",
